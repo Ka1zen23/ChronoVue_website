@@ -11,14 +11,11 @@ export default function Footer() {
             <a href="#" className="mb-5 inline-flex items-center gap-3">
               
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
-                <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-                  <path
-                    d="M8 16h4v8H8v-8zM14 9h4v15h-4V9zM20 13h4v11h-4V13z"
-                    fill="white"
-                    fillOpacity=".92"
-                  />
-                  <circle cx="24" cy="8" r="3" fill="#7a9680" />
-                </svg>
+                <img 
+                  src="assets/logo.svg" 
+                  alt="Flow Logo" 
+                  className="w-[30px] h-[30px] shrink-0" 
+                />
               </div>
 
               <div>
