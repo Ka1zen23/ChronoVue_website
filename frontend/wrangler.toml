@@ -7,3 +7,6 @@ pages_build_output_dir = "dist"
 binding = "DB"
 database_name = "cekap-db"
 database_id = "REPLACE_WITH_YOUR_DB_ID"
+
+[assets]
+directory = "./dist"
