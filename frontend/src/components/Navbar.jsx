@@ -39,6 +39,13 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-2.5">
             <a
+              href="/command-centre"
+              className="px-5 py-2 text-[13.5px] font-semibold text-brand-navy
+                border border-black/[0.1] rounded-lg hover:bg-black/[0.04] transition-colors"
+            >
+              Live Demo
+            </a>
+            <a
               href="#contact"
               data-magnetic="0.25"
               className="btn-shimmer px-5 py-2 text-[13.5px] font-semibold text-white

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import CommandCentre from './pages/CommandCentre';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -6,21 +7,24 @@ import HowItWorks from './components/HowItWorks';
 import Impact from './components/Impact';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
-import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
+  const isDemo = window.location.pathname.startsWith('/command-centre');
+
   useEffect(() => {
-    // Small delay so all components are in the DOM
+    if (isDemo) return;
     const t = setTimeout(() => {
       setupScrollReveal();
       setupNavBehaviour();
       setupMagneticButtons();
     }, 60);
     return () => clearTimeout(t);
-  }, []);
+  }, [isDemo]);
+
+  if (isDemo) return <CommandCentre />;
 
   return (
     <>
@@ -32,7 +36,6 @@ export default function App() {
         <Impact />
         <Testimonials />
         <Pricing />
-        <Team />
         <Contact />
       </main>
       <Footer />
