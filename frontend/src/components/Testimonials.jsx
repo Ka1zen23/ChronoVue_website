@@ -7,9 +7,9 @@ const testimonials = [
     role: 'Capacity management & operational workflow feedback',
   },
   {
-    quote: 'What I want is the car park display — green, amber, red. Don\'t make me think. Show me where the capacity is and let me move patients.',
+    quote: 'Don\'t make me think. I just want to understand the capacity at a single glance so I can see exactly where the open beds are and move patients immediately without wasting time.',
     attribution: 'Nurse Manager',
-    role: 'Prototype testing — visual heatmap feedback',
+    role: 'Prototype testing — visual design and glanceability feedback',
   },
   {
     quote: 'I prefer FLOW because of how user-friendly it is. The visuals take away all the guesswork—we can see the status of the entire facility at a single glance instead of digging through dense data.',
