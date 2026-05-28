@@ -1,12 +1,12 @@
 import CommandCentre from '../pages/CommandCentre';
 
-const SCALE = 0.62;
+const SCALE = 0.8;
 
 export default function DashboardPreview() {
   return (
     <div
       className="relative overflow-hidden rounded-t-2xl border border-white/[0.08] shadow-2xl shadow-black/50"
-      style={{ height: '540px' }}
+      style={{ height: '80vh' }}
     >
       <div
         className="absolute top-0 left-0 pointer-events-none"
