@@ -94,11 +94,11 @@ export default function Navbar() {
 function Logo() {
   return (
     <a href="#" className="flex items-center gap-2.5 shrink-0 group">
-      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="7" fill="#0A1628"/>
-        <path d="M8 16h4v6H8v-6zM14 10h4v12h-4V10zM20 13h4v9h-4v-9z" fill="white"/>
-        <circle cx="24" cy="9" r="3" fill="#06D6A0"/>
-      </svg>
+      <img 
+        src="assets/logo.svg" 
+        alt="Flow Logo" 
+        className="w-[30px] h-[30px] shrink-0" 
+      />
       <div className="leading-none">
         <span className="font-display font-bold text-[17px] text-brand-navy tracking-tight">FLOW</span>
         <span className="text-gray-400 font-normal text-[13px] ml-1.5">by Cekap</span>
