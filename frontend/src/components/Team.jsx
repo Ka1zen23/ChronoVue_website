@@ -75,7 +75,7 @@ export default function Team() {
             shadow-[0_20px_70px_rgba(0,0,0,0.07)]
           "
         >
-          <div className="relative aspect-[16/6] overflow-hidden">
+          <div className="relative h-[460px] md:h-[620px] overflow-hidden">
             
             <img
               src="assets/team-photo.jpeg"
