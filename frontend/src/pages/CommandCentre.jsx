@@ -171,7 +171,7 @@ export default function CommandCentre() {
               Command Centre
             </div>
             <h1 className="text-[17px] font-bold text-[#243046] leading-tight">
-              RIPAS Hospital Command Centre
+              Hospital Command Centre
             </h1>
             <p className="text-[11px] text-gray-400 mt-0.5">
               Bed management, patient flow, and operational visibility for the current shift.
