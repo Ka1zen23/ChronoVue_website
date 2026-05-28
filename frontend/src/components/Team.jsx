@@ -40,7 +40,7 @@ const TEAM = [
 export default function Team() {
   return (
     <section
-      id="team-section"
+      id="team"
       className="relative overflow-hidden bg-[#f7f8f7] py-28"
     >
       {/* Background accents */}
@@ -78,7 +78,7 @@ export default function Team() {
           <div className="relative aspect-[16/6] overflow-hidden">
             
             <img
-              src="../assets/team-photo.jpeg"
+              src="assets/team-photo.jpeg"
               alt="Team Cekap"
               className="h-full w-full object-cover"
             />
