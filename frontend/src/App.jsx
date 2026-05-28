@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import CommandCentre from './pages/CommandCentre';
+import DemoApp from './demo/DemoApp';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -25,7 +25,7 @@ export default function App() {
     return () => clearTimeout(t);
   }, [isDemo]);
 
-  if (isDemo) return <CommandCentre />;
+  if (isDemo) return <DemoApp />;
 
   return (
     <>
