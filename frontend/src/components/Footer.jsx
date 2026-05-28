@@ -47,11 +47,11 @@ export default function Footer() {
             </a>
 
             <p className="text-[13.5px] text-white/45 leading-relaxed max-w-[220px] mb-6">
-              Real-time operational visibility for hospitals. Replacing paper census, Excel,
+              Flow and Logistics Operation Watch for hospitals. Replacing paper census, Excel,
               whiteboards, and WhatsApp with one live dashboard.
             </p>
             <p className="text-sm leading-relaxed max-w-[240px] mb-6">
-              Built in Brunei, for Brunei — and beyond.
+              Built in Brunei, for Brunei and beyond.
             </p>
 
             <div className="flex flex-col gap-1.5">
@@ -90,7 +90,7 @@ export default function Footer() {
         <div className="rounded-2xl border border-white/[0.09] bg-white/[0.04] px-7 py-5
           flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="text-sm font-semibold text-white mb-0.5">AMU Pilot — Now Open</div>
+            <div className="text-sm font-semibold text-white mb-0.5">AMU Pilot In Progress</div>
             <div className="text-xs text-white/50">FLOW is accepting applications for paid pilot deployments.</div>
           </div>
           <a
@@ -106,7 +106,7 @@ export default function Footer() {
 
       <div className="border-t border-white/8">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/35">
-          <p>&copy; 2026 Team Cekap. FLOW — Real-Time Operational Visibility Platform.</p>
+          <p>&copy; 2026 Team Cekap. FLOW — Flow and Logistics Operation Watch.</p>
           <p>Brunei Darussalam</p>
         </div>
       </div>
