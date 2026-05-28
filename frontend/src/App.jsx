@@ -31,6 +31,7 @@ export default function App() {
         <Impact />
         <Testimonials />
         <Pricing />
+        <Team />
         <Contact />
       </main>
       <Footer />
