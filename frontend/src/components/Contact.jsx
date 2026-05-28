@@ -30,27 +30,24 @@ export default function Contact() {
 
   const update = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setStatus('loading');
-    try {
-      const res = await fetch('/api/demo-requests', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName:  form.firstName,
-          lastName:   form.lastName,
-          email:      form.email,
-          hospital:   form.organisation,
-          bedsRange:  form.role,
-          message:    `Interest: ${form.interest}\n\n${form.message}`,
-        }),
-      });
-      if (!res.ok) throw new Error();
-      setStatus('success');
-    } catch {
-      setStatus('error');
-    }
+    const interestLabel = INTERESTS.find(i => i.value === form.interest)?.label ?? form.interest;
+    const subject = encodeURIComponent(`FLOW Enquiry — ${form.firstName} ${form.lastName}`);
+    const body = encodeURIComponent(
+      [
+        `Name: ${form.firstName} ${form.lastName}`,
+        `Work email: ${form.email}`,
+        `Organisation: ${form.organisation}`,
+        form.role        ? `Role: ${form.role}` : null,
+        form.interest    ? `Interest: ${interestLabel}` : null,
+        form.message     ? `\nMessage:\n${form.message}` : null,
+      ]
+        .filter(Boolean)
+        .join('\n')
+    );
+    window.open(`mailto:cekap.bn@gmail.com?subject=${subject}&body=${body}`);
+    setStatus('success');
   }
 
   return (
@@ -103,10 +100,13 @@ export default function Contact() {
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold text-brand-navy tracking-tight">Message received.</h3>
+              <h3 className="text-[20px] font-bold text-brand-navy tracking-tight">Email draft opened.</h3>
               <p className="text-gray-500 text-[14px] leading-relaxed max-w-xs">
-                Team Cekap will respond within one business day. We appreciate every conversation —
-                especially from people actually working in the wards.
+                Your email client should have opened with everything pre-filled. Just hit send.
+                If it didn't open, email us directly at{' '}
+                <a href="mailto:cekap.bn@gmail.com" className="text-brand-blue hover:underline">
+                  cekap.bn@gmail.com
+                </a>
               </p>
             </div>
           ) : (
@@ -144,22 +144,13 @@ export default function Contact() {
                 />
               </div>
 
-              {status === 'error' && (
-                <div className="text-[13px] text-red-600 bg-red-50 border border-red-200/70
-                  rounded-xl px-4 py-3">
-                  Something went wrong. Please try again or email cekap.bn@gmail.com directly.
-                </div>
-              )}
-
               <button
                 type="submit"
-                disabled={status === 'loading'}
                 data-magnetic="0.15"
                 className="btn-shimmer w-full py-3.5 rounded-xl bg-brand-navy text-white
-                  font-semibold text-[15px] hover:bg-brand-navy-mid transition-colors
-                  shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  font-semibold text-[15px] hover:bg-brand-navy-mid transition-colors shadow-sm"
               >
-                {status === 'loading' ? 'Sending…' : 'Send Message'}
+                Send Message
               </button>
 
               <p className="text-[12px] text-gray-400 text-center">
