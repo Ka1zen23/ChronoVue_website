@@ -142,7 +142,7 @@ export default function Hero() {
       </div>
 
       {/* Dashboard preview */}
-      <div data-reveal className="relative max-w-5xl mx-auto px-6 pb-16">
+      <div data-reveal className="relative px-4 pb-16">
         <DashboardPreview />
       </div>
     </section>
