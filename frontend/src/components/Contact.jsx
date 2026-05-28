@@ -71,7 +71,6 @@ export default function Contact() {
           <div className="flex flex-col gap-6 mb-10">
             {REASONS.map(item => (
               <div key={item.title} className="flex gap-4">
-                <div className="w-1 bg-brand-blue/20 rounded-full shrink-0 self-stretch min-h-[40px]" />
                 <div>
                   <div className="text-[14px] font-bold text-brand-navy mb-1">{item.title}</div>
                   <div className="text-[13px] text-gray-400 leading-snug">{item.desc}</div>
@@ -83,7 +82,7 @@ export default function Contact() {
           <div className="flex flex-col gap-3 pt-6 border-t border-black/[0.06]">
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <MailIcon />
-              hello@cekap.io
+              cekap.bn@gmail.com
             </div>
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <PinIcon />
@@ -148,7 +147,7 @@ export default function Contact() {
               {status === 'error' && (
                 <div className="text-[13px] text-red-600 bg-red-50 border border-red-200/70
                   rounded-xl px-4 py-3">
-                  Something went wrong. Please try again or email hello@cekap.io directly.
+                  Something went wrong. Please try again or email cekap.bn@gmail.com directly.
                 </div>
               )}
 
