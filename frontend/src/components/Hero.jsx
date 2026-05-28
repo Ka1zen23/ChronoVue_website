@@ -141,8 +141,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Dashboard preview */}
-      <div data-reveal className="relative px-4 pb-16">
+      {/* Dashboard preview — hidden on mobile */}
+      <div data-reveal className="relative px-4 pb-16 hidden md:block">
         <DashboardPreview />
       </div>
     </section>

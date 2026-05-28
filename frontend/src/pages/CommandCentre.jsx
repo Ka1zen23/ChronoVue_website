@@ -116,15 +116,21 @@ const CensusRow = ({ ward, total, occ, vac, dirty, blocked, bold }) => (
 );
 
 /* ─── Main component ─── */
-export default function CommandCentre() {
+export default function CommandCentre({ embedded = false }) {
   const now = useClock();
   const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', fn, { passive: true });
+    return () => window.removeEventListener('resize', fn);
+  }, []);
 
   return (
-    <div className="flex h-screen overflow-hidden font-sans text-sm bg-[#e6e5df]">
+    <div className={`flex font-sans text-sm bg-[#e6e5df] ${embedded ? '' : 'h-screen overflow-hidden'}`}>
 
       {/* ── Sidebar ── */}
-      <div className="w-[52px] shrink-0 bg-[#243046] flex flex-col items-center py-3 gap-3">
+      <div className="hidden md:flex w-[52px] shrink-0 bg-[#243046] flex-col items-center py-3 gap-3">
         {/* Logo */}
         <div className="w-8 h-8 rounded-lg bg-[#538c97]/30 flex items-center justify-center text-white text-[11px] font-bold mb-1">
           FL
@@ -162,10 +168,10 @@ export default function CommandCentre() {
       </div>
 
       {/* ── Content ── */}
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+      <div className="flex flex-col flex-1 min-w-0">
 
         {/* ── Header ── */}
-        <div className="bg-white border-b border-black/[0.06] px-5 py-3 flex items-start justify-between shrink-0">
+        <div className="bg-white border-b border-black/[0.06] px-4 md:px-5 py-3 flex flex-col md:flex-row md:items-start md:justify-between gap-2 shrink-0">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-[#538c97] mb-0.5">
               Command Centre
@@ -178,7 +184,7 @@ export default function CommandCentre() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex items-center gap-2 md:gap-2.5 flex-wrap md:shrink-0">
             {/* Live indicator */}
             <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -187,7 +193,7 @@ export default function CommandCentre() {
             <button className="text-[11px] font-medium text-gray-500 border border-black/10 rounded-full px-2.5 py-1 hover:bg-gray-50">
               Browser-only
             </button>
-            <button className="text-[11px] font-medium text-gray-500 border border-black/10 rounded-full px-2.5 py-1 hover:bg-gray-50">
+            <button className="hidden md:block text-[11px] font-medium text-gray-500 border border-black/10 rounded-full px-2.5 py-1 hover:bg-gray-50">
               Operational visibility
             </button>
             <div className="ml-1 text-right">
@@ -202,7 +208,7 @@ export default function CommandCentre() {
         </div>
 
         {/* ── Stats bar ── */}
-        <div className="bg-white border-b border-black/[0.06] px-5 py-2.5 flex gap-8 shrink-0">
+        <div className="bg-white border-b border-black/[0.06] px-4 md:px-5 py-2 md:py-2.5 flex flex-wrap gap-x-5 gap-y-1.5 shrink-0">
           {[
             { label: 'DATE',                  value: 'Wednesday, 27 May 2026' },
             { label: 'TIME OF UPDATE',         value: '00:02 BST' },
@@ -218,21 +224,22 @@ export default function CommandCentre() {
         </div>
 
         {/* ── Dashboard grid ── */}
-        <div className="flex-1 overflow-auto p-3 space-y-3">
+        <div className={`${embedded ? '' : 'flex-1 overflow-auto'} p-3 space-y-3`}>
 
           {/* TOP SECTION */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '25fr 15fr 13fr 47fr',
-            gridTemplateRows: 'auto auto',
-            gap: '0.75rem',
+          <div style={isMobile ? {
+            display: 'grid', gridTemplateColumns: '1fr', gap: '0.75rem',
+          } : {
+            display: 'grid', gridTemplateColumns: '25fr 15fr 13fr 47fr',
+            gridTemplateRows: 'auto auto', gap: '0.75rem',
           }}>
 
             {/* Card 1 — 24-Hour Total Census */}
-            <Card style={{ gridColumn: '1', gridRow: '1 / 3' }}>
+            <Card style={isMobile ? {} : { gridColumn: '1', gridRow: '1 / 3' }}>
               <CardHeader num="1" title="24-Hour Total Census" />
 
-              <table className="w-full border-collapse">
+              <div className="overflow-x-auto -mx-1 px-1">
+              <table className="w-full border-collapse min-w-[320px]">
                 <thead>
                   <tr>
                     <th className="text-left text-[10px] text-gray-400 font-medium pb-1 pr-2">Ward/area</th>
@@ -289,10 +296,11 @@ export default function CommandCentre() {
                   />
                 </tbody>
               </table>
+              </div>
             </Card>
 
             {/* Card 2 — Occupancy Rate */}
-            <Card style={{ gridColumn: '2', gridRow: '1' }}>
+            <Card style={isMobile ? {} : { gridColumn: '2', gridRow: '1' }}>
               <CardHeader num="2" title="Occupancy Rate" />
 
               <div className="space-y-3">
@@ -327,7 +335,7 @@ export default function CommandCentre() {
             </Card>
 
             {/* Card 3 — Total Vacant Beds */}
-            <Card style={{ gridColumn: '3', gridRow: '1' }}>
+            <Card style={isMobile ? {} : { gridColumn: '3', gridRow: '1' }}>
               <CardHeader num="3" title="Total Vacant Beds" />
 
               <div className="space-y-1.5 mb-3">
@@ -350,7 +358,7 @@ export default function CommandCentre() {
             </Card>
 
             {/* Card 4 — Isolation Wards */}
-            <Card style={{ gridColumn: '4', gridRow: '1 / 3' }}>
+            <Card style={isMobile ? {} : { gridColumn: '4', gridRow: '1 / 3' }}>
               <CardHeader num="4" title="Isolation Wards" />
 
               <table className="w-full border-collapse">
@@ -385,7 +393,7 @@ export default function CommandCentre() {
             </Card>
 
             {/* Card 5 — Vacant Beds by Specialty */}
-            <Card style={{ gridColumn: '2 / 4', gridRow: '2' }}>
+            <Card style={isMobile ? {} : { gridColumn: '2 / 4', gridRow: '2' }}>
               <CardHeader num="5" title="Vacant Beds by Specialty" />
 
               <div className="grid grid-cols-3 gap-2 mb-2">
@@ -421,10 +429,10 @@ export default function CommandCentre() {
           </div>
 
           {/* MID SECTION */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1.3fr 1.5fr 1.3fr 2.4fr',
-            gap: '0.75rem',
+          <div style={isMobile ? {
+            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem',
+          } : {
+            display: 'grid', gridTemplateColumns: '1fr 1.3fr 1.5fr 1.3fr 2.4fr', gap: '0.75rem',
           }}>
 
             {/* Card 6 — Pending ED */}
@@ -553,7 +561,8 @@ export default function CommandCentre() {
             {/* Card 10 — IN/Cases – Anaesthesiology */}
             <Card>
               <CardHeader num="10" title="IN/Cases – Anaesthesiology" />
-              <table className="w-full border-collapse">
+              <div className="overflow-x-auto -mx-1 px-1">
+              <table className="w-full border-collapse min-w-[300px]">
                 <thead>
                   <tr>
                     <th className="text-left text-[10px] text-gray-400 font-medium pb-1">Type</th>
@@ -589,14 +598,15 @@ export default function CommandCentre() {
                   </tr>
                 </tbody>
               </table>
+              </div>
             </Card>
           </div>
 
           {/* BOTTOM SECTION */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '2fr 3fr',
-            gap: '0.75rem',
+          <div style={isMobile ? {
+            display: 'grid', gridTemplateColumns: '1fr', gap: '0.75rem',
+          } : {
+            display: 'grid', gridTemplateColumns: '2fr 3fr', gap: '0.75rem',
           }}>
 
             {/* Card 11 — Psychiatric – Police Case – Mission */}
