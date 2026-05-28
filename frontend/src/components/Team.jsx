@@ -68,68 +68,76 @@ export default function MeetTheTeam() {
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {TEAM.map((member, i) => (
+        {TEAM.map((member, i) => (
             <div
-              key={i}
-              className="
-                group overflow-hidden rounded-[30px]
+            key={i}
+            className="
+                group overflow-hidden rounded-[28px]
                 border border-black/[0.05]
                 bg-white
-                shadow-[0_12px_40px_rgba(0,0,0,0.05)]
+                shadow-[0_10px_35px_rgba(0,0,0,0.05)]
                 transition-all duration-300
-                hover:-translate-y-2
-                hover:shadow-[0_20px_60px_rgba(36,48,70,0.12)]
-              "
+                hover:-translate-y-1.5
+                hover:shadow-[0_18px_45px_rgba(36,48,70,0.10)]
+            "
             >
-              
-              {/* Image */}
-              <div className="relative aspect-[4/4.6] overflow-hidden bg-[#e6e5df]">
+            
+            {/* Smaller Image */}
+            <div className="relative px-6 pt-6">
+                <div className="relative mx-auto aspect-square w-[160px] overflow-hidden rounded-3xl bg-[#e6e5df]">
+                
                 <img
-                  src={member.image}
-                  alt={member.name}
-                  className="
+                    src={member.image}
+                    alt={member.name}
+                    className="
                     h-full w-full object-cover
                     transition-transform duration-500
                     group-hover:scale-105
-                  "
+                    "
                 />
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent" />
-
-                {/* Floating tag */}
-                <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-white/15 px-3 py-1 backdrop-blur-md">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white">
-                    FLOW Team
-                  </span>
+                {/* Soft overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
+                {/* Floating Tag */}
+                <div className="absolute left-1/2 top-4 -translate-x-1/2">
+                <div className="rounded-full border border-white/40 bg-white/80 px-3 py-1 backdrop-blur-md">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#538c97]">
+                    Team Cekap
+                    </span>
+                </div>
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="px-6 pb-6 pt-5 text-center">
                 
-                <h3 className="text-[1.25rem] font-black tracking-tight text-[#243046]">
-                  {member.name}
+                <h3 className="text-[1.15rem] font-black tracking-tight text-[#243046]">
+                {member.name}
                 </h3>
 
-                <div className="mt-2 text-[13px] font-semibold leading-relaxed text-[#538c97]">
-                  {member.role}
+                <div className="mt-2 text-[12.5px] font-semibold leading-relaxed text-[#538c97]">
+                {member.role}
                 </div>
 
                 <div className="mt-5 space-y-2">
-                  {member.education.map((item, idx) => (
+                {member.education.map((item, idx) => (
                     <div
-                      key={idx}
-                      className="flex items-start gap-2 text-[13px] text-[#243046]/65"
+                    key={idx}
+                    className="
+                        flex items-start justify-center gap-2
+                        text-[12.5px] text-[#243046]/65
+                    "
                     >
-                      <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#7a9680]" />
-                      <span>{item}</span>
+                    <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#7a9680]" />
+                    <span>{item}</span>
                     </div>
-                  ))}
+                ))}
                 </div>
-              </div>
             </div>
-          ))}
+            </div>
+        ))}
         </div>
       </div>
     </section>
