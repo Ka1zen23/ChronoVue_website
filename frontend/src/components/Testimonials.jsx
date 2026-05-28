@@ -2,26 +2,25 @@ import { SectionHeader } from './Features';
 
 const testimonials = [
   {
-    quote: 'During testing, nurse managers told us they preferred FLOW\'s visual approach over the interface of the incoming EHR updates. The value isn\'t just the data — it\'s how it\'s presented for fast operational decisions.',
-    attribution: 'Team Cekap',
-    role: 'Prototype testing debrief — AMU ward',
-    large: true,
-  },
-  {
-    quote: 'The synthesis cost is real. Every shift, I\'m calling wards, checking Excel, looking at the whiteboard. Anything that puts that in one place — I\'m in.',
-    attribution: 'Nurse Manager',
-    role: 'Acute Medical Unit — empathy mapping session',
-  },
-  {
-    quote: 'As a CSC, I need to see everything without making a single call. Right now I can\'t. FLOW changes that — I can act the moment a bed is ready, not after three phone calls.',
-    attribution: 'Clinical Site Coordinator',
-    role: 'Direct observation session',
+    quote: 'As a Central Shift Coordinator, being alert to all bed availability is critical. When one ward is full, we have to quickly allocate patients to other available beds across different wards. Previously, keeping track of this meant manually clerking data into separate tabs in Microsoft Excel, making it incredibly difficult to get a clear picture of our census data. This solution has completely transformed how we manage our capacity.',
+    attribution: 'Sister & Central Shift Coordinator (Nurse Manager)',
+    role: 'Capacity management & operational workflow feedback',
   },
   {
     quote: 'What I want is the car park display — green, amber, red. Don\'t make me think. Show me where the capacity is and let me move patients.',
     attribution: 'Nurse Manager',
     role: 'Prototype testing — visual heatmap feedback',
   },
+  {
+    quote: 'I prefer FLOW because of how user-friendly it is. The visuals take away all the guesswork—we can see the status of the entire facility at a single glance instead of digging through dense data.',
+    attribution: 'Nurse Manager',
+    role: 'FLOW implementation — UI/UX and visual clarity feedback',
+  },
+  {
+    quote: 'In the AMU, our nurses are always overworked, and a massive part of that is the constant, manual pen-and-paper logging. Moving away from paper registries lifts a huge administrative burden off the frontline.',
+    attribution: 'Nurse Manager, Acute Medical Unit (AMU)',
+    role: 'Workflow optimization — frontline burnout feedback',
+  }
 ];
 
 export default function Testimonials() {
