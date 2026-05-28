@@ -78,7 +78,7 @@ export default function Team() {
           <div className="relative aspect-[16/6] overflow-hidden">
             
             <img
-              src="/team/team-photo.jpg"
+              src="/assets/team-photo.jpeg"
               alt="Team Cekap"
               className="h-full w-full object-cover"
             />
