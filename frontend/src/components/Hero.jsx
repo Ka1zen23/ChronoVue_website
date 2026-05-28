@@ -1,5 +1,3 @@
-import DashboardPreview from './DashboardPreview';
-
 const sources = [
   {
     icon: (
@@ -141,13 +139,34 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Dashboard preview — bridges dark → white */}
-      <div className="relative max-w-5xl mx-auto px-6 pb-0">
+      {/* Demo video — bridges dark → white */}
+      <div data-reveal className="relative max-w-5xl mx-auto px-6 pb-0">
+        {/* Fade to white at the bottom */}
         <div
           className="absolute bottom-0 inset-x-0 h-40 pointer-events-none z-10"
           style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
         />
-        <DashboardPreview />
+        {/* Browser chrome frame */}
+        <div className="rounded-t-2xl overflow-hidden shadow-2xl shadow-black/40 border border-white/[0.1]">
+          <div className="flex items-center gap-1.5 bg-[#1a2235] px-4 py-3 border-b border-white/[0.06]">
+            <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/[0.12]" />
+            <div className="flex-1 mx-4">
+              <div className="bg-white/[0.07] rounded-md px-3 py-1 text-[11px] text-white/30 font-mono">
+                flow.ripas.gov.bn / command-centre
+              </div>
+            </div>
+          </div>
+          <video
+            src="/demo/flow-demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full block"
+          />
+        </div>
       </div>
     </section>
   );
