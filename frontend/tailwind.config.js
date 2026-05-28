@@ -17,15 +17,11 @@ export default {
       fontFamily: {
         sans:    ['Inter', 'system-ui', 'sans-serif'],
         display: ['Sora', 'Inter', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'Fira Mono', 'monospace'],
       },
-      keyframes: {
-        'badge-pulse': {
-          '0%, 100%': { boxShadow: '0 0 0 3px rgba(6,214,160,.25)' },
-          '50%':       { boxShadow: '0 0 0 7px rgba(6,214,160,.08)' },
-        },
-      },
-      animation: {
-        'badge-pulse': 'badge-pulse 2s ease-in-out infinite',
+      letterSpacing: {
+        tightest: '-0.04em',
+        tighter:  '-0.03em',
       },
     },
   },

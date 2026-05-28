@@ -1,69 +1,82 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const links = [
-  { label: 'Problem',     href: '#problem' },
-  { label: 'Features',    href: '#features' },
+  { label: 'Problem',      href: '#problem' },
+  { label: 'Features',     href: '#features' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Pilot',       href: '#pilot' },
-  { label: 'Team',        href: '#team' },
+  { label: 'Pilot',        href: '#pilot' },
+  { label: 'Team',         href: '#team' },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen]         = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
+  const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
     <>
-      <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-200
-        bg-white/88 backdrop-blur-md
-        ${scrolled ? 'border-b border-gray-200 shadow-sm' : 'border-b border-transparent'}`}>
-        <div className="max-w-6xl mx-auto px-6 flex items-center h-16 gap-8">
+      <nav
+        id="main-nav"
+        className="fixed top-0 inset-x-0 z-50
+          bg-white/80 backdrop-blur-xl border-b border-transparent
+          data-[scrolled]:border-black/[0.06] data-[scrolled]:shadow-[0_1px_16px_rgba(0,0,0,0.06)]"
+      >
+        <div className="max-w-6xl mx-auto px-6 flex items-center h-[62px] gap-8">
           <Logo />
-          <ul className="hidden md:flex items-center gap-1 flex-1">
+
+          <ul className="hidden md:flex items-center gap-0.5 flex-1">
             {links.map(l => (
               <li key={l.href}>
-                <a href={l.href}
-                  className="px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:text-brand-navy hover:bg-gray-50 transition-colors">
+                <a
+                  href={l.href}
+                  className="px-3.5 py-1.5 rounded-lg text-[13.5px] font-medium text-gray-500
+                    hover:text-brand-navy hover:bg-black/[0.04] transition-all duration-150"
+                >
                   {l.label}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="hidden md:flex items-center gap-2">
-            <a href="#contact"
-              className="px-4 py-2 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue-dk rounded-lg transition-all shadow-sm hover:shadow-md hover:-translate-y-px">
-              Apply for Pilot
+
+          <div className="hidden md:flex items-center gap-2.5">
+            <a
+              href="#contact"
+              data-magnetic="0.25"
+              className="btn-shimmer px-5 py-2 text-[13.5px] font-semibold text-white
+                bg-brand-navy hover:bg-brand-navy-mid rounded-lg transition-colors
+                shadow-sm"
+            >
+              Apply for Ward Pilot
             </a>
           </div>
-          <button onClick={() => setOpen(o => !o)}
-            className="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            aria-label="Toggle menu">
-            <span className="block w-5 h-px bg-brand-navy mb-1.5" />
-            <span className="block w-5 h-px bg-brand-navy mb-1.5" />
-            <span className="block w-5 h-px bg-brand-navy" />
+
+          <button
+            onClick={() => setOpen(o => !o)}
+            className="md:hidden ml-auto w-9 h-9 flex flex-col justify-center items-center gap-1.5
+              rounded-lg hover:bg-black/[0.05] transition-colors"
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-5 h-[1.5px] bg-brand-navy transition-all duration-200
+              ${open ? 'rotate-45 translate-y-[5px]' : ''}`} />
+            <span className={`block w-5 h-[1.5px] bg-brand-navy transition-all duration-200
+              ${open ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-[1.5px] bg-brand-navy transition-all duration-200
+              ${open ? '-rotate-45 -translate-y-[5px]' : ''}`} />
           </button>
         </div>
       </nav>
 
       {open && (
-        <div className="fixed inset-x-0 top-16 z-40 bg-white border-b border-gray-200 shadow-lg md:hidden px-6 py-4 flex flex-col gap-2">
+        <div className="fixed inset-x-0 top-[62px] z-40 bg-white border-b border-black/[0.06]
+          shadow-lg md:hidden px-6 py-5 flex flex-col gap-1">
           {links.map(l => (
             <a key={l.href} href={l.href} onClick={close}
-              className="px-3 py-2.5 rounded-lg font-medium text-gray-700 hover:bg-gray-50">
+              className="px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-black/[0.04]">
               {l.label}
             </a>
           ))}
           <a href="#contact" onClick={close}
-            className="mt-3 text-center py-2.5 rounded-lg bg-brand-blue text-white font-semibold text-sm">
-            Apply for Pilot
+            className="mt-3 text-center py-2.5 rounded-lg bg-brand-navy text-white font-semibold text-sm">
+            Apply for Ward Pilot
           </a>
         </div>
       )}
@@ -73,13 +86,16 @@ export default function Navbar() {
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2.5 font-display font-bold text-lg text-brand-navy shrink-0">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="8" fill="#0066CC"/>
+    <a href="#" className="flex items-center gap-2.5 shrink-0 group">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="7" fill="#0A1628"/>
         <path d="M8 16h4v6H8v-6zM14 10h4v12h-4V10zM20 13h4v9h-4v-9z" fill="white"/>
         <circle cx="24" cy="9" r="3" fill="#06D6A0"/>
       </svg>
-      <span>FLOW <span className="text-gray-400 font-medium text-sm">by Cekap</span></span>
+      <div className="leading-none">
+        <span className="font-display font-bold text-[17px] text-brand-navy tracking-tight">FLOW</span>
+        <span className="text-gray-400 font-normal text-[13px] ml-1.5">by Cekap</span>
+      </div>
     </a>
   );
 }

@@ -1,112 +1,124 @@
 import { SectionHeader } from './Features';
 
-const stages = [
+const phases = [
   {
-    stage: 'Phase 1',
-    title: 'Paid Pilot',
-    status: 'now',
-    statusLabel: 'Now Open',
-    sub: 'AMU-scale deployment · Single site',
-    description: 'Run FLOW in your Acute Medical Unit or equivalent high-throughput ward. Team Cekap provides full on-site deployment, training, and support throughout the pilot period.',
+    phase: 'Phase 1',
+    title: 'Ward Pilot',
+    status: 'active',
+    statusLabel: 'AMU live now',
+    sub: 'One ward at a time',
+    description: 'FLOW is deployed one ward at a time — starting with the AMU. Each ward pilot runs as a paid engagement. We deploy, train, observe, and refine before moving to the next ward.',
     includes: [
-      'Full FLOW platform — bed map, queue, flow phases',
-      'On-site deployment by Team Cekap',
-      'Ward terminal + CSC central dashboard + mobile companion',
-      'Dedicated support throughout pilot period',
-      'Pilot evaluation report at conclusion',
+      'Full FLOW deployment — bed map, queue, flow phases',
+      'On-site setup and LAN configuration by Team Cekap',
+      'Ward terminal, CSC dashboard, and mobile companion',
+      'Dedicated support throughout the pilot period',
+      'Pilot evaluation report with usage data and findings',
     ],
-    cta: 'Apply for a Pilot',
-    ctaHref: '#contact',
-    ctaStyle: 'bg-brand-blue text-white hover:bg-brand-blue-dk shadow-md',
+    cta: 'Apply for Your Ward',
+    ctaStyle: 'bg-brand-navy text-white hover:bg-brand-navy-mid',
     featured: true,
   },
   {
-    stage: 'Phase 2',
-    title: 'Per-Hospital License',
+    phase: 'Phase 2',
+    title: 'Hospital License',
     status: 'next',
-    statusLabel: 'After Pilot',
-    sub: 'Full hospital · Recurring SaaS license',
-    description: 'Following a successful pilot, expand FLOW across all wards on a recurring per-hospital license. Scales with the number of wards and beds.',
+    statusLabel: 'After pilot',
+    sub: 'All wards · Recurring license',
+    description: 'After successful ward pilots, expand FLOW to the entire hospital on a recurring per-hospital license. EHR integration layer activates in this phase — removing the manual input burden entirely.',
     includes: [
-      'All wards on a single license',
-      'EHR integration (automated status sync)',
-      'Multi-ward expansion support',
+      'All wards on a single annual license',
+      'EHR integration — automated patient status sync',
+      'Multi-ward expansion and configuration support',
       'Priority support SLA',
-      'Custom reporting for MOH submissions',
+      'MOH reporting automation',
     ],
     cta: 'Talk to Us',
-    ctaHref: '#contact',
-    ctaStyle: 'border-2 border-brand-blue text-brand-blue hover:bg-brand-blue-lt',
+    ctaStyle: 'border border-brand-navy/20 text-brand-navy hover:bg-brand-navy/[0.04]',
   },
   {
-    stage: 'Phase 3',
+    phase: 'Phase 3',
     title: 'National Network',
     status: 'future',
     statusLabel: 'Roadmap',
-    sub: 'Multi-hospital · National expansion',
-    description: 'FLOW licensed across Brunei\'s hospital network. A shared operational visibility layer for the national healthcare system — from AMU to every ward in every facility.',
+    sub: 'Cross-hospital visibility',
+    description: 'FLOW licensed as a national operational visibility layer across Brunei\'s hospital network. A single dashboard for the Ministry of Health to see bed availability and patient flow nationally.',
     includes: [
-      'Cross-hospital visibility layer',
-      'National bed availability dashboard',
+      'Cross-hospital bed availability view',
       'Inter-hospital transfer coordination',
-      'Centralised reporting for Ministry of Health',
-      'Long-term partnership model',
+      'Centralised MOH reporting',
+      'National patient flow analytics',
+      'Long-term institutional partnership',
     ],
     cta: 'Express Interest',
-    ctaHref: '#contact',
-    ctaStyle: 'border-2 border-gray-300 text-gray-500 hover:border-brand-blue hover:text-brand-blue',
+    ctaStyle: 'border border-black/[0.1] text-gray-500 hover:border-brand-navy/20 hover:text-brand-navy',
   },
 ];
 
-const statusStyle = {
-  now:    'bg-brand-green/15 text-brand-green border-brand-green/30',
-  next:   'bg-amber-50 text-amber-600 border-amber-200',
+const STATUS_STYLE = {
+  active: 'bg-brand-green/10 text-brand-green border-brand-green/25',
+  next:   'bg-amber-500/10 text-amber-600 border-amber-400/25',
   future: 'bg-gray-100 text-gray-400 border-gray-200',
 };
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 bg-gray-50">
+    <section id="pricing" className="py-28 bg-gray-50 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="Business Model"
-          title="From paid pilot to national platform"
-          sub="FLOW is currently accepting pilot applications. Pricing is structured to grow with your hospital — from a single ward to the national network."
+          tag="Deployment Model"
+          title="Ward by ward. Then hospital-wide. Then national."
+          sub="FLOW doesn't do big-bang rollouts. Every ward gets its own dedicated pilot before we expand. This is how you build something that actually sticks in a clinical environment."
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          {stages.map(plan => (
-            <div key={plan.stage}
-              className={`rounded-2xl p-8 relative transition-all duration-200 hover:-translate-y-1
+
+        <div data-stagger className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+          {phases.map((plan) => (
+            <div
+              key={plan.phase}
+              data-reveal
+              className={`feature-card rounded-2xl p-8 relative
                 ${plan.featured
-                  ? 'bg-white border-2 border-brand-blue shadow-xl shadow-brand-blue/10 scale-[1.02]'
-                  : 'bg-white border border-gray-200 hover:shadow-lg'}`}>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">{plan.stage}</span>
-                <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${statusStyle[plan.status]}`}>
+                  ? 'bg-white border-2 border-brand-navy shadow-xl shadow-brand-navy/[0.08] scale-[1.02]'
+                  : 'bg-white border border-black/[0.07]'}`}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-gray-400">
+                  {plan.phase}
+                </span>
+                <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${STATUS_STYLE[plan.status]}`}>
                   {plan.statusLabel}
                 </span>
               </div>
-              <h3 className="text-xl font-display font-bold text-brand-navy mb-1">{plan.title}</h3>
-              <div className="text-xs text-gray-400 mb-4">{plan.sub}</div>
-              <p className="text-sm text-gray-500 leading-relaxed mb-6">{plan.description}</p>
-              <ul className="flex flex-col gap-3 mb-8">
+
+              <h3 className="text-[22px] font-display font-bold text-brand-navy tracking-tight mb-1">
+                {plan.title}
+              </h3>
+              <p className="text-[12px] text-gray-400 mb-4">{plan.sub}</p>
+              <p className="text-[14px] text-gray-500 leading-relaxed mb-6">{plan.description}</p>
+
+              <ul className="flex flex-col gap-2.5 mb-8">
                 {plan.includes.map(f => (
-                  <li key={f} className="flex items-start gap-2.5 text-sm text-gray-600">
-                    <span className="text-brand-green font-bold mt-0.5">✓</span>
+                  <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-gray-600">
+                    <svg className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" opacity=".4"/>
+                      <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                     {f}
                   </li>
                 ))}
               </ul>
-              <a href={plan.ctaHref}
-                className={`block text-center py-3 rounded-xl font-semibold text-sm transition-all ${plan.ctaStyle}`}>
+
+              <a href="#contact"
+                className={`block text-center py-3 rounded-xl font-semibold text-[14px] transition-all ${plan.ctaStyle}`}>
                 {plan.cta}
               </a>
             </div>
           ))}
         </div>
-        <p className="text-center text-xs text-gray-400 mt-8">
+
+        <p data-reveal className="text-center text-[13px] text-gray-400 mt-10">
           Team Cekap is also seeking EHR integration partners and healthcare IT procurement mentors.{' '}
-          <a href="#contact" className="text-brand-blue hover:underline">Get in touch →</a>
+          <a href="#contact" className="text-brand-blue hover:underline font-medium">Get in touch</a>
         </p>
       </div>
     </section>

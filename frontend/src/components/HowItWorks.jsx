@@ -3,70 +3,130 @@ import { SectionHeader } from './Features';
 const steps = [
   {
     n: '01',
-    title: 'Observe First',
-    body: 'We study your ward\'s actual workflows before touching anything. Site walkthroughs, empathy mapping with nurse managers, and direct observation of existing processes. We understand before we automate.',
+    icon: <EyeIcon />,
+    title: 'Observe first',
+    body: "We study your ward's actual workflows before touching anything. Site walkthroughs, empathy mapping with nurse managers, direct observation of how beds are managed today. We understand before we automate.",
   },
   {
     n: '02',
+    icon: <SettingsIcon />,
     title: 'Configure FLOW',
-    body: 'Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the LAN infrastructure is ready for deployment.',
+    body: "Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the LAN infrastructure. No generic templates.",
   },
   {
     n: '03',
-    title: 'Train Your Team',
-    body: 'Hands-on training at the ward terminal for nurse managers and a separate CSC orientation for the central dashboard. Backed by quick-reference cards and on-call support throughout the pilot.',
+    icon: <UsersIcon />,
+    title: 'Train your team',
+    body: "Hands-on training at the ward terminal for nurse managers and a CSC orientation for the central dashboard. Quick-reference guides and on-call support throughout the pilot.",
   },
   {
     n: '04',
-    title: 'Go Live Together',
-    body: 'Team Cekap is on-site for go-live. We monitor the system, gather real usage data, and iterate rapidly. The AMU pilot is designed to validate and improve FLOW in a live clinical setting.',
+    icon: <LaunchIcon />,
+    title: 'Go live together',
+    body: "Team Cekap is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each ward pilot informs the next deployment — the system gets better with every ward.",
   },
+];
+
+const infraLayers = [
+  { label: 'Ward Terminals',    desc: 'Wired ethernet · Desktop-first · Nurse manager input' },
+  { label: 'Hospital LAN',      desc: 'On-premise · No internet egress · All data in-hospital' },
+  { label: 'Application Server', desc: 'Primary + hot-standby · Separate rooms · Auto failover' },
+  { label: 'Dashboards',        desc: 'CSC central view · Ward view · Mobile companion' },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-gray-50">
+    <section id="how-it-works" className="py-28 bg-gray-50 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="How It Works"
+          tag="Deployment"
           title="We understand your workflows before we automate them"
-          sub="FLOW is deployed on your hospital LAN. Our team handles everything — from infrastructure setup to bedside training."
+          sub="Every ward gets its own pilot. FLOW deploys ward by ward — each deployment informed by the last."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+
+        <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
           {steps.map((step, i) => (
-            <div key={step.n} className="relative">
+            <div
+              key={step.n}
+              data-reveal
+              className="relative bg-white rounded-2xl border border-black/[0.07] p-6
+                hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            >
+              {/* Step line connector */}
               {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-7 left-[calc(50%+28px)] w-[calc(100%-56px)] h-px bg-gradient-to-r from-brand-blue to-brand-teal" />
+                <div className="hidden lg:block absolute top-[38px] left-[calc(100%+2px)]
+                  w-5 h-px bg-gradient-to-r from-brand-blue/40 to-brand-blue/10 z-10" />
               )}
-              <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-teal text-white font-display font-bold text-base flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brand-blue/25 relative z-10">
-                  {step.n}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center
+                  text-white shrink-0">
+                  {step.icon}
                 </div>
-                <h3 className="text-lg font-bold mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{step.body}</p>
+                <span className="text-[11px] font-bold text-gray-300 tracking-wider font-mono">
+                  {step.n}
+                </span>
               </div>
+              <h3 className="text-[15px] font-bold text-brand-navy mb-2 tracking-tight">{step.title}</h3>
+              <p className="text-[13.5px] text-gray-500 leading-relaxed">{step.body}</p>
             </div>
           ))}
         </div>
 
-        {/* Architecture callout */}
-        <div className="mt-16 bg-white rounded-2xl border border-gray-200 p-8">
-          <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 text-center">Infrastructure at a glance</div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {[
-              { layer: 'Ward Terminals', desc: 'Wired ethernet · Desktop-first · Nurse manager input' },
-              { layer: 'Hospital LAN',   desc: 'On-premise · No internet egress · All data stays in-hospital' },
-              { layer: 'App Server',     desc: 'Primary + hot-standby · Separate rooms · Auto failover' },
-              { layer: 'Dashboards',     desc: 'CSC central view · Ward view · Mobile companion (Wi-Fi)' },
-            ].map(item => (
-              <div key={item.layer} className="rounded-xl bg-brand-blue-lt/60 border border-brand-blue/10 p-4">
-                <div className="text-sm font-bold text-brand-navy mb-1.5">{item.layer}</div>
-                <div className="text-xs text-gray-500 leading-snug">{item.desc}</div>
+        {/* Infrastructure callout */}
+        <div data-reveal className="bg-white rounded-2xl border border-black/[0.07] p-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400 mb-6 text-center">
+            Infrastructure at a glance — deployed on your hospital LAN
+          </p>
+          <div data-stagger className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {infraLayers.map(item => (
+              <div
+                key={item.label}
+                data-reveal
+                className="rounded-xl bg-brand-blue/[0.04] border border-brand-blue/[0.1] p-4"
+              >
+                <div className="text-[13px] font-bold text-brand-navy mb-1.5">{item.label}</div>
+                <div className="text-[12px] text-gray-400 leading-snug">{item.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function EyeIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/>
+      <circle cx="8" cy="8" r="2"/>
+    </svg>
+  );
+}
+function SettingsIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="8" cy="8" r="2.5"/>
+      <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.42 1.42M11.53 11.53l1.42 1.42M3.05 12.95l1.42-1.42M11.53 4.47l1.42-1.42"/>
+    </svg>
+  );
+}
+function UsersIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="6" cy="5" r="2.5"/>
+      <path d="M1 14c0-2.76 2.24-4 5-4s5 1.24 5 4"/>
+      <path d="M11.5 3a2.5 2.5 0 010 5M15 14c0-2.76-1.5-4-3.5-4"/>
+    </svg>
+  );
+}
+function LaunchIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 1s4 1 4 7c0 2.5-1 4.5-2 5.5"/>
+      <path d="M8 1S4 2 4 8c0 2.5 1 4.5 2 5.5"/>
+      <circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M5 13L2 15M11 13l3 2"/>
+    </svg>
   );
 }
