@@ -116,12 +116,12 @@ const CensusRow = ({ ward, total, occ, vac, dirty, blocked, bold }) => (
 );
 
 /* ─── Main component ─── */
-export default function CommandCentre() {
+export default function CommandCentre({ embedded = false }) {
   const now = useClock();
   const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 
   return (
-    <div className="flex h-screen overflow-hidden font-sans text-sm bg-[#e6e5df]">
+    <div className={`flex font-sans text-sm bg-[#e6e5df] ${embedded ? '' : 'h-screen overflow-hidden'}`}>
 
       {/* ── Sidebar ── */}
       <div className="w-[52px] shrink-0 bg-[#243046] flex flex-col items-center py-3 gap-3">
@@ -162,7 +162,7 @@ export default function CommandCentre() {
       </div>
 
       {/* ── Content ── */}
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+      <div className="flex flex-col flex-1 min-w-0">
 
         {/* ── Header ── */}
         <div className="bg-white border-b border-black/[0.06] px-5 py-3 flex items-start justify-between shrink-0">
@@ -218,7 +218,7 @@ export default function CommandCentre() {
         </div>
 
         {/* ── Dashboard grid ── */}
-        <div className="flex-1 overflow-auto p-3 space-y-3">
+        <div className={`${embedded ? '' : 'flex-1 overflow-auto'} p-3 space-y-3`}>
 
           {/* TOP SECTION */}
           <div style={{
