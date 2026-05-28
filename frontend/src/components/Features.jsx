@@ -1,82 +1,85 @@
 const features = [
   {
-    icon: '▦',
-    color: 'bg-blue-100 text-brand-blue',
+    icon: <HeatmapIcon />,
+    accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
     title: 'Hospital-Wide Heatmap',
-    body: 'Every ward visualised as a live capacity heatmap — like a car park display for beds. CSCs see the whole hospital at a glance without calling a single ward.',
-    bullets: ['Colour-coded by occupancy status', 'Updates the moment a nurse changes a bed', 'No refresh. No phone calls.'],
+    body: 'Every ward visualised as a live capacity heatmap. CSCs see the whole hospital at a glance — like a car park display for beds — without calling a single ward.',
+    bullets: ['Updates the moment a nurse changes a bed status', 'Colour-coded by occupancy: available, occupied, cleaning, reserved', 'No refresh button. No phone calls.'],
     large: true,
   },
   {
-    icon: '⏱',
-    color: 'bg-cyan-100 text-cyan-700',
-    title: 'Admission & Transfer Queue',
-    body: 'Patients awaiting placement are visible to CSCs in real time. Nurse managers flag transfer readiness from their ward terminal the moment a bed is clear.',
+    icon: <QueueIcon />,
+    accent: 'text-cyan-600 bg-cyan-500/8 border-cyan-500/15',
+    title: 'Admission Queue',
+    body: 'Patients awaiting placement are visible to CSCs in real time. Nurse managers flag transfer readiness instantly — no WhatsApp message required.',
   },
   {
-    icon: '📋',
-    color: 'bg-emerald-100 text-emerald-700',
-    title: 'Automated Census Updates',
-    body: 'Confirm a transfer in FLOW and census sheets update across the hospital automatically. Excel reports for process evaluation generated on demand — no manual compilation.',
+    icon: <CensusIcon />,
+    accent: 'text-emerald-600 bg-emerald-500/8 border-emerald-500/15',
+    title: 'Automated Census',
+    body: 'Confirm a transfer in FLOW and census sheets update across the hospital automatically. Excel reports generated on demand — zero manual compilation.',
   },
   {
-    icon: '↕',
-    color: 'bg-violet-100 text-violet-700',
+    icon: <FlowIcon />,
+    accent: 'text-violet-600 bg-violet-500/8 border-violet-500/15',
     title: 'Patient Flow Phases',
-    body: 'Track the phase-based patient journey: admission → in-stay → discharge decision → departure. Surface exactly where bottlenecks are building before they cause delays.',
+    body: 'Track the full patient journey from admission to discharge. Surface exactly where bottlenecks are building — before they cause delays.',
   },
   {
-    icon: '📱',
-    color: 'bg-orange-100 text-orange-600',
+    icon: <MobileIcon />,
+    accent: 'text-orange-600 bg-orange-500/8 border-orange-500/15',
     title: 'Mobile Companion',
-    body: 'Nurse managers update bed counts and patient phases from a mobile app — no need to return to a desktop terminal. Wi-Fi only; wired ethernet for critical ward desktops.',
+    body: 'Nurse managers update bed counts from a mobile app on the go — no need to return to a desktop terminal. Wi-Fi only; wired ethernet for critical ward desktops.',
   },
   {
-    icon: '🔒',
-    color: 'bg-red-100 text-red-600',
-    title: 'RBAC & Audit Trails',
-    body: 'Nurse managers see only their assigned ward. CSCs see everything. Every action is logged with an immutable audit trail for clinical governance and compliance.',
+    icon: <LockIcon />,
+    accent: 'text-red-600 bg-red-500/8 border-red-500/15',
+    title: 'RBAC & Audit Trail',
+    body: 'Nurse managers see only their assigned ward. CSCs see everything. Every action is logged with an immutable audit trail for clinical governance.',
   },
   {
-    icon: '⊡',
-    color: 'bg-teal-100 text-teal-700',
+    icon: <LinkIcon />,
+    accent: 'text-teal-600 bg-teal-500/8 border-teal-500/15',
     title: 'EHR Integration Layer',
-    body: 'FLOW sits on top of your existing EHR — it is a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
+    body: 'FLOW sits on top of your existing EHR — a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
   },
   {
-    icon: '🖥️',
-    color: 'bg-blue-100 text-brand-blue',
+    icon: <ServerIcon />,
+    accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
     title: 'On-Premise by Design',
-    body: 'All data stays within your hospital network. No internet egress required. Deployed on your LAN with a hot-standby backup server for resilience — clinical-grade reliability.',
-    bullets: ['No cloud dependency', 'Hot-standby failover', 'Runs on hospital LAN only'],
+    body: 'All data stays inside your hospital network. No internet egress. Deployed on your LAN with a hot-standby backup server in a separate room for clinical-grade resilience.',
+    bullets: ['No cloud dependency — runs entirely on hospital LAN', 'Hot-standby failover server in a separate room', 'Automated scheduled backups with tested restore'],
     large: true,
   },
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="Platform Features"
-          title="One platform. Two layers. Total visibility."
-          sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important) — both visible from the same dashboard."
+          title={<>One platform.<br className="sm:hidden" /> Two layers. Total visibility.</>}
+          sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f) => (
-            <div key={f.title}
-              className={`rounded-2xl border border-gray-200 p-7 bg-gray-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-200
-                ${f.large ? 'lg:col-span-2 bg-gradient-to-br from-gray-50 to-blue-50' : ''}`}>
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5 ${f.color}`}>
+            <div
+              key={f.title}
+              data-reveal
+              className={`feature-card rounded-2xl border border-black/[0.07] p-7 bg-white
+                ${f.large ? 'lg:col-span-2' : ''}`}
+            >
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 border ${f.accent}`}>
                 {f.icon}
               </div>
-              <h3 className="text-lg font-bold mb-2">{f.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{f.body}</p>
+              <h3 className="text-[16px] font-bold tracking-tight mb-2 text-brand-navy">{f.title}</h3>
+              <p className="text-gray-500 text-[14px] leading-relaxed">{f.body}</p>
               {f.bullets && (
                 <ul className="mt-4 flex flex-col gap-2">
                   {f.bullets.map(b => (
-                    <li key={b} className="flex items-center gap-2 text-sm text-gray-500">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0" />
+                    <li key={b} className="flex items-start gap-2 text-[13px] text-gray-500">
+                      <span className="w-1 h-1 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" />
                       {b}
                     </li>
                   ))}
@@ -92,15 +95,94 @@ export default function Features() {
 
 export function SectionHeader({ tag, title, sub, light }) {
   return (
-    <div className={`text-center max-w-2xl mx-auto mb-16 ${light ? 'text-white' : ''}`}>
-      <span className={`inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5
-        ${light ? 'bg-brand-green/20 text-brand-green' : 'bg-brand-blue-lt text-brand-blue'}`}>
+    <div data-reveal className={`text-center max-w-2xl mx-auto mb-16`}>
+      <span className={`inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
+        rounded-full mb-5 ${light
+          ? 'bg-brand-green/20 text-brand-green'
+          : 'bg-brand-blue/10 text-brand-blue border border-brand-blue/15'}`}>
         {tag}
       </span>
-      <h2 className={`text-3xl sm:text-4xl font-display font-bold mb-4 ${light ? 'text-white' : 'text-brand-navy'}`}>
+      <h2 className={`text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
+        tracking-tight mb-4 leading-tight ${light ? 'text-white' : 'text-brand-navy'}`}>
         {title}
       </h2>
-      {sub && <p className={`text-base leading-relaxed ${light ? 'text-white/70' : 'text-gray-500'}`}>{sub}</p>}
+      {sub && (
+        <p className={`text-[15px] leading-relaxed ${light ? 'text-white/60' : 'text-gray-500'}`}>{sub}</p>
+      )}
     </div>
+  );
+}
+
+/* ---- Icons ---- */
+function HeatmapIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <rect x="2" y="2" width="7" height="7" rx="1.5"/>
+      <rect x="11" y="2" width="7" height="7" rx="1.5" opacity=".5"/>
+      <rect x="2" y="11" width="7" height="7" rx="1.5" opacity=".5"/>
+      <rect x="11" y="11" width="7" height="7" rx="1.5" opacity=".75"/>
+    </svg>
+  );
+}
+function QueueIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="10" cy="10" r="7.5"/>
+      <path d="M10 6v4.5l3 1.5"/>
+    </svg>
+  );
+}
+function CensusIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2H6a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V6z"/>
+      <polyline points="12 2 12 6 16 6"/>
+      <path d="M8 11h4M8 14h3"/>
+    </svg>
+  );
+}
+function FlowIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="4" cy="10" r="2.5"/>
+      <circle cx="16" cy="10" r="2.5"/>
+      <path d="M6.5 10h7"/>
+      <path d="M11 7l3 3-3 3" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function MobileIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <rect x="5" y="1.5" width="10" height="17" rx="2"/>
+      <circle cx="10" cy="16" r=".75" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}
+function LockIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <rect x="3" y="9" width="14" height="10" rx="2"/>
+      <path d="M7 9V6a3 3 0 016 0v3"/>
+      <circle cx="10" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}
+function LinkIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <path d="M8 12a4 4 0 005.66 0l3-3a4 4 0 00-5.66-5.66l-1.5 1.5"/>
+      <path d="M12 8a4 4 0 00-5.66 0l-3 3a4 4 0 005.66 5.66l1.5-1.5"/>
+    </svg>
+  );
+}
+function ServerIcon() {
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <rect x="2" y="3" width="16" height="5" rx="1.5"/>
+      <rect x="2" y="12" width="16" height="5" rx="1.5"/>
+      <circle cx="5.5" cy="5.5" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="5.5" cy="14.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
   );
 }

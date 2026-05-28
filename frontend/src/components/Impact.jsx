@@ -3,58 +3,127 @@ import useInView from '../hooks/useInView';
 import useCountUp from '../hooks/useCountUp';
 
 const stats = [
-  { value: 4,  unit: ' sources', label: 'manually reconciled by nurse managers every shift — replaced by FLOW' },
-  { value: 1,  unit: ' live view', label: 'of every bed in every ward — visible to the CSC without a single phone call' },
-  { value: 0,  unit: ' phone calls', label: 'needed to find a free bed when FLOW is running' },
-  { value: 5,  unit: ' phases', label: 'of the patient journey tracked end-to-end from admission to discharge' },
+  { value: 4,   suffix: '',     label: 'Manual sources replaced',       sub: 'paper census, Excel, whiteboards, WhatsApp' },
+  { value: 1,   suffix: '',     label: 'Live view for every CSC',        sub: 'hospital-wide, updated in real time' },
+  { value: 0,   suffix: '',     label: 'Phone calls to check bed status', sub: 'when FLOW is running on your ward' },
+  { value: 5,   suffix: '',     label: 'Patient flow phases tracked',    sub: 'admission to discharge, end-to-end' },
 ];
 
 const validations = [
-  { icon: '🏥', label: 'AMU Pilot Greenlit', sub: 'Formally approved for a paid pilot in the Acute Medical Unit' },
-  { icon: '👔', label: 'CEO Champion',        sub: 'Project championed at executive level by the hospital CEO' },
-  { icon: '🏥', label: 'Matron Endorsement',  sub: 'Clinical champion on board — critical for nursing staff adoption' },
-  { icon: '✅', label: 'Preferred by Nurses', sub: 'Nurse managers chose FLOW\'s interface over incoming EHR updates in prototype testing' },
+  {
+    icon: <PilotIcon />,
+    label: 'AMU Pilot Active',
+    sub: 'Currently live in the Acute Medical Unit — our first ward deployment.',
+  },
+  {
+    icon: <CeoIcon />,
+    label: 'CEO Champion',
+    sub: 'Championed at executive level. Matron endorsement secured for clinical adoption.',
+  },
+  {
+    icon: <NurseIcon />,
+    label: 'Nurse Preference',
+    sub: 'Nurse managers chose FLOW\'s interface over incoming EHR updates in prototype testing.',
+  },
+  {
+    icon: <WardIcon />,
+    label: 'Ward-by-Ward Rollout',
+    sub: 'Every ward gets its own dedicated pilot — we deploy only when the team is ready.',
+  },
 ];
 
-function StatCard({ value, unit, label }) {
+function StatCard({ value, suffix, label, sub }) {
   const [ref, inView] = useInView();
-  const count = useCountUp(value, inView, 1200);
+  const count = useCountUp(value, inView, 1100);
+
   return (
     <div ref={ref} className="text-center">
-      <div className="flex items-end justify-center gap-1 leading-none mb-3">
-        <span className="text-5xl sm:text-6xl font-display font-extrabold text-white">{count}</span>
-        <span className="text-xl sm:text-2xl font-display font-bold text-brand-green mb-1 whitespace-nowrap">{unit}</span>
+      <div className="flex items-end justify-center gap-0.5 leading-none mb-3">
+        <span className="text-[clamp(3rem,6vw,4.5rem)] font-display font-extrabold text-white">
+          {count}
+        </span>
+        {suffix && (
+          <span className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold text-brand-green mb-1">
+            {suffix}
+          </span>
+        )}
       </div>
-      <p className="text-sm text-white/60 leading-snug max-w-[160px] mx-auto">{label}</p>
+      <p className="text-[13px] font-semibold text-white/70 mb-1">{label}</p>
+      <p className="text-[12px] text-white/35 leading-snug max-w-[140px] mx-auto">{sub}</p>
     </div>
   );
 }
 
 export default function Impact() {
   return (
-    <section id="pilot" className="py-24 bg-gradient-to-br from-brand-navy to-brand-navy-mid relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-teal/10 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="max-w-6xl mx-auto px-6 relative">
+    <section id="pilot" className="py-28 bg-brand-navy relative overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full
+        bg-brand-blue/[0.12] blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full
+        bg-brand-teal/[0.08] blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="Pilot Traction"
-          title="Validated by the people who actually use it"
+          tag="Traction"
+          title="Validated by the people in the wards"
           light
         />
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+        <div data-stagger className="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
           {stats.map(s => <StatCard key={s.label} {...s} />)}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {validations.map(v => (
-            <div key={v.label} className="bg-white/8 border border-white/12 rounded-xl p-5">
-              <div className="text-2xl mb-3">{v.icon}</div>
-              <div className="text-sm font-bold text-white mb-1.5">{v.label}</div>
-              <div className="text-xs text-white/55 leading-snug">{v.sub}</div>
+            <div
+              key={v.label}
+              data-reveal
+              className="bg-white/[0.05] border border-white/[0.1] rounded-2xl p-6
+                hover:bg-white/[0.08] hover:border-white/[0.15] transition-all"
+            >
+              <div className="text-white/40 mb-4 w-8 h-8 flex items-center">{v.icon}</div>
+              <div className="text-[14px] font-bold text-white mb-2">{v.label}</div>
+              <div className="text-[13px] text-white/45 leading-snug">{v.sub}</div>
             </div>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function PilotIcon() {
+  return (
+    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+      <path d="M2 12l10 5 10-5"/>
+    </svg>
+  );
+}
+function CeoIcon() {
+  return (
+    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+    </svg>
+  );
+}
+function NurseIcon() {
+  return (
+    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="12" cy="7" r="4"/>
+      <path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7"/>
+      <path d="M12 12v4M10 14h4" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function WardIcon() {
+  return (
+    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <rect x="2" y="7" width="20" height="14" rx="2"/>
+      <path d="M16 7V5a2 2 0 00-4 0v2"/>
+      <path d="M12 12v4M10 14h4"/>
+    </svg>
   );
 }
