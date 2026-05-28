@@ -45,7 +45,7 @@ export default function Footer() {
               Real-time operational visibility for hospitals. Replacing paper census, Excel, whiteboards, and WhatsApp with one live dashboard.
             </p>
             <p className="text-sm leading-relaxed max-w-[240px] mb-6">
-              Built in Brunei, for Brunei — and beyond.
+              Built in Brunei, for Brunei and beyond.
             </p>
 
             {/* Team disciplines */}
@@ -77,7 +77,7 @@ export default function Footer() {
         {/* Pilot status banner */}
         <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <div>
-            <div className="text-sm font-semibold text-white mb-0.5">AMU Pilot — Now Open</div>
+            <div className="text-sm font-semibold text-white mb-0.5">Currently piloting in RIPAS</div>
             <div className="text-xs text-white/50">FLOW is accepting applications for paid pilot deployments.</div>
           </div>
           <a href="#contact"
@@ -89,7 +89,7 @@ export default function Footer() {
 
       <div className="border-t border-white/8">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/35">
-          <p>&copy; 2026 Team Cekap. FLOW — Real-Time Operational Visibility Platform.</p>
+          <p>&copy; 2026 Team Cekap. FLOW - Flow and Logistics Operation Watch.</p>
           <p>Brunei Darussalam</p>
         </div>
       </div>
