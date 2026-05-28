@@ -7,6 +7,7 @@ import HowItWorks from './components/HowItWorks';
 import Impact from './components/Impact';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
+import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
@@ -36,6 +37,7 @@ export default function App() {
         <Impact />
         <Testimonials />
         <Pricing />
+        <Team />
         <Contact />
       </main>
       <Footer />
