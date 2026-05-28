@@ -3,23 +3,23 @@ import { SectionHeader } from './Features';
 const steps = [
   {
     n: '01',
-    title: 'Connect',
-    body: 'We map your wards, beds, and departments. Cekap integrates with your existing HIS via secure HL7/FHIR APIs or direct database connectors — no data migration needed.',
+    title: 'Observe First',
+    body: 'We study your ward\'s actual workflows before touching anything. Site walkthroughs, empathy mapping with nurse managers, and direct observation of existing processes. We understand before we automate.',
   },
   {
     n: '02',
-    title: 'Configure',
-    body: 'Set your occupancy thresholds, SLA targets, escalation rules, and user roles. Customise the dashboard to match your hospital\'s workflows and terminology.',
+    title: 'Configure FLOW',
+    body: 'Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the LAN infrastructure is ready for deployment.',
   },
   {
     n: '03',
-    title: 'Train',
-    body: 'Live onboarding sessions for nurses, bed managers, and administrators. Backed by video tutorials, a knowledge base, and 24/7 local support.',
+    title: 'Train Your Team',
+    body: 'Hands-on training at the ward terminal for nurse managers and a separate CSC orientation for the central dashboard. Backed by quick-reference cards and on-call support throughout the pilot.',
   },
   {
     n: '04',
-    title: 'Optimise',
-    body: 'From day one, your team gets live visibility. Monthly reviews with our Customer Success team keep you improving occupancy rates and patient flow continuously.',
+    title: 'Go Live Together',
+    body: 'Team Cekap is on-site for go-live. We monitor the system, gather real usage data, and iterate rapidly. The AMU pilot is designed to validate and improve FLOW in a live clinical setting.',
   },
 ];
 
@@ -29,8 +29,8 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="How It Works"
-          title="Up and running in under 2 weeks"
-          sub="Our dedicated implementation team handles everything from configuration to staff training."
+          title="We understand your workflows before we automate them"
+          sub="FLOW is deployed on your hospital LAN. Our team handles everything — from infrastructure setup to bedside training."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {steps.map((step, i) => (
@@ -47,6 +47,24 @@ export default function HowItWorks() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Architecture callout */}
+        <div className="mt-16 bg-white rounded-2xl border border-gray-200 p-8">
+          <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 text-center">Infrastructure at a glance</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            {[
+              { layer: 'Ward Terminals', desc: 'Wired ethernet · Desktop-first · Nurse manager input' },
+              { layer: 'Hospital LAN',   desc: 'On-premise · No internet egress · All data stays in-hospital' },
+              { layer: 'App Server',     desc: 'Primary + hot-standby · Separate rooms · Auto failover' },
+              { layer: 'Dashboards',     desc: 'CSC central view · Ward view · Mobile companion (Wi-Fi)' },
+            ].map(item => (
+              <div key={item.layer} className="rounded-xl bg-brand-blue-lt/60 border border-brand-blue/10 p-4">
+                <div className="text-sm font-bold text-brand-navy mb-1.5">{item.layer}</div>
+                <div className="text-xs text-gray-500 leading-snug">{item.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

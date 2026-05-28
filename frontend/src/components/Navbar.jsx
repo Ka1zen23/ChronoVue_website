@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 const links = [
-  { label: 'Features',     href: '#features' },
+  { label: 'Problem',     href: '#problem' },
+  { label: 'Features',    href: '#features' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Impact',       href: '#impact' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Pricing',      href: '#pricing' },
+  { label: 'Pilot',       href: '#pilot' },
+  { label: 'Team',        href: '#team' },
 ];
 
 export default function Navbar() {
@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-200
-        bg-white/85 backdrop-blur-md
+        bg-white/88 backdrop-blur-md
         ${scrolled ? 'border-b border-gray-200 shadow-sm' : 'border-b border-transparent'}`}>
         <div className="max-w-6xl mx-auto px-6 flex items-center h-16 gap-8">
           <Logo />
@@ -38,19 +38,17 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="hidden md:flex items-center gap-2">
-            <a href="#contact" className="px-4 py-2 text-sm font-semibold text-brand-navy hover:bg-gray-50 rounded-lg transition-colors">
-              Log In
-            </a>
-            <a href="#contact" className="px-4 py-2 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue-dk rounded-lg transition-colors shadow-sm hover:shadow-md hover:-translate-y-px">
-              Request Demo
+            <a href="#contact"
+              className="px-4 py-2 text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue-dk rounded-lg transition-all shadow-sm hover:shadow-md hover:-translate-y-px">
+              Apply for Pilot
             </a>
           </div>
           <button onClick={() => setOpen(o => !o)}
             className="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Toggle menu">
-            <span className="block w-5 h-px bg-brand-navy mb-1.5 transition-all"></span>
-            <span className="block w-5 h-px bg-brand-navy mb-1.5 transition-all"></span>
-            <span className="block w-5 h-px bg-brand-navy transition-all"></span>
+            <span className="block w-5 h-px bg-brand-navy mb-1.5" />
+            <span className="block w-5 h-px bg-brand-navy mb-1.5" />
+            <span className="block w-5 h-px bg-brand-navy" />
           </button>
         </div>
       </nav>
@@ -63,10 +61,10 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <div className="flex gap-2 mt-3">
-            <a href="#contact" onClick={close} className="flex-1 text-center py-2.5 rounded-lg border border-gray-200 font-semibold text-sm">Log In</a>
-            <a href="#contact" onClick={close} className="flex-1 text-center py-2.5 rounded-lg bg-brand-blue text-white font-semibold text-sm">Request Demo</a>
-          </div>
+          <a href="#contact" onClick={close}
+            className="mt-3 text-center py-2.5 rounded-lg bg-brand-blue text-white font-semibold text-sm">
+            Apply for Pilot
+          </a>
         </div>
       )}
     </>
@@ -81,7 +79,7 @@ function Logo() {
         <path d="M8 16h4v6H8v-6zM14 10h4v12h-4V10zM20 13h4v9h-4v-9z" fill="white"/>
         <circle cx="24" cy="9" r="3" fill="#06D6A0"/>
       </svg>
-      Cekap
+      <span>FLOW <span className="text-gray-400 font-medium text-sm">by Cekap</span></span>
     </a>
   );
 }

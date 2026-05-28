@@ -2,53 +2,53 @@ const features = [
   {
     icon: '▦',
     color: 'bg-blue-100 text-brand-blue',
-    title: 'Live Bed Map',
-    body: 'See every bed in every ward at a glance — occupied, available, under cleaning, or reserved. Updated the moment status changes, no refresh needed.',
-    bullets: ['Floor-plan or grid view', 'Colour-coded by status', 'Drill-down to patient details'],
+    title: 'Hospital-Wide Heatmap',
+    body: 'Every ward visualised as a live capacity heatmap — like a car park display for beds. CSCs see the whole hospital at a glance without calling a single ward.',
+    bullets: ['Colour-coded by occupancy status', 'Updates the moment a nurse changes a bed', 'No refresh. No phone calls.'],
     large: true,
   },
   {
     icon: '⏱',
     color: 'bg-cyan-100 text-cyan-700',
-    title: 'Smart Queue Management',
-    body: 'Auto-match waiting patients to the next available bed based on department, priority, and expected length of stay.',
+    title: 'Admission & Transfer Queue',
+    body: 'Patients awaiting placement are visible to CSCs in real time. Nurse managers flag transfer readiness from their ward terminal the moment a bed is clear.',
   },
   {
-    icon: '↗',
+    icon: '📋',
     color: 'bg-emerald-100 text-emerald-700',
-    title: 'Predictive Analytics',
-    body: 'Forecast bed demand by ward, day, and shift. Plan staffing and discharges before capacity becomes critical.',
+    title: 'Automated Census Updates',
+    body: 'Confirm a transfer in FLOW and census sheets update across the hospital automatically. Excel reports for process evaluation generated on demand — no manual compilation.',
   },
   {
-    icon: '◷',
+    icon: '↕',
     color: 'bg-violet-100 text-violet-700',
-    title: 'Discharge Planner',
-    body: 'Track expected discharge dates, generate reminders for clinical teams, and cut average discharge time by up to 40%.',
+    title: 'Patient Flow Phases',
+    body: 'Track the phase-based patient journey: admission → in-stay → discharge decision → departure. Surface exactly where bottlenecks are building before they cause delays.',
   },
   {
-    icon: '→',
+    icon: '📱',
     color: 'bg-orange-100 text-orange-600',
-    title: 'Transfer Coordination',
-    body: 'Request and approve inter-ward or inter-hospital transfers with full audit trail, notifications, and transport scheduling.',
+    title: 'Mobile Companion',
+    body: 'Nurse managers update bed counts and patient phases from a mobile app — no need to return to a desktop terminal. Wi-Fi only; wired ethernet for critical ward desktops.',
   },
   {
-    icon: '◎',
+    icon: '🔒',
     color: 'bg-red-100 text-red-600',
-    title: 'Alerts & Escalations',
-    body: 'Automatic SMS, WhatsApp, or in-app alerts when occupancy thresholds are breached or patient wait exceeds SLA limits.',
+    title: 'RBAC & Audit Trails',
+    body: 'Nurse managers see only their assigned ward. CSCs see everything. Every action is logged with an immutable audit trail for clinical governance and compliance.',
   },
   {
     icon: '⊡',
     color: 'bg-teal-100 text-teal-700',
-    title: 'HIS / EMR Integration',
-    body: 'Native connectors for MySejahtera, iCare, Oracle Health, and all major HL7/FHIR-compliant systems. No rip-and-replace.',
+    title: 'EHR Integration Layer',
+    body: 'FLOW sits on top of your existing EHR — it is a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
   },
   {
-    icon: '▣',
+    icon: '🖥️',
     color: 'bg-blue-100 text-brand-blue',
-    title: 'Executive Reporting',
-    body: 'One-click PDF and Excel reports for MOH submissions, board meetings, and accreditation audits. Slice by ward, speciality, date range, or doctor.',
-    bullets: ['Bed occupancy rate trends', 'ALOS (Average Length of Stay)', 'Turnover interval analytics'],
+    title: 'On-Premise by Design',
+    body: 'All data stays within your hospital network. No internet egress required. Deployed on your LAN with a hot-standby backup server for resilience — clinical-grade reliability.',
+    bullets: ['No cloud dependency', 'Hot-standby failover', 'Runs on hospital LAN only'],
     large: true,
   },
 ];
@@ -59,8 +59,8 @@ export default function Features() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="Platform Features"
-          title="Everything your hospital needs in one dashboard"
-          sub="Cekap unifies bed status, patient flow, staff coordination, and analytics into a single real-time command center."
+          title="One platform. Two layers. Total visibility."
+          sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important) — both visible from the same dashboard."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((f) => (

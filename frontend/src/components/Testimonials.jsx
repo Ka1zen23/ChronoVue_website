@@ -2,32 +2,32 @@ import { SectionHeader } from './Features';
 
 const testimonials = [
   {
-    quote: '"Before Cekap, our bed manager was using a whiteboard and a spreadsheet. Now the whole hospital sees bed status in real time. We cut our average wait time from 4.5 hours to under 90 minutes. It\'s been transformational."',
-    name: 'Dr. Rosmawati Kadir',
-    role: 'Medical Director, Pantai Hospital Kuala Lumpur',
-    initials: 'DR',
+    quote: '"During testing, nurse managers told us they preferred FLOW\'s visual approach over the interface of the incoming EHR updates. That\'s a strong signal. The value isn\'t just the data — it\'s how it\'s presented for fast operational decisions."',
+    name: 'Team Cekap',
+    role: 'Prototype testing debrief — AMU, Brunei',
+    initials: 'TC',
     color: 'bg-brand-blue',
     featured: true,
   },
   {
-    quote: '"The discharge planner alone saved us hours every day. Nurses know exactly when to prepare a bed and housekeeping gets notified automatically. Zero phone tag."',
-    name: 'Sister Lim Su Ying',
-    role: 'Head of Nursing, KPJ Damansara',
-    initials: 'SL',
+    quote: '"The synthesis cost is real. Every shift, I\'m calling wards, checking Excel, looking at the whiteboard. Anything that puts that in one place — I\'m in."',
+    name: 'Nurse Manager',
+    role: 'Acute Medical Unit — empathy mapping session',
+    initials: 'NM',
     color: 'bg-brand-green',
   },
   {
-    quote: '"The MOH reports that used to take two days to compile now take 10 minutes. Cekap has paid for itself many times over in staff hours alone."',
-    name: 'Ahmad Hasyimi bin Nordin',
-    role: 'COO, Sunway Medical Centre',
-    initials: 'AH',
+    quote: '"As a CSC, I need to see everything without making a single call. Right now I can\'t. FLOW changes that — I can act the moment a bed is ready, not after three phone calls."',
+    name: 'Clinical Site Coordinator',
+    role: 'CSC — direct observation session',
+    initials: 'CSC',
     color: 'bg-violet-600',
   },
   {
-    quote: '"Implementation was smooth and the support team is fantastic. They speak our language — both English and Malay — and understand local hospital workflows."',
-    name: 'Fauziah Mohd Razali',
-    role: 'IT Manager, SJMC Subang Jaya',
-    initials: 'FZ',
+    quote: '"What I want is the car park display — green, amber, red. Don\'t make me think. Show me where the capacity is and let me move patients."',
+    name: 'Nurse Manager',
+    role: 'Prototype testing — visual heatmap feedback',
+    initials: 'NM',
     color: 'bg-orange-600',
   },
 ];
@@ -37,15 +37,15 @@ export default function Testimonials() {
     <section id="testimonials" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="Testimonials"
-          title="Loved by clinical staff and hospital management"
+          tag="From the Wards"
+          title="Built around what nurses and CSCs actually said"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {testimonials.map(t => (
-            <div key={t.name}
+          {testimonials.map((t, i) => (
+            <div key={i}
               className={`rounded-2xl border p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-200
                 ${t.featured
-                  ? 'border-brand-blue/20 bg-gradient-to-br from-brand-blue-lt to-blue-50'
+                  ? 'border-brand-blue/20 bg-gradient-to-br from-brand-blue-lt to-blue-50 md:col-span-2'
                   : 'border-gray-200 bg-gray-50'}`}>
               <div className="text-amber-400 text-base tracking-widest mb-4">★★★★★</div>
               <blockquote className="text-gray-700 text-sm leading-relaxed italic mb-5">
@@ -63,6 +63,10 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
+
+        <p className="text-center text-xs text-gray-400 mt-8">
+          Quotes reflect insights from empathy mapping, direct observation, and prototype testing sessions conducted during FLOW's validation phase.
+        </p>
       </div>
     </section>
   );

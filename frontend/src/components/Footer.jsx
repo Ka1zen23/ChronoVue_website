@@ -4,47 +4,33 @@ const cols = [
     links: [
       { label: 'Features',     href: '#features' },
       { label: 'How It Works', href: '#how-it-works' },
-      { label: 'Pricing',      href: '#pricing' },
-      { label: 'Integrations', href: '#' },
-      { label: 'Changelog',    href: '#' },
+      { label: 'Architecture', href: '#how-it-works' },
+      { label: 'Roadmap',      href: '#pricing' },
     ],
   },
   {
-    heading: 'Company',
+    heading: 'Team Cekap',
     links: [
-      { label: 'About Us',  href: '#' },
-      { label: 'Careers',   href: '#' },
-      { label: 'Blog',      href: '#' },
-      { label: 'Press Kit', href: '#' },
-      { label: 'Contact',   href: '#contact' },
+      { label: 'About the Team', href: '#team' },
+      { label: 'Pilot Programme', href: '#pilot' },
+      { label: 'Contact Us',      href: '#contact' },
     ],
   },
   {
-    heading: 'Resources',
+    heading: 'For Hospitals',
     links: [
-      { label: 'Documentation', href: '#' },
-      { label: 'API Reference',  href: '#' },
-      { label: 'Case Studies',   href: '#' },
-      { label: 'Status Page',    href: '#' },
-      { label: 'Support Centre', href: '#' },
-    ],
-  },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy Policy',  href: '#' },
-      { label: 'Terms of Service', href: '#' },
-      { label: 'PDPA Notice',     href: '#' },
-      { label: 'Security',        href: '#' },
+      { label: 'Apply for Pilot',     href: '#contact' },
+      { label: 'EHR Partnership',     href: '#contact' },
+      { label: 'Procurement Support', href: '#contact' },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy text-white/60">
+    <footer id="team" className="bg-brand-navy text-white/60">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="col-span-2">
             <a href="#" className="flex items-center gap-2.5 font-display font-bold text-lg text-white mb-4">
@@ -53,17 +39,23 @@ export default function Footer() {
                 <path d="M8 16h4v6H8v-6zM14 10h4v12h-4V10zM20 13h4v9h-4v-9z" fill="white"/>
                 <circle cx="24" cy="9" r="3" fill="#06D6A0"/>
               </svg>
-              Cekap
+              FLOW <span className="text-white/40 font-normal text-base ml-1">by Cekap</span>
             </a>
-            <p className="text-sm leading-relaxed max-w-[220px] mb-6">
-              Intelligent bed management for modern hospitals. Built in Malaysia, for Malaysia and beyond.
+            <p className="text-sm leading-relaxed max-w-[240px] mb-4">
+              Real-time operational visibility for hospitals. Replacing paper census, Excel, whiteboards, and WhatsApp with one live dashboard.
             </p>
-            <div className="flex gap-2">
-              {['in', 'x'].map(icon => (
-                <a key={icon} href="#"
-                  className="w-9 h-9 rounded-lg border border-white/15 flex items-center justify-center text-xs font-bold text-white/60 hover:bg-white/10 hover:text-white transition-colors">
-                  {icon}
-                </a>
+            <p className="text-sm leading-relaxed max-w-[240px] mb-6">
+              Built in Brunei, for Brunei — and beyond.
+            </p>
+
+            {/* Team disciplines */}
+            <div className="flex flex-col gap-2">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">Team Cekap</p>
+              {['Computing', 'Data Analytics', 'Nursing', 'Public Health'].map(d => (
+                <span key={d} className="text-xs text-white/55 flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-brand-green flex-shrink-0" />
+                  {d}
+                </span>
               ))}
             </div>
           </div>
@@ -81,12 +73,24 @@ export default function Footer() {
             </div>
           ))}
         </div>
+
+        {/* Pilot status banner */}
+        <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+          <div>
+            <div className="text-sm font-semibold text-white mb-0.5">AMU Pilot — Now Open</div>
+            <div className="text-xs text-white/50">FLOW is accepting applications for paid pilot deployments.</div>
+          </div>
+          <a href="#contact"
+            className="shrink-0 px-5 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-brand-blue-dk transition-colors">
+            Apply for the Pilot →
+          </a>
+        </div>
       </div>
 
       <div className="border-t border-white/8">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/40">
-          <p>&copy; 2026 Cekap Technologies Sdn. Bhd. (1234567-K). All rights reserved.</p>
-          <p>Registered in Malaysia · SSM No. 1234567-K · MDEC MyDIGITAL Corp</p>
+        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/35">
+          <p>&copy; 2026 Team Cekap. FLOW — Real-Time Operational Visibility Platform.</p>
+          <p>Brunei Darussalam</p>
         </div>
       </div>
     </footer>
