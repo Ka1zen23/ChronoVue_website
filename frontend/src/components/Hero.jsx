@@ -139,13 +139,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Demo video — bridges dark → white */}
-      <div data-reveal className="relative max-w-5xl mx-auto px-6 pb-0">
-        {/* Fade to white at the bottom */}
-        <div
-          className="absolute bottom-0 inset-x-0 h-40 pointer-events-none z-10"
-          style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
-        />
+      {/* Demo video */}
+      <div data-reveal className="relative max-w-5xl mx-auto px-6 pb-16">
         {/* Browser chrome frame */}
         <div className="rounded-t-2xl overflow-hidden shadow-2xl shadow-black/40 border border-white/[0.1]">
           <div className="flex items-center gap-1.5 bg-[#1a2235] px-4 py-3 border-b border-white/[0.06]">
