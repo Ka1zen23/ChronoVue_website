@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthProvider } from '../context/AuthContext';
 import { RouterContext, RouterProvider } from './router';
 import { installMockFetch } from './mockApi';
@@ -10,6 +10,8 @@ import CensusPage from '../components/CensusPage';
 import CscCensusPage from '../components/CscCensusPage';
 import WardCensusPage from '../components/WardCensusPage';
 import DischargeWorkflowPage from '../components/DischargeWorkflowPage';
+
+installMockFetch();
 
 const DISCHARGE_PATIENTS = [
   { id: 'PT-0023', diagnosis: 'COPD exacerbation', ward: 'AMU', los: 7, expected: 'Today', assignedBed: 'AMU-B05', delay: '', status: 'READY',
@@ -51,10 +53,6 @@ function PageRouter() {
 }
 
 export default function DemoApp() {
-  useEffect(() => {
-    installMockFetch();
-  }, []);
-
   return (
     <AuthProvider>
       <RouterProvider initialPath="/">
