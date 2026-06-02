@@ -12,7 +12,7 @@ const INTERESTS = [
 const REASONS = [
   {
     title: 'Ward Pilot Applications',
-    desc: 'Run FLOW in your ward as a paid pilot. Team Cekap deploys and supports end-to-end.',
+    desc: 'Run ChronoVue in your ward as a paid pilot. ChronoVue deploys and supports end-to-end.',
   },
   {
     title: 'EHR Integration Partners',
@@ -33,7 +33,7 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     const interestLabel = INTERESTS.find(i => i.value === form.interest)?.label ?? form.interest;
-    const subject = encodeURIComponent(`FLOW Enquiry — ${form.firstName} ${form.lastName}`);
+    const subject = encodeURIComponent(`ChronoVue Enquiry — ${form.firstName} ${form.lastName}`);
     const body = encodeURIComponent(
       [
         `Name: ${form.firstName} ${form.lastName}`,
@@ -46,7 +46,7 @@ export default function Contact() {
         .filter(Boolean)
         .join('\n')
     );
-    window.open(`mailto:cekap.bn@gmail.com?subject=${subject}&body=${body}`);
+    window.open(`mailto:hello@chronovue.co?subject=${subject}&body=${body}`);
     setStatus('success');
   }
 
@@ -61,7 +61,7 @@ export default function Contact() {
             title="Apply for a ward pilot, or start a conversation."
           />
           <p className="text-[15px] text-gray-500 leading-relaxed -mt-8 mb-10">
-            Team Cekap is accepting applications for ward pilots and is actively seeking EHR
+            ChronoVue is accepting applications for ward pilots and is actively seeking EHR
             integration partners and healthcare IT procurement mentors.
           </p>
 
@@ -79,7 +79,7 @@ export default function Contact() {
           <div className="flex flex-col gap-3 pt-6 border-t border-black/[0.06]">
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <MailIcon />
-              cekap.bn@gmail.com
+              hello@chronovue.co
             </div>
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <PinIcon />
@@ -104,8 +104,8 @@ export default function Contact() {
               <p className="text-gray-500 text-[14px] leading-relaxed max-w-xs">
                 Your email client should have opened with everything pre-filled. Just hit send.
                 If it didn't open, email us directly at{' '}
-                <a href="mailto:cekap.bn@gmail.com" className="text-brand-blue hover:underline">
-                  cekap.bn@gmail.com
+                <a href="mailto:hello@chronovue.co" className="text-brand-blue hover:underline">
+                  hello@chronovue.co
                 </a>
               </p>
             </div>
@@ -154,7 +154,7 @@ export default function Contact() {
               </button>
 
               <p className="text-[12px] text-gray-400 text-center">
-                No sales scripts. A real conversation with the team that built FLOW.
+                No sales scripts. A real conversation with the team that built ChronoVue.
               </p>
             </form>
           )}

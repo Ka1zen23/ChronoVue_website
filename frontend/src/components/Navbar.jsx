@@ -100,8 +100,7 @@ function Logo() {
         className="w-[30px] h-[30px] shrink-0" 
       />
       <div className="leading-none">
-        <span className="font-display font-bold text-[17px] text-brand-navy tracking-tight">FLOW</span>
-        <span className="text-gray-400 font-normal text-[13px] ml-1.5">by Cekap</span>
+        <span className="font-display font-bold text-[17px] text-brand-navy tracking-tight">ChronoVue</span>
       </div>
     </a>
   );

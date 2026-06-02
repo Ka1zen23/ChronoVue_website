@@ -83,7 +83,7 @@ export default function Hero() {
           className="max-w-xl mx-auto text-[17px] text-white/55 leading-relaxed mb-10"
         >
           Nurse managers and CSCs currently reconcile four separate data sources
-          every shift. FLOW replaces all of them with a single real-time
+          every shift. ChronoVue replaces all of them with a single real-time
           dashboard — updated the moment anything changes on any ward.
         </p>
 
@@ -134,7 +134,7 @@ export default function Hero() {
             <div className="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-white/[0.12]" />
             <span className="text-[12px] font-semibold text-brand-green border border-brand-green/25
               bg-brand-green/10 px-4 py-1.5 rounded-full">
-              FLOW replaces all four
+              ChronoVue replaces all four
             </span>
             <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-white/[0.12]" />
           </div>

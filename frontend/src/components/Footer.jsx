@@ -20,17 +20,17 @@ export default function Footer() {
 
               <div>
                 <div className="font-display text-[18px] font-black tracking-tight text-white">
-                  FLOW
+                  ChronoVue
                 </div>
 
                 <div className="text-[12px] text-white/40">
-                  by Team Cekap
+                  by ChronoVue
                 </div>
               </div>
             </a>
 
             <p className="mb-6 max-w-[260px] text-[13.5px] leading-relaxed text-white/50">
-              FLOW is a hospital operational visibility platform designed
+              ChronoVue is a hospital operational visibility platform designed
               to modernise coordination, patient flow, and command centre
               awareness across healthcare facilities.
             </p>
@@ -105,7 +105,7 @@ export default function Footer() {
             </div>
 
             <div className="text-xs text-white/50">
-              Team Cekap is open to collaboration and pilot discussions
+              ChronoVue is open to collaboration and pilot discussions
               with healthcare organisations.
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function Footer() {
           "
         >
           <p>
-            © 2026 Team Cekap. FLOW — Flow and Logistics Operation Watch.
+            © 2026 ChronoVue. All rights reserved.
           </p>
 
           <p>Brunei Darussalam</p>
@@ -162,7 +162,7 @@ const cols = [
     heading: 'Team',
     links: [
       { label: 'Meet The Team', href: '#team-section' },
-      { label: 'About FLOW', href: '#about' },
+      { label: 'About ChronoVue', href: '#about' },
       { label: 'Research & Vision', href: '#vision' },
     ],
   },

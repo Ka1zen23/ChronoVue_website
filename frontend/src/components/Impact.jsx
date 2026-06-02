@@ -5,7 +5,7 @@ import useCountUp from '../hooks/useCountUp';
 const stats = [
   { value: 4,   suffix: '',     label: 'Manual sources replaced',       sub: 'paper census, Excel, whiteboards, WhatsApp' },
   { value: 1,   suffix: '',     label: 'Live view for every CSC',        sub: 'hospital-wide, updated in real time' },
-  { value: 0,   suffix: '',     label: 'Phone calls to check bed status', sub: 'when FLOW is running on your ward' },
+  { value: 0,   suffix: '',     label: 'Phone calls to check bed status', sub: 'when ChronoVue is running on your ward' },
   { value: 5,   suffix: '',     label: 'Patient flow phases tracked',    sub: 'admission to discharge, end-to-end' },
 ];
 
@@ -23,7 +23,7 @@ const validations = [
   {
     icon: <NurseIcon />,
     label: 'Nurse Preference',
-    sub: 'Nurse managers chose FLOW\'s interface over incoming EHR updates in prototype testing.',
+    sub: 'Nurse managers chose ChronoVue\'s interface over incoming EHR updates in prototype testing.',
   },
   {
     icon: <WardIcon />,

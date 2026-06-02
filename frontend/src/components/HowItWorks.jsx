@@ -10,7 +10,7 @@ const steps = [
   {
     n: '02',
     icon: <SettingsIcon />,
-    title: 'Configure FLOW',
+    title: 'Configure ChronoVue',
     body: "Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the LAN infrastructure. No generic templates.",
   },
   {
@@ -23,7 +23,7 @@ const steps = [
     n: '04',
     icon: <LaunchIcon />,
     title: 'Go live together',
-    body: "Team Cekap is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each ward pilot informs the next deployment — the system gets better with every ward.",
+    body: "ChronoVue is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each ward pilot informs the next deployment — the system gets better with every ward.",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function HowItWorks() {
         <SectionHeader
           tag="Deployment"
           title="We understand your workflows before we automate them"
-          sub="Every ward gets its own pilot. FLOW deploys ward by ward — each deployment informed by the last."
+          sub="Every ward gets its own pilot. ChronoVue deploys ward by ward — each deployment informed by the last."
         />
 
         <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">

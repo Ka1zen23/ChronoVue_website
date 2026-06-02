@@ -7,10 +7,10 @@ const phases = [
     status: 'active',
     statusLabel: 'AMU live now',
     sub: 'One ward at a time',
-    description: 'FLOW is deployed one ward at a time — starting with the AMU. Each ward pilot runs as a paid engagement. We deploy, train, observe, and refine before moving to the next ward.',
+    description: 'ChronoVue is deployed one ward at a time — starting with the AMU. Each ward pilot runs as a paid engagement. We deploy, train, observe, and refine before moving to the next ward.',
     includes: [
-      'Full FLOW deployment — bed map, queue, flow phases',
-      'On-site setup and LAN configuration by Team Cekap',
+      'Full ChronoVue deployment — bed map, queue, flow phases',
+      'On-site setup and LAN configuration by ChronoVue',
       'Ward terminal, CSC dashboard, and mobile companion',
       'Dedicated support throughout the pilot period',
       'Pilot evaluation report with usage data and findings',
@@ -25,7 +25,7 @@ const phases = [
     status: 'next',
     statusLabel: 'After pilot',
     sub: 'All wards · Recurring license',
-    description: 'After successful ward pilots, expand FLOW to the entire hospital on a recurring per-hospital license. EHR integration layer activates in this phase — removing the manual input burden entirely.',
+    description: 'After successful ward pilots, expand ChronoVue to the entire hospital on a recurring per-hospital license. EHR integration layer activates in this phase — removing the manual input burden entirely.',
     includes: [
       'All wards on a single annual license',
       'EHR integration — automated patient status sync',
@@ -42,7 +42,7 @@ const phases = [
     status: 'future',
     statusLabel: 'Roadmap',
     sub: 'Cross-hospital visibility',
-    description: 'FLOW licensed as a national operational visibility layer across Brunei\'s hospital network. A single dashboard for the Ministry of Health to see bed availability and patient flow nationally.',
+    description: 'ChronoVue licensed as a national operational visibility layer across Brunei\'s hospital network. A single dashboard for the Ministry of Health to see bed availability and patient flow nationally.',
     includes: [
       'Cross-hospital bed availability view',
       'Inter-hospital transfer coordination',
@@ -68,7 +68,7 @@ export default function Pricing() {
         <SectionHeader
           tag="Deployment Model"
           title="Ward by ward. Then hospital-wide. Then national."
-          sub="FLOW doesn't do big-bang rollouts. Every ward gets its own dedicated pilot before we expand. This is how you build something that actually sticks in a clinical environment."
+          sub="ChronoVue doesn't do big-bang rollouts. Every ward gets its own dedicated pilot before we expand. This is how you build something that actually sticks in a clinical environment."
         />
 
         <div data-stagger className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
@@ -117,7 +117,7 @@ export default function Pricing() {
         </div>
 
         <p data-reveal className="text-center text-[13px] text-gray-400 mt-10">
-          Team Cekap is also seeking EHR integration partners and healthcare IT procurement mentors.{' '}
+          ChronoVue is also seeking EHR integration partners and healthcare IT procurement mentors.{' '}
           <a href="#contact" className="text-brand-blue hover:underline font-medium">Get in touch</a>
         </p>
       </div>

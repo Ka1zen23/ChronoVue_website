@@ -17,7 +17,7 @@ const features = [
     icon: <CensusIcon />,
     accent: 'text-emerald-600 bg-emerald-500/8 border-emerald-500/15',
     title: 'Automated Census',
-    body: 'Confirm a transfer in FLOW and census sheets update across the hospital automatically. Excel reports generated on demand — zero manual compilation.',
+    body: 'Confirm a transfer in ChronoVue and census sheets update across the hospital automatically. Excel reports generated on demand — zero manual compilation.',
   },
   {
     icon: <FlowIcon />,
@@ -41,7 +41,7 @@ const features = [
     icon: <LinkIcon />,
     accent: 'text-teal-600 bg-teal-500/8 border-teal-500/15',
     title: 'EHR Integration Layer',
-    body: 'FLOW sits on top of your existing EHR — a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
+    body: 'ChronoVue sits on top of your existing EHR — a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
   },
   {
     icon: <ServerIcon />,
@@ -60,7 +60,7 @@ export default function Features() {
         <SectionHeader
           tag="Platform Features"
           title={<>One platform.<br className="sm:hidden" /> Two layers. Total visibility.</>}
-          sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
+          sub="ChronoVue separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
         />
         <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f) => (

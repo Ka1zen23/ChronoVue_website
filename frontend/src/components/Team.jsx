@@ -60,7 +60,7 @@ export default function Team() {
           </h2>
 
           <p className="mt-5 text-[15px] leading-relaxed text-[#243046]/60">
-            FLOW is built by a multidisciplinary team combining
+            ChronoVue is built by a multidisciplinary team combining
             healthcare, public health, analytics, and software
             engineering expertise to modernise hospital operations.
           </p>
@@ -91,7 +91,7 @@ export default function Team() {
               
               <div className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-1 backdrop-blur-md">
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-white">
-                  Team Cekap
+                  ChronoVue
                 </span>
               </div>
 
@@ -153,7 +153,7 @@ export default function Team() {
                 <div className="absolute left-1/2 top-4 -translate-x-1/2">
                   <div className="rounded-full border border-white/40 bg-white/80 px-3 py-1 backdrop-blur-md">
                     <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#538c97]">
-                      FLOW Team
+                      ChronoVue Team
                     </span>
                   </div>
                 </div>
