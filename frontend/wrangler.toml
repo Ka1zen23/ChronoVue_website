@@ -1,7 +1,6 @@
 name = "chronovue-site"
-name = "chronovue-site"
-compatibility_date = "2024-11-01"
-pages_build_output_dir = "dist"
+main = "src/index.js" # (or whatever your main entry point is, if applicable)
+compatibility_date = "2026-06-01"
 
 [assets]
 directory = "./dist"
