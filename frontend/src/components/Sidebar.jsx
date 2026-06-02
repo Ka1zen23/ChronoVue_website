@@ -77,10 +77,10 @@ function Sidebar() {
         <div>
           <div className="flex items-center justify-center rounded-xl border border-[#E5E7EB] bg-white/90 px-2 py-2 transition-all duration-200 group-hover:justify-start">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E5E7EB] bg-[#1F2937] text-sm font-semibold text-white">
-              FL
+              CV
             </div>
             <div className="ml-0 max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-3 group-hover:max-w-[8.75rem] group-hover:opacity-100">
-              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">FLOW</p>
+              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">ChronoVue</p>
               <p className="whitespace-nowrap text-xs text-[#94A3B8]">{sidebarSubtitle}</p>
             </div>
           </div>

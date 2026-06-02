@@ -100,7 +100,7 @@ export default function DischargeWorkflowPage({ patients = [] }) {
     <main className="dashboard-page">
       <div className="dashboard-page-container dashboard-stack">
         <header className="flex flex-col gap-1.5">
-          <p className="section-label">FLOW — Discharge Workflow</p>
+          <p className="section-label">ChronoVue — Discharge Workflow</p>
           <h1 className="text-[1.25rem] font-semibold tracking-tight text-[#1F2937]">Live discharge pipeline</h1>
           <p className="text-sm text-[#1F2937]">
             Patients grouped by next bottleneck.{' '}

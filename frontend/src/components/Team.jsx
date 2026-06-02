@@ -79,7 +79,7 @@ export default function Team() {
             
             <img
               src="assets/team-photo.jpeg"
-              alt="Team Cekap"
+              alt="ChronoVue"
               className="h-full w-full object-cover"
             />
 
