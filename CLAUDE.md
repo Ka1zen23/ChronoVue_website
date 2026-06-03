@@ -1,18 +1,18 @@
 # FLOW — CLAUDE.md
 **Real-Time Operational Visibility Platform**
 Version 1.0 | AMU Pilot
-Team Cekap
+Team ChronoVue
 
 ---
 
 ## 1. Project Overview
 
-FLOW is a real-time operational visibility platform developed by Team Cekap (also referred to as Team Checkup). It is designed specifically for nurse managers and Clinical Site Coordinators (CSCs) to replace the manual, fragmented process of managing patient movement and bed availability with a single centralised digital solution.
+FLOW is a real-time operational visibility platform developed by Team ChronoVue. It is designed specifically for nurse managers and Clinical Site Coordinators (CSCs) to replace the manual, fragmented process of managing patient movement and bed availability with a single centralised digital solution.
 
 | Field | Detail |
 |---|---|
 | Platform name | FLOW |
-| Developed by | Team Cekap (Team Checkup) |
+| Developed by | Team ChronoVue |
 | Primary users | Nurse managers, Clinical Site Coordinators (CSCs) |
 | Pilot site | Acute Medical Unit (AMU) |
 | Pilot status | Greenlit — championed by hospital CEO and Matron |
@@ -144,7 +144,7 @@ During prototype testing, nurse managers expressed a preference for FLOW's visua
 
 ### Current Needs
 
-Team Cekap is actively seeking:
+Team ChronoVue is actively seeking:
 
 - **Pilot partnerships** — additional hospital sites willing to run a paid pilot alongside or after the AMU deployment
 - **EHR integration support** — technical partners or advisors with experience integrating with hospital EHR systems in the regional healthcare context
@@ -152,9 +152,9 @@ Team Cekap is actively seeking:
 
 ---
 
-## 8. Team Cekap
+## 8. Team ChronoVue
 
-Team Cekap (also referred to as Team Checkup) combines clinical credibility with technical execution — a rare combination in healthcare technology teams.
+Team ChronoVue combines clinical credibility with technical execution — a rare combination in healthcare technology teams.
 
 | Discipline | Role in FLOW |
 |---|---|
@@ -184,7 +184,7 @@ Team Cekap (also referred to as Team Checkup) combines clinical credibility with
 
 > **ACTION REQUIRED — resolve before go-live**
 
-- **IT ownership** — who owns server administration, hospital IT or Team Cekap? Define SLA and escalation path.
+- **IT ownership** — who owns server administration, hospital IT or Team ChronoVue? Define SLA and escalation path.
 - **Server room** — confirm physical location, locked access, UPS, and fire suppression.
 - **Maintenance windows** — when can the system go down for patching without disrupting shift handover?
 - **Hardware specification** — overprovision from day one for eventual multi-ward load. Define spec before procurement.

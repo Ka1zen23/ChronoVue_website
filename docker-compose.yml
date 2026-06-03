@@ -1,15 +1,15 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: cekap_db
+    container_name: chronovue_db
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-cekap}
-      POSTGRES_USER: ${POSTGRES_USER:-cekap}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cekap_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-chronovue}
+      POSTGRES_USER: ${POSTGRES_USER:-chronovue}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-chronovue_secret}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cekap}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-chronovue}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -17,11 +17,11 @@ services:
 
   backend:
     build: ./backend
-    container_name: cekap_backend
+    container_name: chronovue_backend
     environment:
       NODE_ENV: production
       PORT: 3000
-      DATABASE_URL: postgresql://${POSTGRES_USER:-cekap}:${POSTGRES_PASSWORD:-cekap_secret}@postgres:5432/${POSTGRES_DB:-cekap}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-chronovue}:${POSTGRES_PASSWORD:-chronovue_secret}@postgres:5432/${POSTGRES_DB:-chronovue}
     depends_on:
       postgres:
         condition: service_healthy
@@ -29,12 +29,12 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: cekap_frontend
+    container_name: chronovue_frontend
     restart: unless-stopped
 
   nginx:
     image: nginx:alpine
-    container_name: cekap_nginx
+    container_name: chronovue_nginx
     ports:
       - "80:80"
     volumes:

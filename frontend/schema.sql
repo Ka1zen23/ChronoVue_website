@@ -1,7 +1,7 @@
 -- D1 (SQLite) schema — run with:
---   wrangler d1 execute cekap-db --remote --file=schema.sql
+--   wrangler d1 execute chronovue-db --remote --file=schema.sql
 -- For local dev:
---   wrangler d1 execute cekap-db --local --file=schema.sql
+--   wrangler d1 execute chronovue-db --local --file=schema.sql
 
 CREATE TABLE IF NOT EXISTS demo_requests (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
