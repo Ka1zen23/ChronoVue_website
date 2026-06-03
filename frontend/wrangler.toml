@@ -1,6 +1,5 @@
 name = "chronovue-site"
 type = "javascript"
-main = "src/index.js"
 compatibility_date = "2026-06-01"
 account_id = "7d17cac5edb074b44e111e08fde2b2d7"
 workers_dev = true
@@ -8,6 +7,6 @@ workers_dev = true
 [assets]
 directory = "./dist"
 
-[env.production]
-route = "chronovue.co/*"
+[route]
+pattern = "chronovue.co/*"
 zone_id = "67f1ccf4329414f1f1a4b3a6ee0eeff3"
