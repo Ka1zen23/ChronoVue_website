@@ -6,6 +6,3 @@ workers_dev = false
 [assets]
 directory = "./dist"
 
-[route]
-pattern = "chronovue.co/*"
-zone_name = "chronovue.co"
