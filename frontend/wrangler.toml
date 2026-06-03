@@ -6,3 +6,12 @@ workers_dev = false
 [assets]
 directory = "./dist"
 
+# Add this section below (replace with your actual domain)
+[[routes]]
+pattern = "chronovue.co"
+custom_domain = true
+
+# Optional: If you also want it to work with www.
+[[routes]]
+pattern = "www.chronovue.co"
+custom_domain = true
