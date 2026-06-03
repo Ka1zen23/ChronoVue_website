@@ -46,7 +46,7 @@ export default function Contact() {
         .filter(Boolean)
         .join('\n')
     );
-    window.open(`mailto:hello@chronovue.co?subject=${subject}&body=${body}`);
+    window.open(`mailto:support@chronovue.co?subject=${subject}&body=${body}`);
     setStatus('success');
   }
 
@@ -79,7 +79,7 @@ export default function Contact() {
           <div className="flex flex-col gap-3 pt-6 border-t border-black/[0.06]">
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <MailIcon />
-              hello@chronovue.co
+              support@chronovue.co
             </div>
             <div className="flex items-center gap-3 text-[14px] text-gray-500">
               <PinIcon />
@@ -104,8 +104,8 @@ export default function Contact() {
               <p className="text-gray-500 text-[14px] leading-relaxed max-w-xs">
                 Your email client should have opened with everything pre-filled. Just hit send.
                 If it didn't open, email us directly at{' '}
-                <a href="mailto:hello@chronovue.co" className="text-brand-blue hover:underline">
-                  hello@chronovue.co
+                <a href="mailto:support@chronovue.co" className="text-brand-blue hover:underline">
+                  support@chronovue.co
                 </a>
               </p>
             </div>
