@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { SectionHeader } from './Features';
 
 const INTERESTS = [
   { value: 'ward-pilot',   label: 'Apply for a ward pilot deployment' },
@@ -46,7 +45,7 @@ export default function Contact() {
         .filter(Boolean)
         .join('\n')
     );
-    window.open(`mailto:support@chronovue.co?subject=${subject}&body=${body}`);
+    window.location.href = `mailto:support@chronovue.co?subject=${subject}&body=${body}`;
     setStatus('success');
   }
 
@@ -56,11 +55,15 @@ export default function Contact() {
 
         {/* Left */}
         <div>
-          <SectionHeader
-            tag="Contact"
-            title="Apply for a ward pilot, or start a conversation."
-          />
-          <p className="text-[15px] text-gray-500 leading-relaxed -mt-8 mb-10">
+          <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
+            rounded-full mb-5 bg-brand-blue/10 text-brand-blue border border-brand-blue/15">
+            Contact
+          </span>
+          <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
+            tracking-tight mb-4 leading-tight text-brand-navy">
+            Apply for a ward pilot, or start a conversation.
+          </h2>
+          <p className="text-[15px] text-gray-500 leading-relaxed mb-10">
             ChronoVue is accepting applications for ward pilots and is actively seeking EHR
             integration partners and healthcare IT procurement mentors.
           </p>

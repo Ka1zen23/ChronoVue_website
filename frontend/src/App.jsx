@@ -17,12 +17,17 @@ export default function App() {
 
   useEffect(() => {
     if (isDemo) return;
+    let cleanupReveal, cleanupNav;
     const t = setTimeout(() => {
-      setupScrollReveal();
-      setupNavBehaviour();
+      cleanupReveal = setupScrollReveal();
+      cleanupNav = setupNavBehaviour();
       setupMagneticButtons();
     }, 60);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      cleanupReveal?.();
+      cleanupNav?.();
+    };
   }, [isDemo]);
 
   if (isDemo) return <DemoApp />;

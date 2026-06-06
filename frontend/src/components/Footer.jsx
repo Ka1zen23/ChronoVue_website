@@ -22,10 +22,6 @@ export default function Footer() {
                 <div className="font-display text-[18px] font-black tracking-tight text-white">
                   ChronoVue
                 </div>
-
-                <div className="text-[12px] text-white/40">
-                  by ChronoVue
-                </div>
               </div>
             </a>
 
@@ -152,26 +148,25 @@ const cols = [
   {
     heading: 'Platform',
     links: [
-      { label: 'Features', href: '#features' },
+      { label: 'Features',          href: '#features' },
       { label: 'Dashboard Preview', href: '#preview' },
-      { label: 'Architecture', href: '#how-it-works' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'Architecture',      href: '#how-it-works' },
+      { label: 'Contact',           href: '#contact' },
     ],
   },
   {
     heading: 'Team',
     links: [
-      { label: 'Meet The Team', href: '#team-section' },
-      { label: 'About ChronoVue', href: '#about' },
-      { label: 'Research & Vision', href: '#vision' },
+      { label: 'Meet The Team', href: '#team' },
+      { label: 'Traction',      href: '#pilot' },
     ],
   },
   {
     heading: 'Healthcare',
     links: [
-      { label: 'Pilot Programme', href: '#pilot' },
-      { label: 'Operational Visibility', href: '#features' },
-      { label: 'Workflow Coordination', href: '#how-it-works' },
+      { label: 'Pilot Programme',        href: '#pilot' },
+      { label: 'Deployment Model',       href: '#pricing' },
+      { label: 'Workflow Coordination',  href: '#how-it-works' },
     ],
   },
 ];

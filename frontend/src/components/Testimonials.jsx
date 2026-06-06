@@ -12,9 +12,9 @@ const testimonials = [
     role: 'Prototype testing — visual design and glanceability feedback',
   },
   {
-    quote: 'I prefer FLOW because of how user-friendly it is. The visuals take away all the guesswork—we can see the status of the entire facility at a single glance instead of digging through dense data.',
+    quote: 'I prefer ChronoVue because of how user-friendly it is. The visuals take away all the guesswork—we can see the status of the entire facility at a single glance instead of digging through dense data.',
     attribution: 'Nurse Manager',
-    role: 'FLOW implementation — UI/UX and visual clarity feedback',
+    role: 'ChronoVue implementation — UI/UX and visual clarity feedback',
   },
   {
     quote: 'In the AMU, our nurses are always overworked, and a massive part of that is the constant, manual pen-and-paper logging. Moving away from paper registries lifts a huge administrative burden off the frontline.',
@@ -30,7 +30,7 @@ export default function Testimonials() {
         <SectionHeader
           tag="From the Wards"
           title="Built around what nurses and CSCs actually said"
-          sub="Every design decision in FLOW traces back to direct observation, empathy mapping, and prototype testing sessions with the people who will use it."
+          sub="Every design decision in ChronoVue traces back to direct observation, empathy mapping, and prototype testing sessions with the people who will use it."
         />
         <div data-stagger className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((t, i) => (
@@ -60,7 +60,7 @@ export default function Testimonials() {
         </div>
         <p data-reveal className="text-center text-[12px] text-gray-400 mt-8 max-w-lg mx-auto leading-relaxed">
           Quotes reflect insights from empathy mapping, direct observation, and prototype testing
-          sessions conducted during FLOW's validation phase in the AMU.
+          sessions conducted during ChronoVue's validation phase in the AMU.
         </p>
       </div>
     </section>
