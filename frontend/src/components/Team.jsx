@@ -62,7 +62,7 @@ export default function Team() {
           </h2>
 
           <p className="mt-5 text-[15px] leading-relaxed text-[#243046]/60">
-            ChronoVue is built by a multidisciplinary team combining
+            FLOW is built by a multidisciplinary team combining
             healthcare, public health, analytics, and software
             engineering expertise to modernise hospital operations.
           </p>

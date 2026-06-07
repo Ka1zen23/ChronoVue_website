@@ -26,9 +26,9 @@ export default function Footer() {
             </a>
 
             <p className="mb-6 max-w-[260px] text-[13.5px] leading-relaxed text-white/50">
-              ChronoVue is a hospital operational visibility platform designed
-              to modernise coordination, patient flow, and command centre
-              awareness across healthcare facilities.
+              FLOW is ChronoVue's hospital operational visibility platform,
+              designed to modernise coordination, patient flow, and command
+              centre awareness across healthcare facilities.
             </p>
 
             <p className="mb-6 text-sm text-white/65">

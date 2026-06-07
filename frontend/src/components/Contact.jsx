@@ -11,7 +11,7 @@ const INTERESTS = [
 const REASONS = [
   {
     title: 'Ward Pilot Applications',
-    desc: 'Run ChronoVue in your ward as a paid pilot. ChronoVue deploys and supports end-to-end.',
+    desc: 'Run FLOW in your ward as a paid pilot. ChronoVue deploys and supports end-to-end.',
   },
   {
     title: 'EHR Integration Partners',
@@ -157,7 +157,7 @@ export default function Contact() {
               </button>
 
               <p className="text-[12px] text-gray-400 text-center">
-                No sales scripts. A real conversation with the team that built ChronoVue.
+                No sales scripts. A real conversation with the team that built FLOW.
               </p>
             </form>
           )}

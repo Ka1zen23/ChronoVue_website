@@ -10,8 +10,8 @@ const steps = [
   {
     n: '02',
     icon: <SettingsIcon />,
-    title: 'Configure ChronoVue',
-    body: "Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the LAN infrastructure. No generic templates.",
+    title: 'Configure FLOW',
+    body: "Your wards, your bed labels, your thresholds. We map the hospital layout, set occupancy alert rules, import user roles, and verify the network infrastructure. No generic templates.",
   },
   {
     n: '03',
@@ -23,13 +23,13 @@ const steps = [
     n: '04',
     icon: <LaunchIcon />,
     title: 'Go live together',
-    body: "ChronoVue is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each ward pilot informs the next deployment — the system gets better with every ward.",
+    body: "The ChronoVue team is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each ward pilot informs the next deployment — FLOW gets better with every ward.",
   },
 ];
 
 const infraLayers = [
   { label: 'Ward Terminals',    desc: 'Wired ethernet · Desktop-first · Nurse manager input' },
-  { label: 'Hospital LAN',      desc: 'On-premise · No internet egress · All data in-hospital' },
+  { label: 'Network Layer',     desc: 'On-premise or cloud · Your choice · Data sovereignty options' },
   { label: 'Application Server', desc: 'Primary + hot-standby · Separate rooms · Auto failover' },
   { label: 'Dashboards',        desc: 'CSC central view · Ward view · Mobile companion' },
 ];
@@ -41,7 +41,7 @@ export default function HowItWorks() {
         <SectionHeader
           tag="Deployment"
           title="We understand your workflows before we automate them"
-          sub="Every ward gets its own pilot. ChronoVue deploys ward by ward — each deployment informed by the last."
+          sub="Every ward gets its own pilot. FLOW deploys ward by ward — each deployment informed by the last."
         />
 
         <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
@@ -75,7 +75,7 @@ export default function HowItWorks() {
         {/* Infrastructure callout */}
         <div data-reveal className="bg-white rounded-2xl border border-black/[0.07] p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400 mb-6 text-center">
-            Infrastructure at a glance — deployed on your hospital LAN
+            Infrastructure at a glance — deployed to your environment
           </p>
           <div data-stagger className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {infraLayers.map(item => (

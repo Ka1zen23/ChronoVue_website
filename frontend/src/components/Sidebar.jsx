@@ -87,7 +87,7 @@ function Sidebar() {
               CV
             </div>
             <div className={['overflow-hidden transition-all duration-200', open ? 'ml-3 max-w-[7rem] opacity-100' : 'ml-0 max-w-0 opacity-0'].join(' ')}>
-              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">ChronoVue</p>
+              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">FLOW</p>
               <p className="whitespace-nowrap text-xs text-[#94A3B8]">{sidebarSubtitle}</p>
             </div>
             {open && (
