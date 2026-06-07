@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { AuthProvider } from '../context/AuthContext';
 import { RouterContext, RouterProvider } from './router';
-import { installMockFetch } from './mockApi';
+import { installMockFetch, makePatients } from './mockApi';
+import { flagDischargeCandidates } from '../utils/dischargeHeuristic';
 import Sidebar from '../components/Sidebar';
 import CommandCentrePage from '../components/CommandCentrePage';
 import BedManagementPage from '../components/BedManagementPage';
@@ -13,22 +14,7 @@ import DischargeWorkflowPage from '../components/DischargeWorkflowPage';
 
 installMockFetch();
 
-const DISCHARGE_PATIENTS = [
-  { id: 'PT-0023', diagnosis: 'COPD exacerbation', ward: 'AMU', los: 7, expected: 'Today', assignedBed: 'AMU-B05', delay: '', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: true }, { key: 'pharmacy', completed: true }, { key: 'transportLogistics', completed: true }] },
-  { id: 'PT-0044', diagnosis: 'Cellulitis', ward: 'AMU', los: 6, expected: 'Today', assignedBed: 'AMU-B11', delay: 'Awaiting transport', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: true }, { key: 'pharmacy', completed: true }, { key: 'transportLogistics', completed: false }] },
-  { id: 'PT-0058', diagnosis: 'Electrolyte imbalance', ward: 'AMU', los: 3, expected: 'Today', assignedBed: 'AMU-B15', delay: '', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: true }, { key: 'pharmacy', completed: false }, { key: 'transportLogistics', completed: false }] },
-  { id: 'PT-0061', diagnosis: 'Post-appendicectomy', ward: 'Surgical Ward', los: 2, expected: 'Today', assignedBed: 'SURG-B01', delay: '', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: true }, { key: 'pharmacy', completed: true }, { key: 'transportLogistics', completed: true }] },
-  { id: 'PT-0064', diagnosis: 'Hernia repair', ward: 'Surgical Ward', los: 1, expected: 'Tomorrow', assignedBed: 'SURG-B04', delay: 'Pharmacy delay', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: true }, { key: 'pharmacy', completed: false }, { key: 'transportLogistics', completed: false }] },
-  { id: 'PT-0091', diagnosis: 'Post-C-section', ward: 'O&G Ward', los: 2, expected: 'Tomorrow', assignedBed: 'OG-B01', delay: '', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: true }, { key: 'nurseClearance', completed: false }, { key: 'pharmacy', completed: false }, { key: 'transportLogistics', completed: false }] },
-  { id: 'PT-0101', diagnosis: 'Febrile seizure', ward: 'Paediatrics', los: 1, expected: 'Today', assignedBed: 'PAEDS-B01', delay: '', status: 'READY',
-    dischargeWorkflow: [{ key: 'doctorClearance', completed: false }, { key: 'nurseClearance', completed: false }, { key: 'pharmacy', completed: false }, { key: 'transportLogistics', completed: false }] },
-];
+const DISCHARGE_PATIENTS = flagDischargeCandidates(makePatients());
 
 function PageRouter() {
   const { currentPath } = useContext(RouterContext);

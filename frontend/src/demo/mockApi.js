@@ -31,7 +31,7 @@ function makeBedBoard() {
   };
 }
 
-function makePatients() {
+export function makePatients() {
   return [
     { id: 'PT-0012', patient_id: 'PT-0012', name: 'Ahmad Razali', ward: 'AMU', diagnosis: 'Pneumonia', status: 'Admitted', los: 3, assignedBed: 'AMU-B01', bedId: 'ward-amu-bed-0' },
     { id: 'PT-0017', patient_id: 'PT-0017', name: 'Siti Nuraini', ward: 'AMU', diagnosis: 'Sepsis', status: 'Admitted', los: 5, assignedBed: 'AMU-B03', bedId: 'ward-amu-bed-2' },

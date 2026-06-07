@@ -100,13 +100,35 @@ function StatusActionButton({ disabled, isCurrent, onClick, status }) {
   );
 }
 
-function BedDetailModal({ bed, canManageWard, draftDiagnosis, draftPatientId, draftStatus, modalMessage, onClose, onDiagnosisChange, onPatientIdChange, onSave, onStatusChange, onDischarge, onOpenTransfer, wardName }) {
+function BedDetailModal({ bed, canManageWard, onClose, onSave, onDischarge, onOpenTransfer, wardName }) {
+  const [draftStatus, setDraftStatus] = useState('available');
+  const [draftPatientId, setDraftPatientId] = useState('');
+  const [draftDiagnosis, setDraftDiagnosis] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
+
   useEffect(() => {
     if (!bed) return undefined;
     const handleKeyDown = (e) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [bed, onClose]);
+
+  useEffect(() => {
+    if (!bed) return;
+    setDraftStatus(bed.status);
+    setDraftPatientId(bed.patient?.id ?? '');
+    setDraftDiagnosis(bed.patient?.diagnosis ?? '');
+    setModalMessage('');
+  }, [bed]);
+
+  const handleSave = async () => {
+    if (!canManageWard) { setModalMessage('Only users assigned to this ward can update bed status.'); return; }
+    if (draftStatus === 'occupied' && !draftPatientId.trim()) { setModalMessage('Enter an existing patient ID before saving an occupied bed.'); return; }
+    try {
+      await onSave({ status: draftStatus, patientId: draftPatientId.trim(), diagnosis: draftDiagnosis.trim() });
+    } catch (err) { setModalMessage(err.message); }
+  };
+
   if (!bed) return null;
   const shouldCapturePatientDetails = draftStatus === 'occupied';
   const updateMeta = getBedUpdateMeta(bed);
@@ -148,7 +170,7 @@ function BedDetailModal({ bed, canManageWard, draftDiagnosis, draftPatientId, dr
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#1F2937]">Update status</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {Object.keys(bedStatusConfig).map((status) => (
-              <StatusActionButton key={status} status={status} isCurrent={draftStatus === status} disabled={!canManageWard} onClick={() => onStatusChange(status)} />
+              <StatusActionButton key={status} status={status} isCurrent={draftStatus === status} disabled={!canManageWard} onClick={() => setDraftStatus(status)} />
             ))}
           </div>
         </div>
@@ -156,11 +178,11 @@ function BedDetailModal({ bed, canManageWard, draftDiagnosis, draftPatientId, dr
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <label className="flex flex-col gap-2">
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#94A3B8]">Patient ID</span>
-              <input type="text" value={draftPatientId} onChange={(e) => onPatientIdChange(e.target.value)} disabled={!canManageWard} placeholder="Enter patient ID" className="h-12 rounded-2xl border border-[#E5E7EB] bg-white px-4 text-sm text-[#1F2937] outline-none transition placeholder:text-[#94A3B8] focus:border-[#CBD5E1] disabled:cursor-not-allowed disabled:opacity-60" />
+              <input type="text" value={draftPatientId} onChange={(e) => setDraftPatientId(e.target.value)} disabled={!canManageWard} placeholder="Enter patient ID" className="h-12 rounded-2xl border border-[#E5E7EB] bg-white px-4 text-sm text-[#1F2937] outline-none transition placeholder:text-[#94A3B8] focus:border-[#CBD5E1] disabled:cursor-not-allowed disabled:opacity-60" />
             </label>
             <label className="flex flex-col gap-2">
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#94A3B8]">Diagnosis</span>
-              <input type="text" value={draftDiagnosis} onChange={(e) => onDiagnosisChange(e.target.value)} disabled={!canManageWard} placeholder="Enter diagnosis" className="h-12 rounded-2xl border border-[#E5E7EB] bg-white px-4 text-sm text-[#1F2937] outline-none transition placeholder:text-[#94A3B8] focus:border-[#CBD5E1] disabled:cursor-not-allowed disabled:opacity-60" />
+              <input type="text" value={draftDiagnosis} onChange={(e) => setDraftDiagnosis(e.target.value)} disabled={!canManageWard} placeholder="Enter diagnosis" className="h-12 rounded-2xl border border-[#E5E7EB] bg-white px-4 text-sm text-[#1F2937] outline-none transition placeholder:text-[#94A3B8] focus:border-[#CBD5E1] disabled:cursor-not-allowed disabled:opacity-60" />
             </label>
           </div>
         ) : null}
@@ -173,7 +195,7 @@ function BedDetailModal({ bed, canManageWard, draftDiagnosis, draftPatientId, dr
             <button type="button" onClick={onDischarge} className="inline-flex items-center justify-center rounded-2xl border border-rose-200 bg-rose-50 px-5 py-3 text-sm font-medium text-rose-700 transition hover:bg-rose-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-200">Discharge patient</button>
           ) : null}
           <button type="button" onClick={onClose} className="inline-flex items-center justify-center rounded-2xl border border-[#E5E7EB] px-5 py-3 text-sm font-medium text-[#1F2937] transition hover:bg-[#F8FAFC] focus:outline-none">Close</button>
-          <button type="button" onClick={onSave} disabled={!canManageWard} className="inline-flex items-center justify-center rounded-2xl bg-[#1F2937] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#94A3B8] focus:outline-none disabled:cursor-not-allowed disabled:bg-[#94A3B8]">Save bed update</button>
+          <button type="button" onClick={handleSave} disabled={!canManageWard} className="inline-flex items-center justify-center rounded-2xl bg-[#1F2937] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#94A3B8] focus:outline-none disabled:cursor-not-allowed disabled:bg-[#94A3B8]">Save bed update</button>
         </div>
       </div>
     </div>
@@ -191,10 +213,6 @@ function BedManagementPage() {
   const [totalBedsInput, setTotalBedsInput] = useState('');
   const [bedCountMessage, setBedCountMessage] = useState('');
   const [selectedBedId, setSelectedBedId] = useState(null);
-  const [draftStatus, setDraftStatus] = useState('available');
-  const [draftPatientId, setDraftPatientId] = useState('');
-  const [draftDiagnosis, setDraftDiagnosis] = useState('');
-  const [modalMessage, setModalMessage] = useState('');
   const [lastUpdatedAt, setLastUpdatedAt] = useState(initialSummary.lastUpdatedAt);
   const [lastUpdatedBy, setLastUpdatedBy] = useState(initialSummary.updatedBy);
   const [services, setServices] = useState([]);
@@ -226,14 +244,6 @@ function BedManagementPage() {
   useEffect(() => {
     if (!manageableWardIds.includes(selectedWardId)) setSelectedWardId(manageableWardIds[0] ?? wardDefinitions[0]?.id ?? null);
   }, [manageableWardIds, selectedWardId]);
-
-  useEffect(() => {
-    if (!selectedBed) return;
-    setDraftStatus(selectedBed.status);
-    setDraftPatientId(selectedBed.patient?.id ?? '');
-    setDraftDiagnosis(selectedBed.patient?.diagnosis ?? '');
-    setModalMessage('');
-  }, [selectedBed]);
 
   useEffect(() => { loadWardData(); }, []);
 
@@ -297,21 +307,15 @@ function BedManagementPage() {
     } catch (error) { setBedCountMessage(error.message); }
   };
 
-  const handleModalSave = async () => {
+  const handleModalSave = async ({ status, patientId, diagnosis }) => {
     if (!selectedWard || !selectedBed) return;
-    if (!canManageCurrentWard) { setModalMessage('Only users assigned to this ward can update bed status.'); return; }
-    const needsPatient = draftStatus === 'occupied';
-    const cleanId = draftPatientId.trim();
-    if (needsPatient && !cleanId) { setModalMessage('Enter an existing patient ID before saving an occupied bed.'); return; }
     const updateMeta = { updatedAt: new Date(), updatedBy: user?.name ?? 'Bed board sync' };
-    try {
-      const res = await fetch(`/api/beds/${selectedBed.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: draftStatus, patient_code: cleanId, updated_by: updateMeta.updatedBy, notes: draftDiagnosis.trim() }) });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.error || 'Unable to save bed update');
-      await loadWardData();
-      setLastUpdatedAt(updateMeta.updatedAt); setLastUpdatedBy(updateMeta.updatedBy);
-      setSelectedBedId(null); setModalMessage('');
-    } catch (error) { setModalMessage(error.message); }
+    const res = await fetch(`/api/beds/${selectedBed.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status, patient_code: patientId, updated_by: updateMeta.updatedBy, notes: diagnosis }) });
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.error || 'Unable to save bed update');
+    await loadWardData();
+    setLastUpdatedAt(updateMeta.updatedAt); setLastUpdatedBy(updateMeta.updatedBy);
+    setSelectedBedId(null);
   };
 
   const handleDischargePatient = async () => {
@@ -420,9 +424,7 @@ function BedManagementPage() {
 
       <BedDetailModal
         bed={selectedBed} wardName={selectedWard?.name ?? ''} canManageWard={canManageCurrentWard}
-        draftStatus={draftStatus} draftPatientId={draftPatientId} draftDiagnosis={draftDiagnosis} modalMessage={modalMessage}
-        onClose={() => setSelectedBedId(null)} onStatusChange={setDraftStatus}
-        onPatientIdChange={setDraftPatientId} onDiagnosisChange={setDraftDiagnosis}
+        onClose={() => setSelectedBedId(null)}
         onSave={handleModalSave} onDischarge={handleDischargePatient} onOpenTransfer={() => setShowTransferModal(true)}
       />
 
