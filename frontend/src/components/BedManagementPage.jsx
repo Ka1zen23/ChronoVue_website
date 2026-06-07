@@ -238,7 +238,7 @@ function BedManagementPage() {
   useEffect(() => {
     if (!selectedWard) return;
     setTotalBedsInput(String(selectedWard.totalBeds));
-    setSelectedBedId(null); setBedCountMessage(''); setModalMessage('');
+    setSelectedBedId(null); setBedCountMessage('');
   }, [selectedWardId, selectedWard]);
 
   useEffect(() => {
@@ -329,7 +329,7 @@ function BedManagementPage() {
       setTransferStatusMessage(`${selectedBed.patient.id} discharged successfully.`);
       setSelectedBedId(null);
       await loadWardData();
-    } catch (error) { setModalMessage(error.message); }
+    } catch (error) { setTransferStatusMessage(error.message); }
   };
 
   return (
