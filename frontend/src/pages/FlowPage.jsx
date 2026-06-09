@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import FlowHero from '../components/FlowHero';
 import FlowSnippets from '../components/FlowSnippets';
@@ -28,6 +29,11 @@ export default function FlowPage() {
 
   return (
     <>
+      <Helmet>
+        <title>FLOW: Real-Time Hospital Bed Management | ChronoVue</title>
+        <meta name="description" content="FLOW gives nurse managers and Clinical Site Coordinators a live view of every bed across all wards, replacing paper census sheets, Excel, whiteboards, and WhatsApp. On-premise, desktop-first. Piloting at Brunei's Acute Medical Unit." />
+        <link rel="canonical" href="https://chronovue.co/flow" />
+      </Helmet>
       <Navbar flow />
       <main>
         <FlowHero />
