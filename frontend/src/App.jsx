@@ -7,13 +7,10 @@ import FlowTeaser from './components/FlowTeaser';
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import FlowPage from './pages/FlowPage';
 import PullToRefresh from './components/PullToRefresh';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
-  const isFlow = window.location.pathname.startsWith('/flow');
-
   useEffect(() => {
     let cleanupReveal, cleanupNav;
     const t = setTimeout(() => {
@@ -26,14 +23,7 @@ export default function App() {
       cleanupReveal?.();
       cleanupNav?.();
     };
-  }, [isFlow]);
-
-  if (isFlow) return (
-    <>
-      <PullToRefresh />
-      <FlowPage />
-    </>
-  );
+  }, []);
 
   return (
     <>
