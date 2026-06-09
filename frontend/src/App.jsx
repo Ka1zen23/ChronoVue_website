@@ -7,6 +7,7 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FlowPage from './pages/FlowPage';
+import PullToRefresh from './components/PullToRefresh';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
@@ -26,10 +27,16 @@ export default function App() {
     };
   }, [isFlow]);
 
-  if (isFlow) return <FlowPage />;
+  if (isFlow) return (
+    <>
+      <PullToRefresh />
+      <FlowPage />
+    </>
+  );
 
   return (
     <>
+      <PullToRefresh />
       <Navbar />
       <main>
         <Hero />

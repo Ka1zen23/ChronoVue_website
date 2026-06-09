@@ -22,6 +22,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Disable native pull-to-refresh on touch screens so custom PTR can take over */
+  @media (pointer: coarse) {
+    body { overscroll-behavior-y: none; }
+  }
+
   h1, h2, h3, h4, h5 { @apply font-display; }
 
   ::selection {
