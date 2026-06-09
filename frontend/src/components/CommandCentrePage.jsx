@@ -151,7 +151,7 @@ export default function CommandCentrePage() {
         <header className="cc-hero">
           <div>
             <p className="section-label">Command Centre</p>
-            <h1>RIPAS Hospital Command Centre</h1>
+            <h1>Hospital Command Centre</h1>
             <p className="cc-hero-copy">Bed management, patient flow, and operational visibility for the current shift.</p>
           </div>
           <div className="cc-hero-status">

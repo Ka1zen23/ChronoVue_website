@@ -147,26 +147,27 @@ const cols = [
   {
     heading: 'Company',
     links: [
-      { label: 'About Us',      href: '#about' },
-      { label: 'Our Approach',  href: '#how-it-works' },
-      { label: 'Team',          href: '#team' },
-      { label: 'Contact',       href: '#contact' },
-    ],
-  },
-  {
-    heading: 'Work',
-    links: [
-      { label: 'Case Study: FLOW', href: '#case-study' },
-      { label: 'Live Demo',        href: '/command-centre' },
-      { label: 'Traction',         href: '#pilot' },
+      { label: 'About Us',     href: '/#about' },
+      { label: 'Our Work',     href: '/#case-study' },
+      { label: 'Team',         href: '/#team' },
+      { label: 'Contact',      href: '/#contact' },
     ],
   },
   {
     heading: 'FLOW',
     links: [
-      { label: 'Feature Set',      href: '#features' },
-      { label: 'Deployment Model', href: '#pricing' },
-      { label: 'Apply for Pilot',  href: '#contact' },
+      { label: 'Case Study',       href: '/flow' },
+      { label: 'Feature Set',      href: '/flow#features' },
+      { label: 'Traction',         href: '/flow#pilot' },
+      { label: 'Deployment Model', href: '/flow#pricing' },
+    ],
+  },
+  {
+    heading: 'Get Started',
+    links: [
+      { label: 'Apply for Pilot',       href: '/#contact' },
+      { label: 'EHR Integration',       href: '/#contact' },
+      { label: 'Procurement Mentorship', href: '/#contact' },
     ],
   },
 ];

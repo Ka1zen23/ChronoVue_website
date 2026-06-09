@@ -1,17 +1,23 @@
 import { useState } from 'react';
 
-const links = [
-  { label: 'About',        href: '#about' },
-  { label: 'Our Work',     href: '#case-study' },
-  { label: 'Approach',     href: '#how-it-works' },
-  { label: 'Traction',     href: '#pilot' },
-  { label: 'Team',         href: '#team' },
-  { label: 'Contact',      href: '#contact' },
+const mainLinks = [
+  { label: 'About',    href: '#about' },
+  { label: 'Our Work', href: '#case-study' },
+  { label: 'Team',     href: '#team' },
+  { label: 'Contact',  href: '#contact' },
 ];
 
-export default function Navbar() {
+const flowLinks = [
+  { label: 'Features', href: '#features' },
+  { label: 'Approach', href: '#how-it-works' },
+  { label: 'Traction', href: '#pilot' },
+  { label: 'Contact',  href: '#contact' },
+];
+
+export default function Navbar({ flow = false }) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const links = flow ? flowLinks : mainLinks;
 
   return (
     <>
@@ -39,13 +45,23 @@ export default function Navbar() {
           </ul>
 
           <div className="hidden md:flex items-center gap-2.5">
-            <a
-              href="/command-centre"
-              className="px-5 py-2 text-[13.5px] font-semibold text-brand-navy
-                border border-black/[0.1] rounded-lg hover:bg-black/[0.04] transition-colors"
-            >
-              Live Demo
-            </a>
+            {flow ? (
+              <a
+                href="/"
+                className="px-5 py-2 text-[13.5px] font-semibold text-brand-navy
+                  border border-black/[0.1] rounded-lg hover:bg-black/[0.04] transition-colors"
+              >
+                ← ChronoVue
+              </a>
+            ) : (
+              <a
+                href="/flow"
+                className="px-5 py-2 text-[13.5px] font-semibold text-brand-navy
+                  border border-black/[0.1] rounded-lg hover:bg-black/[0.04] transition-colors"
+              >
+                FLOW Case Study
+              </a>
+            )}
             <a
               href="#contact"
               data-magnetic="0.25"
@@ -82,6 +98,12 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+          {flow && (
+            <a href="/" onClick={close}
+              className="px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-black/[0.04]">
+              ← ChronoVue
+            </a>
+          )}
           <a href="#contact" onClick={close}
             className="mt-3 text-center py-2.5 rounded-lg bg-brand-navy text-white font-semibold text-sm">
             Get in Touch
@@ -94,11 +116,11 @@ export default function Navbar() {
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2.5 shrink-0 group">
-      <img 
-        src="assets/logo.svg" 
-        alt="Flow Logo" 
-        className="w-[30px] h-[30px] shrink-0" 
+    <a href="/" className="flex items-center gap-2.5 shrink-0 group">
+      <img
+        src="/assets/logo.svg"
+        alt="ChronoVue Logo"
+        className="w-[30px] h-[30px] shrink-0"
       />
       <div className="leading-none">
         <span className="font-display font-bold text-[17px] text-brand-navy tracking-tight">ChronoVue</span>

@@ -1,24 +1,18 @@
 import { useEffect } from 'react';
-import DemoApp from './demo/DemoApp';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
-import CaseStudyIntro from './components/CaseStudyIntro';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import Impact from './components/Impact';
-import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing';
+import FlowTeaser from './components/FlowTeaser';
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FlowPage from './pages/FlowPage';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
-  const isDemo = window.location.pathname.startsWith('/command-centre');
+  const isFlow = window.location.pathname.startsWith('/flow');
 
   useEffect(() => {
-    if (isDemo) return;
     let cleanupReveal, cleanupNav;
     const t = setTimeout(() => {
       cleanupReveal = setupScrollReveal();
@@ -30,9 +24,9 @@ export default function App() {
       cleanupReveal?.();
       cleanupNav?.();
     };
-  }, [isDemo]);
+  }, [isFlow]);
 
-  if (isDemo) return <DemoApp />;
+  if (isFlow) return <FlowPage />;
 
   return (
     <>
@@ -40,12 +34,7 @@ export default function App() {
       <main>
         <Hero />
         <AboutUs />
-        <CaseStudyIntro />
-        <Features />
-        <Testimonials />
-        <HowItWorks />
-        <Impact />
-        <Pricing />
+        <FlowTeaser />
         <Team />
         <Contact />
       </main>

@@ -119,7 +119,7 @@ export default function Contact() {
                 <Field label="Last Name"  type="text"  placeholder="Razali"   value={form.lastName}     onChange={update('lastName')}     required />
               </div>
               <Field label="Work Email"               type="email" placeholder="ahmad@hospital.gov.bn" value={form.email}         onChange={update('email')}        required />
-              <Field label="Hospital / Organisation"  type="text"  placeholder="RIPAS Hospital"        value={form.organisation}  onChange={update('organisation')} required />
+              <Field label="Hospital / Organisation"  type="text"  placeholder="General Hospital"        value={form.organisation}  onChange={update('organisation')} required />
               <Field label="Your Role"                type="text"  placeholder="Nurse Manager, CSC, IT Manager…" value={form.role} onChange={update('role')} />
 
               <div className="flex flex-col gap-1.5">

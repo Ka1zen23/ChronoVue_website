@@ -1,5 +1,3 @@
-import DashboardPreview from './DashboardPreview';
-
 const pillars = [
   {
     icon: (
@@ -127,10 +125,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Dashboard preview — hidden on mobile */}
-      <div id="preview" data-reveal className="relative px-4 pb-16 hidden md:block">
-        <DashboardPreview />
-      </div>
     </section>
   );
 }
