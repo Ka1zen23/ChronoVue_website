@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import DemoApp from './demo/DemoApp';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AboutUs from './components/AboutUs';
+import CaseStudyIntro from './components/CaseStudyIntro';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Impact from './components/Impact';
@@ -37,10 +39,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <AboutUs />
+        <CaseStudyIntro />
         <Features />
+        <Testimonials />
         <HowItWorks />
         <Impact />
-        <Testimonials />
         <Pricing />
         <Team />
         <Contact />

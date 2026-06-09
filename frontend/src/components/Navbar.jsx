@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 const links = [
-  { label: 'Problem',      href: '#problem' },
-  { label: 'Features',     href: '#features' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Pilot',        href: '#pilot' },
-  { label: 'Pricing',      href: '#pricing' },
+  { label: 'About',        href: '#about' },
+  { label: 'Our Work',     href: '#case-study' },
+  { label: 'Approach',     href: '#how-it-works' },
+  { label: 'Traction',     href: '#pilot' },
   { label: 'Team',         href: '#team' },
+  { label: 'Contact',      href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -53,7 +53,7 @@ export default function Navbar() {
                 bg-brand-navy hover:bg-brand-navy-mid rounded-lg transition-colors
                 shadow-sm"
             >
-              Apply for Ward Pilot
+              Get in Touch
             </a>
           </div>
 
@@ -84,7 +84,7 @@ export default function Navbar() {
           ))}
           <a href="#contact" onClick={close}
             className="mt-3 text-center py-2.5 rounded-lg bg-brand-navy text-white font-semibold text-sm">
-            Apply for Ward Pilot
+            Get in Touch
           </a>
         </div>
       )}

@@ -58,7 +58,7 @@ export default function Features() {
     <section id="features" className="py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="Platform Features"
+          tag="FLOW — Feature Set"
           title={<>One platform.<br className="sm:hidden" /> Two layers. Total visibility.</>}
           sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
         />

@@ -26,9 +26,8 @@ export default function Footer() {
             </a>
 
             <p className="mb-6 max-w-[260px] text-[13.5px] leading-relaxed text-white/50">
-              FLOW is ChronoVue's hospital operational visibility platform,
-              designed to modernise coordination, patient flow, and command
-              centre awareness across healthcare facilities.
+              ChronoVue is a product studio that builds operational SaaS for sectors
+              where teams are still relying on manual, fragmented processes to do critical work.
             </p>
 
             <p className="mb-6 text-sm text-white/65">
@@ -97,12 +96,12 @@ export default function Footer() {
         >
           <div>
             <div className="mb-0.5 text-sm font-semibold text-white">
-              Pilot Demonstration Available
+              Open to collaboration
             </div>
 
             <div className="text-xs text-white/50">
-              ChronoVue is open to collaboration and pilot discussions
-              with healthcare organisations.
+              Healthcare organisations, EHR integration partners, and procurement advisors —
+              we want to hear from you.
             </div>
           </div>
 
@@ -146,27 +145,28 @@ export default function Footer() {
 
 const cols = [
   {
-    heading: 'Platform',
+    heading: 'Company',
     links: [
-      { label: 'Features',          href: '#features' },
-      { label: 'Dashboard Preview', href: '#preview' },
-      { label: 'Architecture',      href: '#how-it-works' },
-      { label: 'Contact',           href: '#contact' },
+      { label: 'About Us',      href: '#about' },
+      { label: 'Our Approach',  href: '#how-it-works' },
+      { label: 'Team',          href: '#team' },
+      { label: 'Contact',       href: '#contact' },
     ],
   },
   {
-    heading: 'Team',
+    heading: 'Work',
     links: [
-      { label: 'Meet The Team', href: '#team' },
-      { label: 'Traction',      href: '#pilot' },
+      { label: 'Case Study: FLOW', href: '#case-study' },
+      { label: 'Live Demo',        href: '/command-centre' },
+      { label: 'Traction',         href: '#pilot' },
     ],
   },
   {
-    heading: 'Healthcare',
+    heading: 'FLOW',
     links: [
-      { label: 'Pilot Programme',        href: '#pilot' },
-      { label: 'Deployment Model',       href: '#pricing' },
-      { label: 'Workflow Coordination',  href: '#how-it-works' },
+      { label: 'Feature Set',      href: '#features' },
+      { label: 'Deployment Model', href: '#pricing' },
+      { label: 'Apply for Pilot',  href: '#contact' },
     ],
   },
 ];

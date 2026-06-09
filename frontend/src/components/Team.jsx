@@ -62,9 +62,9 @@ export default function Team() {
           </h2>
 
           <p className="mt-5 text-[15px] leading-relaxed text-[#243046]/60">
-            FLOW is built by a multidisciplinary team combining
-            healthcare, public health, analytics, and software
-            engineering expertise to modernise hospital operations.
+            ChronoVue is built by a multidisciplinary team combining
+            clinical practice, public health, data analytics, and software
+            engineering — a rare combination in healthcare technology.
           </p>
         </div>
 
@@ -98,14 +98,13 @@ export default function Team() {
               </div>
 
               <h3 className="mt-5 max-w-3xl text-2xl font-black tracking-tight text-white md:text-5xl">
-                Building operational visibility
-                for modern hospitals
+                Clinical credibility meets
+                technical execution
               </h3>
 
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/75 md:text-[15px]">
-                A collaboration between developers, healthcare
-                specialists, public health researchers, and analysts
-                focused on improving hospital coordination workflows.
+                A product studio where developers work alongside nurses and public health
+                researchers — so what we build is grounded in how healthcare actually works.
               </p>
             </div>
           </div>
