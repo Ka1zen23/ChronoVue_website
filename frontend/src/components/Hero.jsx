@@ -68,7 +68,7 @@ export default function Hero() {
           className="max-w-xl mx-auto text-[17px] text-white/55 leading-relaxed mb-10"
         >
           ChronoVue is a product studio. We identify sectors where teams still rely on manual,
-          fragmented processes to do critical work — then build the platform that replaces them.
+          fragmented processes to do critical work, then build the platform that replaces them.
         </p>
 
         {/* CTAs */}

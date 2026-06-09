@@ -64,7 +64,7 @@ export default function Team() {
           <p className="mt-5 text-[15px] leading-relaxed text-[#243046]/60">
             ChronoVue is built by a multidisciplinary team combining
             clinical practice, public health, data analytics, and software
-            engineering — a rare combination in healthcare technology.
+            engineering, a rare combination in healthcare technology.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function Team() {
 
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/75 md:text-[15px]">
                 A product studio where developers work alongside nurses and public health
-                researchers — so what we build is grounded in how healthcare actually works.
+                researchers, so what we build is grounded in how healthcare actually works.
               </p>
             </div>
           </div>

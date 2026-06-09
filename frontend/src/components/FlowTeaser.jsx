@@ -9,7 +9,7 @@ const highlights = [
   'CEO and Matron champion at pilot site',
   'Nurse managers preferred FLOW over incoming EHR updates',
   'Real-time bed capacity heatmap across all wards',
-  'Automated census — no manual Excel compilation',
+  'Automated census: no manual Excel compilation',
 ];
 
 export default function FlowTeaser() {
@@ -34,7 +34,7 @@ export default function FlowTeaser() {
           <div data-reveal>
             <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
               tracking-tight text-brand-navy mb-4 leading-tight">
-              FLOW — Hospital Operational Visibility
+              FLOW · Hospital Operational Visibility
             </h2>
             <p className="text-[15px] text-gray-500 leading-relaxed mb-6">
               Our first product. Hospital teams were stitching together paper census sheets,

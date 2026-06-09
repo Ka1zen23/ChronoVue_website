@@ -11,7 +11,7 @@ const steps = [
     n: '02',
     icon: <SettingsIcon />,
     title: 'Configure the platform',
-    body: "Your wards, your data, your thresholds. We map the operational layout, set alert rules, import user roles, and verify the infrastructure. No generic templates — built to your environment.",
+    body: "Your wards, your data, your thresholds. We map the operational layout, set alert rules, import user roles, and verify the infrastructure. No generic templates, built to your environment.",
   },
   {
     n: '03',
@@ -23,7 +23,7 @@ const steps = [
     n: '04',
     icon: <LaunchIcon />,
     title: 'Go live together',
-    body: "The ChronoVue team is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each deployment informs the next — the platform gets better with every rollout.",
+    body: "The ChronoVue team is on-site for go-live. We monitor, gather real usage data, and iterate rapidly. Each deployment informs the next; the platform gets better with every rollout.",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function HowItWorks() {
         <SectionHeader
           tag="Our Approach"
           title="We understand your workflows before we automate them"
-          sub="We deploy ward by ward, site by site — each rollout informed by the last. No big-bang launches."
+          sub="We deploy ward by ward, site by site, each rollout informed by the last. No big-bang launches."
         />
 
         <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
@@ -75,7 +75,7 @@ export default function HowItWorks() {
         {/* Infrastructure callout */}
         <div data-reveal className="bg-white rounded-2xl border border-black/[0.07] p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400 mb-6 text-center">
-            Infrastructure at a glance — deployed to your environment
+            Infrastructure at a glance, deployed to your environment
           </p>
           <div data-stagger className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {infraLayers.map(item => (

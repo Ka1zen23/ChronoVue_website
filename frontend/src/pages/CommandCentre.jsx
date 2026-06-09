@@ -633,8 +633,8 @@ export default function CommandCentre({ embedded = false }) {
               <CardHeader num="12" title="Maintenance Issues" />
               <div className="space-y-1.5">
                 {[
-                  { date: '27-5', issue: 'Bed sensor fault — Ward 3A' },
-                  { date: '26-5', issue: 'AC unit — Room 11B' },
+                  { date: '27-5', issue: 'Bed sensor fault, Ward 3A' },
+                  { date: '26-5', issue: 'AC unit, Room 11B' },
                 ].map(({ date, issue }) => (
                   <div key={date + issue} className="flex gap-2.5 items-start">
                     <span className="font-mono text-[10px] text-gray-400 shrink-0 pt-px">{date}</span>

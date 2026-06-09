@@ -135,7 +135,7 @@ export default function DischargeWorkflowPage({ patients = [] }) {
     <main className="dashboard-page">
       <div className="dashboard-page-container dashboard-stack">
         <header className="flex flex-col gap-1.5">
-          <p className="section-label">ChronoVue — Discharge Workflow</p>
+          <p className="section-label">ChronoVue · Discharge Workflow</p>
           <h1 className="text-[1.25rem] font-semibold tracking-tight text-[#1F2937]">Live discharge pipeline</h1>
           <p className="text-sm text-[#1F2937]">
             Patients grouped by next bottleneck.{' '}
@@ -147,12 +147,12 @@ export default function DischargeWorkflowPage({ patients = [] }) {
         </header>
         <div className="flex items-start gap-4 rounded-xl border border-[#fde68a] border-l-4 border-l-[#d97706] bg-[#fffbeb] p-4">
           <div className="flex flex-col gap-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#d97706]">Pharmacy delay — key bottleneck</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#d97706]">Pharmacy delay: key bottleneck</p>
             <p className="text-sm text-[#1F2937]">
               Even after clinical clearance, patients wait an average of <strong>4–6 hours</strong> for medication dispensing.
               {pharmacyCount > 0 ? ` Currently: ${pharmacyCount} patient${pharmacyCount > 1 ? 's' : ''} in the pharmacy queue.` : ' No patients currently awaiting pharmacy.'}
             </p>
-            <p className="mt-0.5 text-xs text-[#94A3B8]">Source: Awang Husaini et al. (2022) — AMU discharge delay study, Brunei</p>
+            <p className="mt-0.5 text-xs text-[#94A3B8]">Source: Awang Husaini et al. (2022), AMU discharge delay study, Brunei</p>
           </div>
         </div>
         {isWeekend && (

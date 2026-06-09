@@ -9,13 +9,13 @@ const principles = [
     accent: 'text-emerald-600 bg-emerald-500/8 border-emerald-500/15',
     icon: <PlatformIcon />,
     title: 'We build platforms, not features',
-    body: "We don't consult. We own what we build. Each product is a purpose-built platform designed to eliminate a specific operational pain — not a feature bolted onto a generic tool.",
+    body: "We don't consult. We own what we build. Each product is a purpose-built platform designed to eliminate a specific operational pain, not a feature bolted onto a generic tool.",
   },
   {
     accent: 'text-violet-600 bg-violet-500/8 border-violet-500/15',
     icon: <ScaleIcon />,
     title: 'We design for national scale',
-    body: 'From day one, every product is architected as a SaaS business — licensable per organisation, expandable across regions, and built to grow beyond its first deployment.',
+    body: 'From day one, every product is architected as a SaaS business: licensable per organisation, expandable across regions, and built to grow beyond its first deployment.',
   },
 ];
 
@@ -43,7 +43,7 @@ export default function AboutUs() {
           </h2>
           <p className="text-[15px] leading-relaxed text-gray-500">
             ChronoVue combines software engineers, data analysts, nurses, and public health
-            researchers. We don't just build software — we embed with the teams doing the real
+            researchers. We don't just build software; we embed with the teams doing the real
             work, map their actual workflows, and build the platform that eliminates the friction.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function AboutUs() {
               &ldquo;
             </div>
             <p className="text-[17px] font-semibold leading-relaxed text-white/90 -mt-4 mb-6">
-              We exist to eliminate the synthesis cost — the hidden toll paid every shift by teams
+              We exist to eliminate the synthesis cost: the hidden toll paid every shift by teams
               manually assembling critical information from too many disconnected sources.
             </p>
             <div>

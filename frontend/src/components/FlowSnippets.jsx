@@ -163,7 +163,7 @@ function AdmissionQueueSnippet() {
 
       <div className="mt-3 pt-3 border-t border-black/[0.06] text-center">
         <span className="text-[11px] text-gray-400">
-          Nurse managers flag transfer readiness directly in FLOW — no WhatsApp needed.
+          Nurse managers flag transfer readiness directly in FLOW, no WhatsApp needed.
         </span>
       </div>
     </SnippetShell>

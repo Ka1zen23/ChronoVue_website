@@ -13,7 +13,7 @@ const censusSections = [
       { ward: 'Internal Medicine', beds: 80, occupied: 76, vacant: 4, dirty: 1, blocked: 0 },
       { ward: 'Neuro / PJC', beds: 30, occupied: 22, vacant: 8, dirty: 0, blocked: 0 }
     ],
-    total: { ward: 'Total — Main Block', beds: 461, occupied: 378, vacant: 67, dirty: '-', blocked: '-' }
+    total: { ward: 'Total (Main Block)', beds: 461, occupied: 378, vacant: 67, dirty: '-', blocked: '-' }
   },
   {
     label: 'WCC',
@@ -22,11 +22,11 @@ const censusSections = [
       { ward: 'Paediatrics', beds: 60, occupied: 31, vacant: 29, dirty: 0, blocked: 0 },
       { ward: 'Floors (WCC)', beds: 203, occupied: 140, vacant: 63, dirty: 3, blocked: 0 }
     ],
-    total: { ward: 'Total — WCC', beds: 353, occupied: 223, vacant: 130, dirty: '-', blocked: '-' }
+    total: { ward: 'Total (WCC)', beds: 353, occupied: 223, vacant: 130, dirty: '-', blocked: '-' }
   },
   {
     label: 'Old Building',
-    rows: [{ ward: 'Old Bldg — Ward A', beds: '-', occupied: '-', vacant: '-', dirty: '-', blocked: '-' }]
+    rows: [{ ward: 'Old Bldg / Ward A', beds: '-', occupied: '-', vacant: '-', dirty: '-', blocked: '-' }]
   }
 ];
 
@@ -100,8 +100,8 @@ const psychiatricRows = [
 ];
 
 const maintenanceRows = [
-  { date: '27-5', issue: 'Bed sensor fault — Ward 3A' },
-  { date: '26-5', issue: 'AC unit — Room 11B' }
+  { date: '27-5', issue: 'Bed sensor fault, Ward 3A' },
+  { date: '26-5', issue: 'AC unit, Room 11B' }
 ];
 
 function formatClock(date) {
@@ -313,7 +313,7 @@ export default function CommandCentrePage() {
           </article>
 
           <article className="cc-card cc-card-wide cc-card-anaesthesia">
-            <PanelHeader number="10" title="In/cases — Anaesthesiology" />
+            <PanelHeader number="10" title="In/cases · Anaesthesiology" />
             <table className="cc-table cc-mini-table">
               <thead><tr><th>Type</th><th>IP</th><th>Day</th><th>PN</th><th>ME</th><th>Total</th></tr></thead>
               <tbody>
@@ -326,7 +326,7 @@ export default function CommandCentrePage() {
           </article>
 
           <article className="cc-card cc-card-wide cc-card-psych">
-            <PanelHeader number="11" title="Psychiatric — police case — mission" />
+            <PanelHeader number="11" title="Psychiatric / police case / mission" />
             <table className="cc-table cc-mini-table">
               <tbody>
                 {psychiatricRows.map((row) => (

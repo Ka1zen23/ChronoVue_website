@@ -13,7 +13,7 @@ const validations = [
   {
     icon: <PilotIcon />,
     label: 'AMU Pilot Active',
-    sub: 'Currently live in the Acute Medical Unit — our first ward deployment.',
+    sub: 'Currently live in the Acute Medical Unit, our first ward deployment.',
   },
   {
     icon: <CeoIcon />,
@@ -28,7 +28,7 @@ const validations = [
   {
     icon: <WardIcon />,
     label: 'Ward-by-Ward Rollout',
-    sub: 'Every ward gets its own dedicated pilot — we deploy only when the team is ready.',
+    sub: 'Every ward gets its own dedicated pilot. We deploy only when the team is ready.',
   },
 ];
 

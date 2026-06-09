@@ -32,7 +32,7 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     const interestLabel = INTERESTS.find(i => i.value === form.interest)?.label ?? form.interest;
-    const subject = encodeURIComponent(`ChronoVue Enquiry — ${form.firstName} ${form.lastName}`);
+    const subject = encodeURIComponent(`ChronoVue Enquiry: ${form.firstName} ${form.lastName}`);
     const body = encodeURIComponent(
       [
         `Name: ${form.firstName} ${form.lastName}`,

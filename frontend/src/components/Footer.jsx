@@ -100,7 +100,7 @@ export default function Footer() {
             </div>
 
             <div className="text-xs text-white/50">
-              Healthcare organisations, EHR integration partners, and procurement advisors —
+              Healthcare organisations, EHR integration partners, and procurement advisors:
               we want to hear from you.
             </div>
           </div>
