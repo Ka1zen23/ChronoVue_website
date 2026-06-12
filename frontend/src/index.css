@@ -46,13 +46,9 @@
 
 /* ---------- Navigation ---------- */
 #main-nav {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.2s ease,
+  transition: border-color 0.2s ease,
               box-shadow 0.2s ease,
               background-color 0.2s ease;
-}
-#main-nav[data-hidden] {
-  transform: translateY(-100%);
 }
 
 /* ---------- Hero Background ---------- */
@@ -79,10 +75,10 @@
 }
 
 /* ---------- Scroll Reveal ---------- */
+/* Initial hidden state — GSAP animates from here via ScrollTrigger */
 [data-reveal] {
   opacity: 0;
   transform: translateY(22px);
-  /* animation driven by anime.js */
 }
 
 /* ---------- Badge pulse ---------- */
@@ -128,7 +124,7 @@
 .counter-val { animation: flicker-in 0.4s ease forwards; }
 
 /* ---------- Magnetic button ---------- */
-/* transform driven by anime.js spring */
+/* Transform handled by GSAP gsap.to() with elastic ease */
 
 /* ---------- Bed status transition ---------- */
 .bed-cell {

@@ -1,88 +1,114 @@
-import { animate, stagger, cubicBezier, spring } from 'animejs';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const REVEAL_EASE = cubicBezier(0.22, 1, 0.36, 1);
+gsap.registerPlugin(ScrollTrigger);
 
 export function setupScrollReveal() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return () => {};
 
-  const animated = new WeakSet();
+  const triggers = [];
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        if (animated.has(el)) return;
+  // Stagger containers — animate children together as a group
+  document.querySelectorAll('[data-stagger]').forEach((container) => {
+    const children = Array.from(container.querySelectorAll('[data-reveal]'));
+    if (!children.length) return;
 
-        const staggerParent = el.closest('[data-stagger]');
+    const anim = gsap.from(children, {
+      opacity: 0,
+      y: 22,
+      duration: 0.65,
+      ease: 'power3.out',
+      stagger: 0.075,
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 93%',
+      },
+    });
+    if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
+  });
 
-        if (staggerParent && !animated.has(staggerParent)) {
-          animated.add(staggerParent);
-          const children = Array.from(staggerParent.querySelectorAll('[data-reveal]'));
-          children.forEach(child => {
-            animated.add(child);
-            io.unobserve(child);
-          });
-          animate(children, {
-            opacity: { from: 0, to: 1 },
-            translateY: { from: 22, to: 0 },
-            duration: 700,
-            delay: stagger(80),
-            ease: REVEAL_EASE,
-          });
-        } else if (!staggerParent) {
-          animated.add(el);
-          io.unobserve(el);
-          animate(el, {
-            opacity: { from: 0, to: 1 },
-            translateY: { from: 22, to: 0 },
-            duration: 700,
-            ease: REVEAL_EASE,
-          });
-        }
-      });
-    },
-    { threshold: 0.07, rootMargin: '0px 0px -48px 0px' }
-  );
+  // Solo reveal elements (not inside a stagger container)
+  document.querySelectorAll('[data-reveal]:not([data-stagger] [data-reveal])').forEach((el) => {
+    const anim = gsap.from(el, {
+      opacity: 0,
+      y: 22,
+      duration: 0.65,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 93%',
+      },
+    });
+    if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
+  });
 
-  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
-
-  return () => io.disconnect();
+  return () => triggers.forEach((st) => st?.kill());
 }
 
 export function setupNavBehaviour() {
+  if (typeof window === 'undefined') return () => {};
+
   const nav = document.getElementById('main-nav');
-  if (!nav) return;
+  if (!nav) return () => {};
 
   let lastY = window.scrollY;
 
   const onScroll = () => {
     const y = window.scrollY;
+
     if (y > 12) nav.setAttribute('data-scrolled', '');
     else nav.removeAttribute('data-scrolled');
-    if (y > lastY && y > 120) nav.setAttribute('data-hidden', '');
-    else nav.removeAttribute('data-hidden');
+
+    if (y > 120 && y > lastY) {
+      gsap.to(nav, { yPercent: -100, duration: 0.35, ease: 'power2.inOut', overwrite: true });
+    } else {
+      gsap.to(nav, { yPercent: 0, duration: 0.35, ease: 'power2.inOut', overwrite: true });
+    }
+
     lastY = y;
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  return () => window.removeEventListener('scroll', onScroll);
+
+  return () => {
+    window.removeEventListener('scroll', onScroll);
+    gsap.killTweensOf(nav);
+  };
 }
 
 export function setupMagneticButtons() {
+  if (typeof window === 'undefined') return () => {};
+
+  const cleanups = [];
+
   document.querySelectorAll('[data-magnetic]').forEach((btn) => {
     const strength = parseFloat(btn.dataset.magnetic) || 0.3;
     const springEase = spring({ bounce: 0.4, duration: 500 });
 
-    btn.addEventListener('mousemove', (e) => {
+    const onMove = (e) => {
       const r = btn.getBoundingClientRect();
-      const x = (e.clientX - r.left - r.width / 2) * strength;
-      const y = (e.clientY - r.top - r.height / 2) * strength;
-      animate(btn, { translateX: x, translateY: y, ease: springEase, duration: 400 });
-    });
+      gsap.to(btn, {
+        x: (e.clientX - r.left - r.width / 2) * strength,
+        y: (e.clientY - r.top - r.height / 2) * strength,
+        duration: 0.3,
+        ease: 'power2.out',
+        overwrite: true,
+      });
+    };
 
-    btn.addEventListener('mouseleave', () => {
-      animate(btn, { translateX: 0, translateY: 0, ease: spring({ bounce: 0.3, duration: 600 }), duration: 600 });
+    const onLeave = () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)', overwrite: true });
+    };
+
+    btn.addEventListener('mousemove', onMove);
+    btn.addEventListener('mouseleave', onLeave);
+
+    cleanups.push(() => {
+      btn.removeEventListener('mousemove', onMove);
+      btn.removeEventListener('mouseleave', onLeave);
+      gsap.killTweensOf(btn);
     });
   });
+
+  return () => cleanups.forEach((fn) => fn());
 }
