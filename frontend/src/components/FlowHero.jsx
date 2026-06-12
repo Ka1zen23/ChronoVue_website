@@ -35,7 +35,7 @@ export default function FlowHero() {
                 bg-white/[0.07] border border-white/[0.12] px-4 py-1.5 rounded-full mb-7"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-badge-pulse" />
-              Case Study · Brunei Darussalam
+              Case Study, Brunei Darussalam
             </div>
 
             <h1

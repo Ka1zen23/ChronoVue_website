@@ -50,7 +50,7 @@ export default function Hero() {
             bg-white/[0.07] border border-white/[0.12] px-4 py-1.5 rounded-full mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-badge-pulse" />
-          Product Studio · Brunei Darussalam
+          Product Studio from Brunei Darussalam
         </div>
 
         {/* Headline */}
@@ -118,7 +118,7 @@ export default function Hero() {
             <div className="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-white/[0.12]" />
             <span className="text-[12px] font-semibold text-brand-green border border-brand-green/25
               bg-brand-green/10 px-4 py-1.5 rounded-full">
-              Healthcare SaaS · Operational Intelligence
+              SaaS & Operational Intelligence
             </span>
             <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-white/[0.12]" />
           </div>

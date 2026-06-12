@@ -99,7 +99,7 @@ export default function AboutUs() {
             <div>
               <div className="h-px bg-white/[0.1] mb-5" />
               <span className="text-[11px] text-white/35 uppercase tracking-[0.14em]">
-                Team ChronoVue · Brunei Darussalam
+                Team ChronoVue, Brunei Darussalam
               </span>
             </div>
           </div>
