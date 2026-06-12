@@ -1,25 +1,25 @@
 import { useState } from 'react';
 
 const INTERESTS = [
-  { value: 'ward-pilot',   label: 'Apply for a ward pilot deployment' },
-  { value: 'ehr-partner',  label: 'EHR integration partnership' },
-  { value: 'procurement',  label: 'Healthcare IT procurement mentorship' },
+  { value: 'pilot',        label: 'Apply for an operational pilot' },
+  { value: 'partner',      label: 'System integration or data partnership' },
+  { value: 'procurement',  label: 'Enterprise procurement or implementation' },
   { value: 'investor',     label: 'Investment or funding conversation' },
   { value: 'other',        label: 'Something else' },
 ];
 
 const REASONS = [
   {
-    title: 'Ward Pilot Applications',
-    desc: 'Run FLOW in your ward as a paid pilot. ChronoVue deploys and supports end-to-end.',
+    title: 'Pilot Deployments',
+    desc: 'Run ChronoVue in your operation as a paid pilot. We deploy and support end-to-end.',
   },
   {
-    title: 'EHR Integration Partners',
-    desc: 'Technical experience with hospital EHR systems in the Brunei and regional context.',
+    title: 'Integration Partners',
+    desc: 'Technical experience connecting ChronoVue to existing operational systems — EHR, ERP, or custom data sources.',
   },
   {
-    title: 'Procurement Mentorship',
-    desc: 'Help us navigate hospital IT procurement pathways from pilot to institutional contract.',
+    title: 'Procurement & Implementation',
+    desc: 'Help us navigate enterprise procurement pathways from pilot to institutional contract.',
   },
 ];
 
@@ -61,11 +61,11 @@ export default function Contact() {
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
             tracking-tight mb-4 leading-tight text-brand-navy">
-            Apply for a ward pilot, or start a conversation.
+            Apply for a pilot, or start a conversation.
           </h2>
           <p className="text-[15px] text-gray-500 leading-relaxed mb-10">
-            ChronoVue is accepting applications for ward pilots and is actively seeking EHR
-            integration partners and healthcare IT procurement mentors.
+            ChronoVue is accepting applications for operational pilots and is actively seeking
+            integration partners and procurement advisors.
           </p>
 
           <div className="flex flex-col gap-6 mb-10">
@@ -118,9 +118,9 @@ export default function Contact() {
                 <Field label="First Name" type="text"  placeholder="Ahmad"    value={form.firstName}    onChange={update('firstName')}    required />
                 <Field label="Last Name"  type="text"  placeholder="Razali"   value={form.lastName}     onChange={update('lastName')}     required />
               </div>
-              <Field label="Work Email"               type="email" placeholder="ahmad@hospital.gov.bn" value={form.email}         onChange={update('email')}        required />
-              <Field label="Hospital / Organisation"  type="text"  placeholder="General Hospital"        value={form.organisation}  onChange={update('organisation')} required />
-              <Field label="Your Role"                type="text"  placeholder="Nurse Manager, CSC, IT Manager…" value={form.role} onChange={update('role')} />
+              <Field label="Work Email"      type="email" placeholder="ahmad@organisation.com"              value={form.email}         onChange={update('email')}        required />
+              <Field label="Organisation"    type="text"  placeholder="Your organisation"                  value={form.organisation}  onChange={update('organisation')} required />
+              <Field label="Your Role"       type="text"  placeholder="Operations Director, IT Manager…"   value={form.role}          onChange={update('role')} />
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[13px] font-semibold text-brand-navy">I am interested in…</label>
@@ -139,7 +139,7 @@ export default function Contact() {
                 <label className="text-[13px] font-semibold text-brand-navy">Anything you'd like to tell us upfront?</label>
                 <textarea
                   rows={3}
-                  placeholder="Ward size, current systems, specific pain points, or just say hello…"
+                  placeholder="Operation size, current systems, specific challenges, or just say hello…"
                   value={form.message} onChange={update('message')}
                   className="px-3.5 py-2.5 rounded-xl border border-black/[0.1]
                     focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
