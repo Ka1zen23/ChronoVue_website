@@ -35,7 +35,7 @@ const pillars = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-brand-navy pt-[62px]">
+    <section data-hero className="relative overflow-hidden bg-brand-navy pt-[62px]">
       {/* Animated grid background */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 

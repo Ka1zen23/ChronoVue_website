@@ -57,10 +57,10 @@ function StatCard({ value, suffix, label, sub }) {
 export default function Impact() {
   return (
     <section id="pilot" className="py-28 bg-brand-navy relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full
+      {/* Decorative blobs — slow parallax via GSAP ScrollTrigger */}
+      <div data-parallax-blob className="absolute -top-32 -right-32 w-96 h-96 rounded-full
         bg-brand-blue/[0.12] blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full
+      <div data-parallax-blob="reverse" className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full
         bg-brand-teal/[0.08] blur-3xl pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-6">
