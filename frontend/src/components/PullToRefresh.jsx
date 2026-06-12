@@ -75,7 +75,7 @@ export default function PullToRefresh() {
       if (!p.triggered) {
         // 2.5 rotations at threshold so hand never lands back at its start position
         p.rotation = -900 * p.progress;
-        gsap.set(hand, { rotate: p.rotation });
+        gsap.set(hand, { rotate: p.rotation, svgOrigin: '512 512' });
       }
 
       if (p.progress >= 1 && !p.triggered) {
@@ -86,6 +86,7 @@ export default function PullToRefresh() {
           duration: 0.35,
           ease: 'none',
           repeat: -1,
+          svgOrigin: '512 512',
         });
       }
     }
@@ -103,6 +104,7 @@ export default function PullToRefresh() {
           rotate: currentRot - 1080,
           duration: 0.6,
           ease: 'power3.in',
+          svgOrigin: '512 512',
           onComplete: () => window.location.reload(),
         });
       } else {
@@ -110,7 +112,7 @@ export default function PullToRefresh() {
           { y: -68 + 68 * p.progress, opacity: p.progress },
           { y: -68, opacity: 0, duration: 0.35, ease: 'power2.out' }
         );
-        gsap.to(hand, { rotate: 0, duration: 0.35, ease: 'power2.out' });
+        gsap.to(hand, { rotate: 0, duration: 0.35, ease: 'power2.out', svgOrigin: '512 512' });
       }
     }
 
