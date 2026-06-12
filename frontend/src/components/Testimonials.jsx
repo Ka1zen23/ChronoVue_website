@@ -25,7 +25,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-28 bg-white border-t border-black/[0.06]">
+    <section id="testimonials" className="py-28 bg-white dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="From the Wards"
@@ -37,28 +37,29 @@ export default function Testimonials() {
             <div
               key={i}
               data-reveal
-              className={`rounded-2xl border border-black/[0.07] p-8 bg-white
+              className={`rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-8
+                bg-white dark:bg-brand-navy-mid
                 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200
-                ${t.large ? 'md:col-span-2 bg-gradient-to-br from-white to-brand-blue-lt/40' : ''}`}
+                ${t.large ? 'md:col-span-2' : ''}`}
             >
               {/* Quote mark */}
               <div className="text-brand-blue/20 font-display font-bold text-6xl leading-none mb-4 -mt-2">
                 &ldquo;
               </div>
-              <blockquote className="text-brand-navy/80 text-[15px] leading-relaxed mb-6 -mt-6 pl-2">
+              <blockquote className="text-brand-navy/80 dark:text-white/75 text-[15px] leading-relaxed mb-6 -mt-6 pl-2">
                 {t.quote}
               </blockquote>
               <div className="flex items-center gap-3 pl-2">
                 <div className="w-[3px] h-8 rounded-full bg-brand-blue/30 shrink-0" />
                 <div>
-                  <div className="text-[13px] font-bold text-brand-navy">{t.attribution}</div>
-                  <div className="text-[12px] text-gray-400 mt-0.5">{t.role}</div>
+                  <div className="text-[13px] font-bold text-brand-navy dark:text-white">{t.attribution}</div>
+                  <div className="text-[12px] text-gray-400 dark:text-white/40 mt-0.5">{t.role}</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <p data-reveal className="text-center text-[12px] text-gray-400 mt-8 max-w-lg mx-auto leading-relaxed">
+        <p data-reveal className="text-center text-[12px] text-gray-400 dark:text-white/35 mt-8 max-w-lg mx-auto leading-relaxed">
           Quotes reflect insights from empathy mapping, direct observation, and prototype testing
           sessions conducted during FLOW's validation phase in the AMU.
         </p>

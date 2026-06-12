@@ -172,7 +172,7 @@ function AdmissionQueueSnippet() {
 
 export default function FlowSnippets() {
   return (
-    <section className="py-20 bg-gray-50 border-t border-black/[0.06]">
+    <section className="py-20 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <div data-reveal className="text-center max-w-xl mx-auto mb-12">
           <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
@@ -180,10 +180,10 @@ export default function FlowSnippets() {
             Platform Preview
           </span>
           <h2 className="text-[clamp(1.5rem,3vw,2.2rem)] font-display font-extrabold
-            tracking-tight text-brand-navy mb-3">
+            tracking-tight text-brand-navy dark:text-white mb-3">
             What the shift coordinator sees
           </h2>
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+          <p className="text-[14px] text-gray-500 dark:text-white/55 leading-relaxed">
             A single screen replaces four manual data sources. Every view updates the moment a
             nurse changes anything on any ward.
           </p>

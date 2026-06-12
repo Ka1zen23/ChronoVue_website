@@ -34,7 +34,7 @@ const phases = [
       'MOH reporting automation',
     ],
     cta: 'Talk to Us',
-    ctaStyle: 'border border-brand-navy/20 text-brand-navy hover:bg-brand-navy/[0.04]',
+    ctaStyle: 'border border-brand-navy/20 dark:border-white/20 text-brand-navy dark:text-white hover:bg-brand-navy/[0.04] dark:hover:bg-white/[0.06]',
   },
   {
     phase: 'Phase 3',
@@ -51,19 +51,19 @@ const phases = [
       'Long-term institutional partnership',
     ],
     cta: 'Express Interest',
-    ctaStyle: 'border border-black/[0.1] text-gray-500 hover:border-brand-navy/20 hover:text-brand-navy',
+    ctaStyle: 'border border-black/[0.1] dark:border-white/[0.15] text-gray-500 dark:text-white/55 hover:border-brand-navy/20 dark:hover:border-white/30 hover:text-brand-navy dark:hover:text-white',
   },
 ];
 
 const STATUS_STYLE = {
   active: 'bg-brand-green/10 text-brand-green border-brand-green/25',
   next:   'bg-amber-500/10 text-amber-600 border-amber-400/25',
-  future: 'bg-gray-100 text-gray-400 border-gray-200',
+  future: 'bg-gray-100 dark:bg-white/[0.07] text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/[0.1]',
 };
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-28 bg-gray-50 border-t border-black/[0.06]">
+    <section id="pricing" className="py-28 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="Deployment Model"
@@ -78,11 +78,11 @@ export default function Pricing() {
               data-reveal
               className={`feature-card rounded-2xl p-8 relative
                 ${plan.featured
-                  ? 'bg-white border-2 border-brand-navy shadow-xl shadow-brand-navy/[0.08] scale-[1.02]'
-                  : 'bg-white border border-black/[0.07]'}`}
+                  ? 'bg-white dark:bg-brand-navy-mid border-2 border-brand-navy dark:border-brand-blue/50 shadow-xl shadow-brand-navy/[0.08] scale-[1.02]'
+                  : 'bg-white dark:bg-brand-navy-mid border border-black/[0.07] dark:border-white/[0.09]'}`}
             >
               <div className="flex items-center justify-between mb-5">
-                <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-gray-400">
+                <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-gray-400 dark:text-white/35">
                   {plan.phase}
                 </span>
                 <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${STATUS_STYLE[plan.status]}`}>
@@ -90,15 +90,15 @@ export default function Pricing() {
                 </span>
               </div>
 
-              <h3 className="text-[22px] font-display font-bold text-brand-navy tracking-tight mb-1">
+              <h3 className="text-[22px] font-display font-bold text-brand-navy dark:text-white tracking-tight mb-1">
                 {plan.title}
               </h3>
-              <p className="text-[12px] text-gray-400 mb-4">{plan.sub}</p>
-              <p className="text-[14px] text-gray-500 leading-relaxed mb-6">{plan.description}</p>
+              <p className="text-[12px] text-gray-400 dark:text-white/40 mb-4">{plan.sub}</p>
+              <p className="text-[14px] text-gray-500 dark:text-white/55 leading-relaxed mb-6">{plan.description}</p>
 
               <ul className="flex flex-col gap-2.5 mb-8">
                 {plan.includes.map(f => (
-                  <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-gray-600">
+                  <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-gray-600 dark:text-white/60">
                     <svg className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
                       <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" opacity=".4"/>
                       <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -116,7 +116,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p data-reveal className="text-center text-[13px] text-gray-400 mt-10">
+        <p data-reveal className="text-center text-[13px] text-gray-400 dark:text-white/40 mt-10">
           ChronoVue is also seeking EHR integration partners and healthcare IT procurement mentors.{' '}
           <a href="#contact" className="text-brand-blue hover:underline font-medium">Get in touch</a>
         </p>

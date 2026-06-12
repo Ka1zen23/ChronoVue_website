@@ -4,6 +4,7 @@
 
 /* ---------- Tokens ---------- */
 :root {
+  /* Legacy tokens */
   --blue:      #0066CC;
   --blue-dk:   #004FA3;
   --blue-lt:   #E8F2FF;
@@ -11,6 +12,50 @@
   --navy:      #0A1628;
   --navy-mid:  #1A2B4B;
   --border:    rgba(0,0,0,0.08);
+
+  /* shadcn — light */
+  --background:          0 0% 100%;
+  --foreground:          215 59% 10%;
+  --card:                0 0% 100%;
+  --card-foreground:     215 59% 10%;
+  --popover:             0 0% 100%;
+  --popover-foreground:  215 59% 10%;
+  --primary:             211 100% 40%;
+  --primary-foreground:  0 0% 100%;
+  --secondary:           210 17% 95%;
+  --secondary-foreground:215 59% 10%;
+  --muted:               210 17% 95%;
+  --muted-foreground:    215 16% 47%;
+  --accent:              210 17% 95%;
+  --accent-foreground:   215 59% 10%;
+  --destructive:         0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border:              214 32% 91%;
+  --input:               214 32% 91%;
+  --ring:                211 100% 40%;
+  --radius:              0.625rem;
+}
+
+.dark {
+  --background:          215 57% 10%;
+  --foreground:          210 40% 96%;
+  --card:                218 47% 15%;
+  --card-foreground:     210 40% 96%;
+  --popover:             218 47% 15%;
+  --popover-foreground:  210 40% 96%;
+  --primary:             211 100% 40%;
+  --primary-foreground:  0 0% 100%;
+  --secondary:           217 33% 18%;
+  --secondary-foreground:210 40% 96%;
+  --muted:               217 33% 18%;
+  --muted-foreground:    215 20% 60%;
+  --accent:              217 33% 18%;
+  --accent-foreground:   210 40% 96%;
+  --destructive:         0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --border:              217 33% 20%;
+  --input:               217 33% 20%;
+  --ring:                211 100% 40%;
 }
 
 /* ---------- Base ---------- */

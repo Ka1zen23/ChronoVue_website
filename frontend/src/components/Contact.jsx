@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-28 bg-white border-t border-black/[0.06]">
+    <section id="contact" className="py-28 bg-white dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
         {/* Left */}
@@ -60,10 +60,10 @@ export default function Contact() {
             Contact
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
-            tracking-tight mb-4 leading-tight text-brand-navy">
+            tracking-tight mb-4 leading-tight text-brand-navy dark:text-white">
             Apply for a pilot, or start a conversation.
           </h2>
-          <p className="text-[15px] text-gray-500 leading-relaxed mb-10">
+          <p className="text-[15px] text-gray-500 dark:text-white/55 leading-relaxed mb-10">
             ChronoVue is accepting applications for operational pilots and is actively seeking
             integration partners and procurement advisors.
           </p>
@@ -72,19 +72,19 @@ export default function Contact() {
             {REASONS.map(item => (
               <div key={item.title} className="flex gap-4">
                 <div>
-                  <div className="text-[14px] font-bold text-brand-navy mb-1">{item.title}</div>
-                  <div className="text-[13px] text-gray-400 leading-snug">{item.desc}</div>
+                  <div className="text-[14px] font-bold text-brand-navy dark:text-white mb-1">{item.title}</div>
+                  <div className="text-[13px] text-gray-400 dark:text-white/45 leading-snug">{item.desc}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-black/[0.06]">
-            <div className="flex items-center gap-3 text-[14px] text-gray-500">
+          <div className="flex flex-col gap-3 pt-6 border-t border-black/[0.06] dark:border-white/[0.08]">
+            <div className="flex items-center gap-3 text-[14px] text-gray-500 dark:text-white/55">
               <MailIcon />
               support@chronovue.co
             </div>
-            <div className="flex items-center gap-3 text-[14px] text-gray-500">
+            <div className="flex items-center gap-3 text-[14px] text-gray-500 dark:text-white/55">
               <PinIcon />
               Brunei Darussalam
             </div>
@@ -95,7 +95,7 @@ export default function Contact() {
         <div data-reveal>
           {status === 'success' ? (
             <div className="flex flex-col items-center text-center gap-5 py-16 px-8
-              bg-gray-50 rounded-2xl border border-black/[0.07]">
+              bg-gray-50 dark:bg-brand-navy-mid rounded-2xl border border-black/[0.07] dark:border-white/[0.09]">
               <div className="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20
                 flex items-center justify-center">
                 <svg className="w-7 h-7 text-brand-green" viewBox="0 0 24 24" fill="none"
@@ -103,8 +103,8 @@ export default function Contact() {
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold text-brand-navy tracking-tight">Email draft opened.</h3>
-              <p className="text-gray-500 text-[14px] leading-relaxed max-w-xs">
+              <h3 className="text-[20px] font-bold text-brand-navy dark:text-white tracking-tight">Email draft opened.</h3>
+              <p className="text-gray-500 dark:text-white/55 text-[14px] leading-relaxed max-w-xs">
                 Your email client should have opened with everything pre-filled. Just hit send.
                 If it didn't open, email us directly at{' '}
                 <a href="mailto:support@chronovue.co" className="text-brand-blue hover:underline">
@@ -123,12 +123,13 @@ export default function Contact() {
               <Field label="Your Role"       type="text"  placeholder="Operations Director, IT Manager…"   value={form.role}          onChange={update('role')} />
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-semibold text-brand-navy">I am interested in…</label>
+                <label className="text-[13px] font-semibold text-brand-navy dark:text-white/80">I am interested in…</label>
                 <select
                   value={form.interest} onChange={update('interest')}
-                  className="px-3.5 py-2.5 rounded-xl border border-black/[0.1]
+                  className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
                     focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
-                    text-[14px] text-gray-600 bg-white transition-all"
+                    text-[14px] text-gray-600 dark:text-white/70
+                    bg-white dark:bg-brand-navy-mid transition-all"
                 >
                   <option value="">Select one</option>
                   {INTERESTS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -136,14 +137,15 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-semibold text-brand-navy">Anything you'd like to tell us upfront?</label>
+                <label className="text-[13px] font-semibold text-brand-navy dark:text-white/80">Anything you'd like to tell us upfront?</label>
                 <textarea
                   rows={3}
                   placeholder="Operation size, current systems, specific challenges, or just say hello…"
                   value={form.message} onChange={update('message')}
-                  className="px-3.5 py-2.5 rounded-xl border border-black/[0.1]
+                  className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
                     focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
-                    text-[14px] text-gray-700 resize-none transition-all"
+                    text-[14px] text-gray-700 dark:text-white/70
+                    bg-white dark:bg-brand-navy-mid resize-none transition-all"
                 />
               </div>
 
@@ -156,7 +158,7 @@ export default function Contact() {
                 Send Message
               </button>
 
-              <p className="text-[12px] text-gray-400 text-center">
+              <p className="text-[12px] text-gray-400 dark:text-white/35 text-center">
                 No sales scripts. A real conversation with the team that built FLOW.
               </p>
             </form>
@@ -171,12 +173,14 @@ export default function Contact() {
 function Field({ label, ...props }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-[13px] font-semibold text-brand-navy">{label}</label>
+      <label className="text-[13px] font-semibold text-brand-navy dark:text-white/80">{label}</label>
       <input
         {...props}
-        className="px-3.5 py-2.5 rounded-xl border border-black/[0.1]
+        className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
           focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
-          text-[14px] text-gray-700 transition-all placeholder:text-gray-300"
+          text-[14px] text-gray-700 dark:text-white/80
+          bg-white dark:bg-brand-navy-mid
+          transition-all placeholder:text-gray-300 dark:placeholder:text-white/25"
       />
     </div>
   );

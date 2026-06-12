@@ -36,7 +36,7 @@ const infraLayers = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-28 bg-gray-50 border-t border-black/[0.06]">
+    <section id="how-it-works" className="py-28 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="Our Approach"
@@ -49,7 +49,7 @@ export default function HowItWorks() {
             <div
               key={step.n}
               data-reveal
-              className="relative bg-white rounded-2xl border border-black/[0.07] p-6
+              className="relative bg-white dark:bg-brand-navy-mid rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-6
                 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               {/* Step line connector — drawn by GSAP on scroll */}
@@ -62,19 +62,19 @@ export default function HowItWorks() {
                   text-white shrink-0">
                   {step.icon}
                 </div>
-                <span className="text-[11px] font-bold text-gray-300 tracking-wider font-mono">
+                <span className="text-[11px] font-bold text-gray-300 dark:text-white/20 tracking-wider font-mono">
                   {step.n}
                 </span>
               </div>
-              <h3 className="text-[15px] font-bold text-brand-navy mb-2 tracking-tight">{step.title}</h3>
-              <p className="text-[13.5px] text-gray-500 leading-relaxed">{step.body}</p>
+              <h3 className="text-[15px] font-bold text-brand-navy dark:text-white mb-2 tracking-tight">{step.title}</h3>
+              <p className="text-[13.5px] text-gray-500 dark:text-white/50 leading-relaxed">{step.body}</p>
             </div>
           ))}
         </div>
 
         {/* Infrastructure callout */}
-        <div data-reveal className="bg-white rounded-2xl border border-black/[0.07] p-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400 mb-6 text-center">
+        <div data-reveal className="bg-white dark:bg-brand-navy-mid rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400 dark:text-white/35 mb-6 text-center">
             Infrastructure at a glance, deployed to your environment
           </p>
           <div data-stagger className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -82,10 +82,10 @@ export default function HowItWorks() {
               <div
                 key={item.label}
                 data-reveal
-                className="rounded-xl bg-brand-blue/[0.04] border border-brand-blue/[0.1] p-4"
+                className="rounded-xl bg-brand-blue/[0.04] dark:bg-brand-blue/[0.08] border border-brand-blue/[0.1] dark:border-brand-blue/[0.2] p-4"
               >
-                <div className="text-[13px] font-bold text-brand-navy mb-1.5">{item.label}</div>
-                <div className="text-[12px] text-gray-400 leading-snug">{item.desc}</div>
+                <div className="text-[13px] font-bold text-brand-navy dark:text-white mb-1.5">{item.label}</div>
+                <div className="text-[12px] text-gray-400 dark:text-white/45 leading-snug">{item.desc}</div>
               </div>
             ))}
           </div>

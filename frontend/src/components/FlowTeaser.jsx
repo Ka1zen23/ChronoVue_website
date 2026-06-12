@@ -14,7 +14,7 @@ const highlights = [
 
 export default function FlowTeaser() {
   return (
-    <section id="case-study" className="py-24 bg-gray-50 border-t border-black/[0.06]">
+    <section id="case-study" className="py-24 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
 
         <div data-reveal className="mb-5 flex items-center gap-3">
@@ -33,10 +33,10 @@ export default function FlowTeaser() {
           {/* Left */}
           <div data-reveal>
             <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
-              tracking-tight text-brand-navy mb-4 leading-tight">
+              tracking-tight text-brand-navy dark:text-white mb-4 leading-tight">
               FLOW: Hospital Operational Visibility
             </h2>
-            <p className="text-[15px] text-gray-500 leading-relaxed mb-6">
+            <p className="text-[15px] text-gray-500 dark:text-white/55 leading-relaxed mb-6">
               Our first product. Hospital teams were stitching together paper census sheets,
               Excel files, whiteboards, and WhatsApp messages to manage bed availability
               every shift. FLOW replaced all four with a single live dashboard.
@@ -44,7 +44,7 @@ export default function FlowTeaser() {
 
             <ul className="flex flex-col gap-2.5 mb-8">
               {highlights.map(h => (
-                <li key={h} className="flex items-start gap-2.5 text-[14px] text-gray-600">
+                <li key={h} className="flex items-start gap-2.5 text-[14px] text-gray-600 dark:text-white/60">
                   <svg className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" opacity=".4"/>
                     <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -72,13 +72,14 @@ export default function FlowTeaser() {
             {stats.map(s => (
               <div
                 key={s.label}
-                className="rounded-2xl border border-black/[0.07] bg-white p-7
+                className="rounded-2xl border border-black/[0.07] dark:border-white/[0.09]
+                  bg-white dark:bg-brand-navy-mid p-7
                   hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 text-center"
               >
-                <div className="text-[3rem] font-display font-extrabold text-brand-navy leading-none mb-2">
+                <div className="text-[3rem] font-display font-extrabold text-brand-navy dark:text-white leading-none mb-2">
                   {s.value}
                 </div>
-                <div className="text-[13px] text-gray-400 leading-snug">{s.label}</div>
+                <div className="text-[13px] text-gray-400 dark:text-white/40 leading-snug">{s.label}</div>
               </div>
             ))}
           </div>

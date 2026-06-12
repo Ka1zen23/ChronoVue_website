@@ -55,7 +55,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-28 bg-white">
+    <section id="features" className="py-28 bg-white dark:bg-brand-navy">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="FLOW · Feature Set"
@@ -67,18 +67,19 @@ export default function Features() {
             <div
               key={f.title}
               data-reveal
-              className={`feature-card rounded-2xl border border-black/[0.07] p-7 bg-white
+              className={`feature-card rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-7
+                bg-white dark:bg-brand-navy-mid
                 ${f.large ? 'lg:col-span-2' : ''}`}
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 border ${f.accent}`}>
                 {f.icon}
               </div>
-              <h3 className="text-[16px] font-bold tracking-tight mb-2 text-brand-navy">{f.title}</h3>
-              <p className="text-gray-500 text-[14px] leading-relaxed">{f.body}</p>
+              <h3 className="text-[16px] font-bold tracking-tight mb-2 text-brand-navy dark:text-white">{f.title}</h3>
+              <p className="text-gray-500 dark:text-white/50 text-[14px] leading-relaxed">{f.body}</p>
               {f.bullets && (
                 <ul className="mt-4 flex flex-col gap-2">
                   {f.bullets.map(b => (
-                    <li key={b} className="flex items-start gap-2 text-[13px] text-gray-500">
+                    <li key={b} className="flex items-start gap-2 text-[13px] text-gray-500 dark:text-white/50">
                       <span className="w-1 h-1 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" />
                       {b}
                     </li>
@@ -103,11 +104,11 @@ export function SectionHeader({ tag, title, sub, light }) {
         {tag}
       </span>
       <h2 className={`text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
-        tracking-tight mb-4 leading-tight ${light ? 'text-white' : 'text-brand-navy'}`}>
+        tracking-tight mb-4 leading-tight ${light ? 'text-white' : 'text-brand-navy dark:text-white'}`}>
         {title}
       </h2>
       {sub && (
-        <p className={`text-[15px] leading-relaxed ${light ? 'text-white/60' : 'text-gray-500'}`}>{sub}</p>
+        <p className={`text-[15px] leading-relaxed ${light ? 'text-white/60' : 'text-gray-500 dark:text-white/55'}`}>{sub}</p>
       )}
     </div>
   );

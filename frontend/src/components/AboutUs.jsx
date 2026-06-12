@@ -28,7 +28,7 @@ const disciplines = [
 
 export default function AboutUs() {
   return (
-    <section id="about" className="py-28 bg-white border-t border-black/[0.06]">
+    <section id="about" className="py-28 bg-white dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
@@ -38,10 +38,10 @@ export default function AboutUs() {
             What We Are
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
-            tracking-tight mb-4 leading-tight text-brand-navy">
+            tracking-tight mb-4 leading-tight text-brand-navy dark:text-white">
             A product studio with clinical depth
           </h2>
-          <p className="text-[15px] leading-relaxed text-gray-500">
+          <p className="text-[15px] leading-relaxed text-gray-500 dark:text-white/55">
             ChronoVue combines software engineers, data analysts, nurses, and public health
             researchers. We don't just build software; we embed with the teams doing the real
             work, map their actual workflows, and build the platform that eliminates the friction.
@@ -54,14 +54,15 @@ export default function AboutUs() {
             <div
               key={p.title}
               data-reveal
-              className="rounded-2xl border border-black/[0.07] p-7 bg-white
+              className="rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-7
+                bg-white dark:bg-brand-navy-mid
                 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 border ${p.accent}`}>
                 {p.icon}
               </div>
-              <h3 className="text-[16px] font-bold tracking-tight mb-2 text-brand-navy">{p.title}</h3>
-              <p className="text-gray-500 text-[14px] leading-relaxed">{p.body}</p>
+              <h3 className="text-[16px] font-bold tracking-tight mb-2 text-brand-navy dark:text-white">{p.title}</h3>
+              <p className="text-gray-500 dark:text-white/50 text-[14px] leading-relaxed">{p.body}</p>
             </div>
           ))}
         </div>
@@ -70,8 +71,8 @@ export default function AboutUs() {
         <div data-stagger className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
           {/* Disciplines */}
-          <div data-reveal className="rounded-2xl border border-black/[0.07] p-8 bg-white">
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-gray-400 mb-6">
+          <div data-reveal className="rounded-2xl border border-black/[0.07] dark:border-white/[0.09] p-8 bg-white dark:bg-brand-navy-mid">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-gray-400 dark:text-white/35 mb-6">
               Team disciplines
             </p>
             <div className="flex flex-col gap-4">
@@ -79,8 +80,8 @@ export default function AboutUs() {
                 <div key={d.label} className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" />
                   <div>
-                    <div className="text-[14px] font-semibold text-brand-navy">{d.label}</div>
-                    <div className="text-[13px] text-gray-400 leading-snug">{d.sub}</div>
+                    <div className="text-[14px] font-semibold text-brand-navy dark:text-white">{d.label}</div>
+                    <div className="text-[13px] text-gray-400 dark:text-white/40 leading-snug">{d.sub}</div>
                   </div>
                 </div>
               ))}
