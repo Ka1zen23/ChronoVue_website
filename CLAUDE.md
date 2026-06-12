@@ -117,8 +117,8 @@ All commands run from within `frontend/` or `backend/` unless otherwise noted.
 
 ```bash
 cd frontend
-npm run dev        # Vite dev server (hot reload, proxies /api → localhost:3000)
-npm run build      # Static site generation via vite-react-ssg → dist/
+npm run dev        # Astro dev server (hot reload, proxies /api → localhost:3000)
+npm run build      # Static site generation via Astro → dist/
 npm run preview    # Preview the SSG build locally
 ```
 
@@ -142,7 +142,7 @@ Services: `nginx` (port 80) → `frontend` (static) + `backend` (port 3000) + `p
 
 ### Dev proxy
 
-Vite proxies `/api` → `http://localhost:3000` during local development, so `fetch('/api/...')` works without specifying a host. No `VITE_API_URL` needed for local work.
+Astro proxies `/api` → `http://localhost:3000` during local development (configured in `astro.config.mjs` via `vite.server.proxy`), so `fetch('/api/...')` works without specifying a host.
 
 ---
 
@@ -152,36 +152,48 @@ Vite proxies `/api` → `http://localhost:3000` during local development, so `fe
 
 | Layer | Technology |
 |---|---|
-| Framework | React 18 (JSX) |
-| Routing | React Router DOM v6 |
-| Build / SSG | Vite + vite-react-ssg |
-| Styling | Tailwind CSS v3 |
-| Animation | Anime.js v4 |
-| SEO | react-helmet-async |
+| Framework | Astro (SSG) + React 18 (JSX) |
+| Routing | Astro file-based routing |
+| Build / SSG | Astro → `dist/` |
+| Styling | Tailwind CSS v3 (PostCSS plugin) |
+| Animation | GSAP v3 + ScrollTrigger |
+| Head management | Astro layout (`BaseLayout.astro`) |
 
-**Entry point:** `frontend/src/main.jsx` — exports `createRoot` via `ViteReactSSG` with two routes:
+**Pages** — file-based routes in `src/pages/`:
 
-| Path | Component |
+| File | Route | Notes |
+|---|---|---|
+| `index.astro` | `/` | Marketing homepage |
+| `flow.astro` | `/flow` | FLOW product page |
+
+**Hydration strategy** — Astro renders React components to static HTML by default. Client JS is only shipped for components that need it:
+
+| Directive | Used for |
 |---|---|
-| `/` | `App.jsx` (marketing homepage) |
-| `/flow` | `pages/FlowPage.jsx` (FLOW product page) |
+| `client:load` | `Navbar`, `Contact` (immediate interactivity) |
+| `client:visible` | `Team` (hydrates when scrolled into view) |
+| `client:only="react"` | `PullToRefresh` (DOM-only, no SSR) |
+| _(none)_ | All other components — static HTML, zero JS |
 
-`HelmetProvider` wraps the entire route tree for SSG-compatible `<head>` management.
+**Animation setup** lives in `src/layouts/BaseLayout.astro` as a `<script>` tag. It imports from `src/utils/animations.js` and runs all four setup functions with a 60ms delay after every page load. React components do **not** call these — they only add `data-reveal`, `data-stagger`, `data-magnetic` attributes to their markup.
 
 **Directory layout:**
 
 ```
 frontend/src/
-├── App.jsx              Homepage shell — composes marketing sections
-├── main.jsx             SSG root + route definitions
-├── index.css            Global base styles
-├── components/          All UI components (marketing + FLOW demo)
-├── pages/               Full-page route components
-├── context/             React context providers
-├── data/                Static data / constants
-├── demo/                Demo / prototype components
-├── hooks/               Custom React hooks
-└── utils/               Animations, helpers
+├── layouts/
+│   └── BaseLayout.astro     HTML shell, head, global animation script
+├── pages/
+│   ├── index.astro          Homepage route
+│   └── flow.astro           FLOW product route
+├── App.jsx                  Homepage section composition (used by index.astro)
+├── index.css                Global base styles + Tailwind directives
+├── components/              All React UI components
+├── context/                 React context providers
+├── data/                    Static data / constants
+├── demo/                    Demo / prototype components
+├── hooks/                   Custom React hooks
+└── utils/                   animations.js and helpers
 ```
 
 ### Backend
@@ -221,31 +233,33 @@ Font families: `font-sans` (Inter), `font-display` (Sora), `font-mono` (JetBrain
 
 ### Animations
 
-All animation logic lives in `frontend/src/utils/animations.js`. Three utilities are exported:
+All animation logic lives in `frontend/src/utils/animations.js` and uses GSAP + ScrollTrigger. Four functions are exported:
 
-- `setupScrollReveal()` — IntersectionObserver that animates any element with `data-reveal`. Group elements with `data-stagger` on a parent for staggered entrance.
-- `setupNavBehaviour()` — hides/shows `#main-nav` on scroll direction.
-- `setupMagneticButtons()` — applies magnetic cursor effect to `[data-magnetic]` elements.
+- `setupHeroEntrance()` — GSAP timeline for `[data-hero]` elements on page load.
+- `setupScrollReveal()` — GSAP ScrollTrigger for `[data-reveal]` / `[data-stagger]` elements.
+- `setupNavBehaviour()` — GSAP hide/show for `#main-nav` on scroll direction.
+- `setupMagneticButtons()` — GSAP magnetic cursor effect for `[data-magnetic]` elements.
 
-Call all three from a `useEffect` with a 60ms `setTimeout` (SSG hydration guard), and return their cleanup functions. See `App.jsx` for the canonical pattern.
+All four are called automatically by the `<script>` tag in `BaseLayout.astro` with a 60ms delay. **Do not call them from React `useEffect`.** React components only add the data attributes to their markup — the global script handles the rest.
 
-For component-level animation, import directly from `animejs`:
+For component-level GSAP animation (e.g. inside a `client:load` component), import directly:
 
 ```javascript
-import { animate, stagger, cubicBezier, spring } from 'animejs';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 ```
 
-Do not use CSS `transition`/`animation` for anything Anime.js already handles.
+Do not use CSS `transition`/`animation` for anything GSAP already handles.
 
 ### SSG compatibility
 
-- Never access `window`, `document`, or browser APIs at module scope — guard with `if (typeof window === 'undefined') return;`.
-- All animation setup must happen inside `useEffect` (client-only).
-- `react-helmet-async` (not `react-helmet`) is required for SSG-safe `<head>` injection.
+- Never access `window`, `document`, or browser APIs at module scope in React components — guard with `if (typeof window === 'undefined') return;`.
+- Head tags (`<title>`, `<meta>`) go in the `.astro` page file or `BaseLayout.astro` props — never use `react-helmet-async`.
+- Animation setup runs in `BaseLayout.astro`'s `<script>` tag (client-only by definition).
 
 ### Routing
 
-Add new top-level pages to the `routes` array in `main.jsx`. Components go in `src/pages/`. Marketing sections that compose into a page go in `src/components/`.
+Add new top-level pages as `.astro` files in `src/pages/`. React components that compose a page go in `src/components/`. The Astro page imports them and applies `client:*` directives only where interactivity is needed.
 
 ---
 

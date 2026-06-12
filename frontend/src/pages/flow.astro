@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar';
+import FlowHero from '../components/FlowHero';
+import FlowSnippets from '../components/FlowSnippets';
+import Features from '../components/Features';
+import Testimonials from '../components/Testimonials';
+import HowItWorks from '../components/HowItWorks';
+import Impact from '../components/Impact';
+import Pricing from '../components/Pricing';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+---
+<BaseLayout
+  title="FLOW: Real-Time Hospital Operations Platform | ChronoVue"
+  description="FLOW gives nurse managers and Clinical Site Coordinators a live view of every bed across all wards, replacing paper census sheets, Excel, whiteboards, and WhatsApp with a single real-time dashboard."
+  canonical="https://chronovue.co/flow"
+>
+  <Navbar flow={true} client:load />
+  <main>
+    <FlowHero />
+    <FlowSnippets />
+    <Features />
+    <Testimonials />
+    <HowItWorks />
+    <Impact />
+    <Pricing />
+    <Contact client:load />
+  </main>
+  <Footer />
+</BaseLayout>

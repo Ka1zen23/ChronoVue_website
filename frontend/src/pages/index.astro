@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import AboutUs from '../components/AboutUs';
+import FlowTeaser from '../components/FlowTeaser';
+import Team from '../components/Team';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+import PullToRefresh from '../components/PullToRefresh';
+---
+<BaseLayout
+  title="ChronoVue: Operational Intelligence Platforms"
+  description="ChronoVue builds purpose-built operational intelligence platforms for sectors still running on manual workflows. Our first product, FLOW, replaces paper census sheets, Excel, and WhatsApp with a single real-time hospital operations dashboard."
+  canonical="https://chronovue.co"
+>
+  <PullToRefresh client:only="react" />
+  <Navbar client:load />
+  <main>
+    <Hero />
+    <AboutUs />
+    <FlowTeaser />
+    <Team client:visible />
+    <Contact client:load />
+  </main>
+  <Footer />
+</BaseLayout>
