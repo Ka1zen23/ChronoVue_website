@@ -1,3 +1,4 @@
+import { ViteReactSSG } from 'vite-react-ssg';
 import { StrictMode } from 'react';
 import { gsap } from 'gsap';
 import './index.css';
@@ -7,12 +8,8 @@ if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion:
   gsap.globalTimeline.timeScale(100);
 }
 
-export const createApp = () => {
-  return {
-    App: () => (
-      <StrictMode>
-        <App />
-      </StrictMode>
-    ),
-  };
-};
+export const createRoot = ViteReactSSG(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
