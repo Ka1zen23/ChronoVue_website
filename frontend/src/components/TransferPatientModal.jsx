@@ -104,7 +104,7 @@ export default function TransferPatientModal({ open, onClose, patients = [], ser
                 <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#94A3B8]">Patient</span>
                 <select value={selectedPatientId} onChange={(e) => setSelectedPatientId(e.target.value)} className="h-12 rounded-2xl border border-[#E5E7EB] bg-white px-4 text-sm text-[#1F2937] outline-none transition focus:border-[#CBD5E1]">
                   <option value="">Select patient</option>
-                  {patients.map((p) => <option key={p.patient_id ?? p.id} value={p.patient_id ?? p.id}>{p.patient_name || p.patient_id || p.id}{p.current_ward_name ? ` — ${p.current_ward_name}` : ''}{p.current_bed_code ? ` — ${p.current_bed_code}` : ''}</option>)}
+                  {patients.map((p) => <option key={p.patient_id ?? p.id} value={p.patient_id ?? p.id}>{p.patient_name || p.patient_id || p.id}{p.current_ward_name ? ` · ${p.current_ward_name}` : ''}{p.current_bed_code ? ` · ${p.current_bed_code}` : ''}</option>)}
                 </select>
               </label>
             )}

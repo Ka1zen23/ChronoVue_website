@@ -114,13 +114,14 @@ function PatientManagementPage() {
   const [beds, setBeds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [wardFilter, setWardFilter] = useState(allWardsLabel);
-  const [selectedPatientId, setSelectedPatientId] = useState(null);
-  const [selectedAdmissionCandidateId, setSelectedAdmissionCandidateId] = useState(null);
+  const [modalTarget, setModalTarget] = useState(null); // { type: 'patient'|'candidate', id }
   const [assignmentMessage, setAssignmentMessage] = useState('');
 
-  const selectedPatient = useMemo(() => patients.find((p) => p.id === selectedPatientId) ?? null, [patients, selectedPatientId]);
-  const selectedAdmissionCandidate = useMemo(() => admissionCandidates.find((p) => p.id === selectedAdmissionCandidateId) ?? null, [admissionCandidates, selectedAdmissionCandidateId]);
-  const selectedPersonForBed = selectedPatient ?? selectedAdmissionCandidate;
+  const selectedPersonForBed = useMemo(() => {
+    if (!modalTarget) return null;
+    const list = modalTarget.type === 'patient' ? patients : admissionCandidates;
+    return list.find((p) => p.id === modalTarget.id) ?? null;
+  }, [modalTarget, patients, admissionCandidates]);
   const wardOptions = useMemo(() => [allWardsLabel, ...new Set(patients.map((p) => p.ward))], [patients]);
   const availableBeds = useMemo(() => beds.filter((b) => b.status === 'available'), [beds]);
   const filteredPatients = useMemo(() => {
@@ -148,13 +149,13 @@ function PatientManagementPage() {
   const handleAssignBed = async (bed) => {
     if (!selectedPersonForBed || !canManagePatients) return;
     try {
-      const endpoint = selectedAdmissionCandidate ? '/api/admissions' : '/api/assignments';
+      const endpoint = modalTarget?.type === 'candidate' ? '/api/admissions' : '/api/assignments';
       const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ patient_id: selectedPersonForBed.patient_id, patient_code: selectedPersonForBed.id, bed_id: bed.id, admitted_by: user?.name }) });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || 'Unable to assign bed');
       await loadData();
-      setAssignmentMessage(`${selectedPersonForBed.id} ${selectedAdmissionCandidate ? 'admitted to' : 'assigned to'} ${bed.code ?? bed.id}.`);
-      setSelectedPatientId(null); setSelectedAdmissionCandidateId(null);
+      setAssignmentMessage(`${selectedPersonForBed.id} ${modalTarget?.type === 'candidate' ? 'admitted to' : 'assigned to'} ${bed.code ?? bed.id}.`);
+      setModalTarget(null);
     } catch (error) { setAssignmentMessage(error.message); }
   };
 
@@ -211,7 +212,7 @@ function PatientManagementPage() {
                       <td className="border-b border-[#EEF2F7] px-5 py-4 text-sm text-[#94A3B8] sm:px-6" />
                       <td className="border-b border-[#EEF2F7] px-5 py-4 text-sm text-[#94A3B8] sm:px-6" />
                       <td className="border-b border-[#EEF2F7] px-5 py-4 text-right sm:px-6">
-                        <button type="button" onClick={() => { setSelectedPatientId(null); setSelectedAdmissionCandidateId(patient.id); }} disabled={!canManagePatients} className="inline-flex items-center justify-center rounded-xl border border-[#CBD5E1] bg-white px-4 py-2.5 text-sm font-medium text-[#1F2937] transition hover:bg-[#F8FAFC]">Admit</button>
+                        <button type="button" onClick={() => setModalTarget({ type: 'candidate', id: patient.id })} disabled={!canManagePatients} className="inline-flex items-center justify-center rounded-xl border border-[#CBD5E1] bg-white px-4 py-2.5 text-sm font-medium text-[#1F2937] transition hover:bg-[#F8FAFC]">Admit</button>
                       </td>
                     </tr>
                   ))}
@@ -264,7 +265,7 @@ function PatientManagementPage() {
                         <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${patient.assignedBed ? 'bg-slate-100 text-slate-700' : 'bg-[#F8FAFC] text-[#94A3B8]'}`}>{patient.assignedBed ?? 'Unassigned'}</span>
                       </td>
                       <td className="border-b border-[#EEF2F7] px-5 py-4 text-right sm:px-6">
-                        <button type="button" onClick={() => { setSelectedAdmissionCandidateId(null); setSelectedPatientId(patient.id); }} disabled={!canManagePatients} className="inline-flex items-center justify-center rounded-xl border border-[#CBD5E1] bg-white px-4 py-2.5 text-sm font-medium text-[#1F2937] transition hover:bg-[#F8FAFC]">Assign Bed</button>
+                        <button type="button" onClick={() => setModalTarget({ type: 'patient', id: patient.id })} disabled={!canManagePatients} className="inline-flex items-center justify-center rounded-xl border border-[#CBD5E1] bg-white px-4 py-2.5 text-sm font-medium text-[#1F2937] transition hover:bg-[#F8FAFC]">Assign Bed</button>
                       </td>
                     </tr>
                   ))}
@@ -276,7 +277,7 @@ function PatientManagementPage() {
         </div>
       </div>
 
-      <AssignBedModal patient={selectedPersonForBed} availableBeds={availableBeds} onAssign={handleAssignBed} onClose={() => { setSelectedPatientId(null); setSelectedAdmissionCandidateId(null); }} />
+      <AssignBedModal patient={selectedPersonForBed} availableBeds={availableBeds} onAssign={handleAssignBed} onClose={() => setModalTarget(null)} />
     </main>
   );
 }

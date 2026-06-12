@@ -83,6 +83,7 @@ export function setupMagneticButtons() {
 
   document.querySelectorAll('[data-magnetic]').forEach((btn) => {
     const strength = parseFloat(btn.dataset.magnetic) || 0.3;
+    const springEase = spring({ bounce: 0.4, duration: 500 });
 
     const onMove = (e) => {
       const r = btn.getBoundingClientRect();

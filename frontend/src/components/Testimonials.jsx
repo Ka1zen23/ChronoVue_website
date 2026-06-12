@@ -9,17 +9,17 @@ const testimonials = [
   {
     quote: 'Don\'t make me think. I just want to understand the capacity at a single glance so I can see exactly where the open beds are and move patients immediately without wasting time.',
     attribution: 'Nurse Manager',
-    role: 'Prototype testing — visual design and glanceability feedback',
+    role: 'Prototype testing · visual design and glanceability feedback',
   },
   {
-    quote: 'I prefer FLOW because of how user-friendly it is. The visuals take away all the guesswork—we can see the status of the entire facility at a single glance instead of digging through dense data.',
+    quote: 'I prefer FLOW because of how user-friendly it is. The visuals take away all the guesswork. We can see the status of the entire facility at a single glance instead of digging through dense data.',
     attribution: 'Nurse Manager',
-    role: 'FLOW implementation — UI/UX and visual clarity feedback',
+    role: 'FLOW implementation · UI/UX and visual clarity feedback',
   },
   {
     quote: 'In the AMU, our nurses are always overworked, and a massive part of that is the constant, manual pen-and-paper logging. Moving away from paper registries lifts a huge administrative burden off the frontline.',
     attribution: 'Nurse Manager, Acute Medical Unit (AMU)',
-    role: 'Workflow optimization — frontline burnout feedback',
+    role: 'Workflow optimization · frontline burnout feedback',
   }
 ];
 

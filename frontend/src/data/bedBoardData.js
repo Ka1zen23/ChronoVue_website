@@ -48,7 +48,7 @@ const DEMO_OCCUPIED = {
     { bedIndex: 0, patientId: 'PT-0012', diagnosis: 'Pneumonia', updatedBy: 'Nurse Amirah' },
     { bedIndex: 2, patientId: 'PT-0017', diagnosis: 'Sepsis', updatedBy: 'Nurse Haziq' },
     { bedIndex: 4, patientId: 'PT-0023', diagnosis: 'COPD exacerbation', updatedBy: 'Nurse Amirah' },
-    { bedIndex: 6, patientId: 'PT-0031', diagnosis: 'Chest pain — ACS query', updatedBy: 'Nurse Siti' },
+    { bedIndex: 6, patientId: 'PT-0031', diagnosis: 'Chest pain, ACS query', updatedBy: 'Nurse Siti' },
     { bedIndex: 8, patientId: 'PT-0038', diagnosis: 'UTI with delirium', updatedBy: 'Nurse Haziq' },
     { bedIndex: 10, patientId: 'PT-0044', diagnosis: 'Cellulitis', updatedBy: 'Nurse Amirah' },
     { bedIndex: 12, patientId: 'PT-0051', diagnosis: 'DVT', updatedBy: 'Nurse Siti' },

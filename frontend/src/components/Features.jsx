@@ -3,7 +3,7 @@ const features = [
     icon: <HeatmapIcon />,
     accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
     title: 'Hospital-Wide Heatmap',
-    body: 'Every ward visualised as a live capacity heatmap. CSCs see the whole hospital at a glance — like a car park display for beds — without calling a single ward.',
+    body: 'Every ward visualised as a live capacity heatmap. CSCs see the whole hospital at a glance, like a car park display for beds, without calling a single ward.',
     bullets: ['Updates the moment a nurse changes a bed status', 'Colour-coded by occupancy: available, occupied, cleaning, reserved', 'No refresh button. No phone calls.'],
     large: true,
   },
@@ -11,25 +11,25 @@ const features = [
     icon: <QueueIcon />,
     accent: 'text-cyan-600 bg-cyan-500/8 border-cyan-500/15',
     title: 'Admission Queue',
-    body: 'Patients awaiting placement are visible to CSCs in real time. Nurse managers flag transfer readiness instantly — no WhatsApp message required.',
+    body: 'Patients awaiting placement are visible to CSCs in real time. Nurse managers flag transfer readiness instantly, no WhatsApp message required.',
   },
   {
     icon: <CensusIcon />,
     accent: 'text-emerald-600 bg-emerald-500/8 border-emerald-500/15',
     title: 'Automated Census',
-    body: 'Confirm a transfer in ChronoVue and census sheets update across the hospital automatically. Excel reports generated on demand — zero manual compilation.',
+    body: 'Confirm a transfer in FLOW and census sheets update across the hospital automatically. Excel reports generated on demand, zero manual compilation.',
   },
   {
     icon: <FlowIcon />,
     accent: 'text-violet-600 bg-violet-500/8 border-violet-500/15',
     title: 'Patient Flow Phases',
-    body: 'Track the full patient journey from admission to discharge. Surface exactly where bottlenecks are building — before they cause delays.',
+    body: 'Track the full patient journey from admission to discharge. Surface exactly where bottlenecks are building before they cause delays.',
   },
   {
     icon: <MobileIcon />,
     accent: 'text-orange-600 bg-orange-500/8 border-orange-500/15',
     title: 'Mobile Companion',
-    body: 'Nurse managers update bed counts from a mobile app on the go — no need to return to a desktop terminal. Wi-Fi only; wired ethernet for critical ward desktops.',
+    body: 'Nurse managers update bed counts from a mobile app on the go, no need to return to a desktop terminal. Wi-Fi only; wired ethernet for critical ward desktops.',
   },
   {
     icon: <LockIcon />,
@@ -41,14 +41,14 @@ const features = [
     icon: <LinkIcon />,
     accent: 'text-teal-600 bg-teal-500/8 border-teal-500/15',
     title: 'EHR Integration Layer',
-    body: 'ChronoVue sits on top of your existing EHR — a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
+    body: 'FLOW sits on top of your existing EHR: a coordination layer, not a replacement. v1 uses manual input; v2 reads patient status events from the EHR automatically.',
   },
   {
     icon: <ServerIcon />,
     accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
-    title: 'On-Premise by Design',
-    body: 'All data stays inside your hospital network. No internet egress. Deployed on your LAN with a hot-standby backup server in a separate room for clinical-grade resilience.',
-    bullets: ['No cloud dependency — runs entirely on hospital LAN', 'Hot-standby failover server in a separate room', 'Automated scheduled backups with tested restore'],
+    title: 'Flexible Deployment',
+    body: 'Deploy on your hospital LAN for full data sovereignty, or opt for secure cloud hosting. FLOW adapts to your infrastructure and compliance requirements.',
+    bullets: ['On-premise or cloud: your infrastructure, your choice', 'Hot-standby failover server for clinical-grade resilience', 'Automated scheduled backups with tested restore'],
     large: true,
   },
 ];
@@ -58,9 +58,9 @@ export default function Features() {
     <section id="features" className="py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          tag="Platform Features"
+          tag="FLOW · Feature Set"
           title={<>One platform.<br className="sm:hidden" /> Two layers. Total visibility.</>}
-          sub="ChronoVue separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
+          sub="FLOW separates bed management (fast-changing, operationally critical) from patient flow (slower, strategically important). Both visible from the same dashboard."
         />
         <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f) => (

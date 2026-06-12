@@ -1,4 +1,5 @@
-import { NavLink, useNavigate } from '../demo/router';
+import { useState } from 'react';
+import { NavLink } from '../demo/router';
 import { useAuth } from '../context/AuthContext';
 import { canAccessPage } from '../utils/roleAccess';
 
@@ -56,9 +57,9 @@ function getSectionsForRole(role) {
     .filter((section) => section.items.length > 0);
 }
 
-function SidebarText({ children }) {
+function SidebarText({ open, children }) {
   return (
-    <span className="ml-0 max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-200 group-hover:ml-3 group-hover:max-w-[10rem] group-hover:opacity-100">
+    <span className={['overflow-hidden whitespace-nowrap transition-all duration-200', open ? 'ml-3 max-w-[10rem] opacity-100' : 'ml-0 max-w-0 opacity-0'].join(' ')}>
       {children}
     </span>
   );
@@ -66,31 +67,48 @@ function SidebarText({ children }) {
 
 function Sidebar() {
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const [pinned, setPinned] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const open = pinned || hovered;
   const isSuperAdmin = user?.role === 'super_admin';
   const sidebarSubtitle = isSuperAdmin ? 'Super Admin' : formatRoleLabel(user?.role ?? 'user');
   const sections = getSectionsForRole(user?.role);
 
   return (
-    <aside className="group fixed inset-y-0 left-0 z-30 flex h-screen w-16 flex-col overflow-hidden border-r border-[#E5E7EB] bg-[#F8FAFC] px-1.5 py-2 transition-all duration-200 hover:w-56 hover:shadow-[0_20px_45px_rgba(15,23,42,0.08)]">
+    <aside
+      className={['fixed inset-y-0 left-0 z-30 flex h-screen flex-col overflow-hidden border-r border-[#E5E7EB] bg-[#F8FAFC] px-1.5 py-2 transition-all duration-200', open ? 'w-56 shadow-[0_20px_45px_rgba(15,23,42,0.08)]' : 'w-16'].join(' ')}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="flex h-full min-h-0 flex-col">
         <div>
-          <div className="flex items-center justify-center rounded-xl border border-[#E5E7EB] bg-white/90 px-2 py-2 transition-all duration-200 group-hover:justify-start">
+          <div className={['flex items-center rounded-xl border border-[#E5E7EB] bg-white/90 px-2 py-2 transition-all duration-200', open ? 'justify-start' : 'justify-center'].join(' ')}>
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E5E7EB] bg-[#1F2937] text-sm font-semibold text-white">
               CV
             </div>
-            <div className="ml-0 max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-3 group-hover:max-w-[8.75rem] group-hover:opacity-100">
-              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">ChronoVue</p>
+            <div className={['overflow-hidden transition-all duration-200', open ? 'ml-3 max-w-[7rem] opacity-100' : 'ml-0 max-w-0 opacity-0'].join(' ')}>
+              <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">FLOW</p>
               <p className="whitespace-nowrap text-xs text-[#94A3B8]">{sidebarSubtitle}</p>
             </div>
+            {open && (
+              <button
+                type="button"
+                onClick={() => setPinned((p) => !p)}
+                aria-label={pinned ? 'Unpin sidebar' : 'Pin sidebar open'}
+                aria-pressed={pinned}
+                className="ml-auto rounded-md p-1 text-[#94A3B8] transition hover:bg-[#F1F5F9] hover:text-[#1F2937] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#475569] focus-visible:ring-offset-1"
+              >
+                <ChevronIcon pinned={pinned} className="h-4 w-4" />
+              </button>
+            )}
           </div>
         </div>
 
-        <nav className="mt-4 flex-1 overflow-y-auto pr-1">
+        <nav className="mt-4 flex-1 overflow-y-auto pr-1" aria-label="Main navigation">
           <div className="space-y-3">
             {sections.map((section, index) => (
               <div key={section.title} className={['space-y-1.5', index > 0 ? 'border-t border-[#E5E7EB] pt-3' : ''].join(' ')}>
-                <p className="max-h-0 overflow-hidden px-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#94A3B8] opacity-0 transition-all duration-200 group-hover:max-h-6 group-hover:opacity-100">
+                <p className={['overflow-hidden px-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#94A3B8] transition-all duration-200', open ? 'max-h-6 opacity-100' : 'max-h-0 opacity-0'].join(' ')}>
                   {section.title}
                 </p>
                 {section.items.map(({ icon: Icon, label, to }) => (
@@ -100,12 +118,14 @@ function Sidebar() {
                     end={to === '/'}
                     title={label}
                     className={({ isActive }) => [
-                      'flex items-center justify-center gap-2 rounded-lg px-2.5 py-1.5 text-sm font-medium transition duration-200 group-hover:justify-start',
+                      'flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm font-medium transition duration-200',
+                      'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#475569] focus-visible:ring-offset-1',
+                      open ? 'justify-start' : 'justify-center',
                       isActive ? 'bg-[#E2E8F0] text-[#1F2937]' : 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#1F2937]'
                     ].join(' ')}
                   >
                     <Icon className="h-5 w-5 shrink-0" />
-                    <SidebarText>{label}</SidebarText>
+                    <SidebarText open={open}>{label}</SidebarText>
                   </NavLink>
                 ))}
               </div>
@@ -114,27 +134,37 @@ function Sidebar() {
         </nav>
 
         <div className="mt-4 border-t border-[#E5E7EB] pt-3">
-          <div className="flex items-center justify-center rounded-xl border border-[#E5E7EB] bg-white px-2 py-2 transition-all duration-200 group-hover:justify-start">
+          <div className={['flex items-center rounded-xl border border-[#E5E7EB] bg-white px-2 py-2 transition-all duration-200', open ? 'justify-start' : 'justify-center'].join(' ')}>
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E2E8F0] text-xs font-semibold tracking-[0.08em] text-[#334155]">
               {getUserInitials(user?.name)}
             </div>
-            <div className="ml-0 max-w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-3 group-hover:max-w-[8.75rem] group-hover:opacity-100">
+            <div className={['overflow-hidden transition-all duration-200', open ? 'ml-3 max-w-[8.75rem] opacity-100' : 'ml-0 max-w-0 opacity-0'].join(' ')}>
               <p className="whitespace-nowrap text-sm font-semibold text-[#1F2937]">{user?.name ?? 'Demo User'}</p>
               <p className="whitespace-nowrap text-xs text-[#94A3B8]">{sidebarSubtitle}</p>
             </div>
           </div>
           <button
             type="button"
-            onClick={() => window.location.href = '/'}
+            onClick={() => { window.location.href = '/'; }}
             title="Back to site"
-            className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg px-2.5 py-1.5 text-sm font-medium text-[#475569] transition duration-200 hover:bg-[#F1F5F9] hover:text-[#1F2937] focus:outline-none group-hover:justify-start"
+            className={['mt-2 flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm font-medium text-[#475569] transition duration-200 hover:bg-[#F1F5F9] hover:text-[#1F2937] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#475569] focus-visible:ring-offset-1', open ? 'justify-start' : 'justify-center'].join(' ')}
           >
             <LogoutIcon className="h-5 w-5 shrink-0" />
-            <SidebarText>Back to site</SidebarText>
+            <SidebarText open={open}>Back to site</SidebarText>
           </button>
         </div>
       </div>
     </aside>
+  );
+}
+
+function ChevronIcon({ pinned, className }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
+      {pinned
+        ? <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+        : <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />}
+    </svg>
   );
 }
 

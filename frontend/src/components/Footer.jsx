@@ -22,17 +22,12 @@ export default function Footer() {
                 <div className="font-display text-[18px] font-black tracking-tight text-white">
                   ChronoVue
                 </div>
-
-                <div className="text-[12px] text-white/40">
-                  by ChronoVue
-                </div>
               </div>
             </a>
 
             <p className="mb-6 max-w-[260px] text-[13.5px] leading-relaxed text-white/50">
-              ChronoVue is a hospital operational visibility platform designed
-              to modernise coordination, patient flow, and command centre
-              awareness across healthcare facilities.
+              ChronoVue is a product studio that builds operational SaaS for sectors
+              where teams are still relying on manual, fragmented processes to do critical work.
             </p>
 
             <p className="mb-6 text-sm text-white/65">
@@ -101,12 +96,12 @@ export default function Footer() {
         >
           <div>
             <div className="mb-0.5 text-sm font-semibold text-white">
-              Pilot Demonstration Available
+              Open to collaboration
             </div>
 
             <div className="text-xs text-white/50">
-              ChronoVue is open to collaboration and pilot discussions
-              with healthcare organisations.
+              Healthcare organisations, EHR integration partners, and procurement advisors:
+              we want to hear from you.
             </div>
           </div>
 
@@ -150,28 +145,29 @@ export default function Footer() {
 
 const cols = [
   {
-    heading: 'Platform',
+    heading: 'Company',
     links: [
-      { label: 'Features', href: '#features' },
-      { label: 'Dashboard Preview', href: '#preview' },
-      { label: 'Architecture', href: '#how-it-works' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'About Us',     href: '/#about' },
+      { label: 'Our Work',     href: '/#case-study' },
+      { label: 'Team',         href: '/#team' },
+      { label: 'Contact',      href: '/#contact' },
     ],
   },
   {
-    heading: 'Team',
+    heading: 'FLOW',
     links: [
-      { label: 'Meet The Team', href: '#team-section' },
-      { label: 'About ChronoVue', href: '#about' },
-      { label: 'Research & Vision', href: '#vision' },
+      { label: 'Case Study',       href: '/flow' },
+      { label: 'Feature Set',      href: '/flow#features' },
+      { label: 'Traction',         href: '/flow#pilot' },
+      { label: 'Deployment Model', href: '/flow#pricing' },
     ],
   },
   {
-    heading: 'Healthcare',
+    heading: 'Get Started',
     links: [
-      { label: 'Pilot Programme', href: '#pilot' },
-      { label: 'Operational Visibility', href: '#features' },
-      { label: 'Workflow Coordination', href: '#how-it-works' },
+      { label: 'Apply for Pilot',       href: '/#contact' },
+      { label: 'EHR Integration',       href: '/#contact' },
+      { label: 'Procurement Mentorship', href: '/#contact' },
     ],
   },
 ];

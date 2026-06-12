@@ -3,35 +3,7 @@ import { createInitialWardState, summarizeBedBoard } from '../data/bedBoardData'
 
 // --- static mock payload factories ---
 
-function makeBedBoard() {
-  const wards = createInitialWardState();
-  const summary = summarizeBedBoard(wards);
-  return {
-    wards: wards.map((w) => ({
-      id: w.id,
-      ward_code: w.code,
-      ward_name: w.name,
-      total_beds: w.totalBeds,
-      service_id: wardDefinitions.find((d) => d.id === w.id)?.serviceId ?? null,
-      beds: w.beds.map((b) => ({
-        id: b.id,
-        code: b.code,
-        label: b.label,
-        room: b.room,
-        status: b.status,
-        patient: b.patient,
-        updatedAt: b.updatedAt,
-        updatedBy: b.updatedBy
-      }))
-    })),
-    summary: {
-      lastUpdatedAt: summary.lastUpdatedAt.toISOString(),
-      updatedBy: summary.updatedBy
-    }
-  };
-}
-
-function makePatients() {
+export function makePatients() {
   return [
     { id: 'PT-0012', patient_id: 'PT-0012', name: 'Ahmad Razali', ward: 'AMU', diagnosis: 'Pneumonia', status: 'Admitted', los: 3, assignedBed: 'AMU-B01', bedId: 'ward-amu-bed-0' },
     { id: 'PT-0017', patient_id: 'PT-0017', name: 'Siti Nuraini', ward: 'AMU', diagnosis: 'Sepsis', status: 'Admitted', los: 5, assignedBed: 'AMU-B03', bedId: 'ward-amu-bed-2' },
@@ -96,40 +68,156 @@ function makeDemoPatients() {
   }));
 }
 
-// Canonical mock routes
-const MOCK_ROUTES = [
-  { pattern: /^\/api\/services$/, data: () => makeServices() },
-  { pattern: /^\/api\/bed-board$/, data: () => makeBedBoard() },
-  { pattern: /^\/api\/patients\/admitted$/, data: () => makeDemoPatients() },
-  { pattern: /^\/api\/patients$/, data: () => makePatients() },
-  { pattern: /^\/api\/admission-candidates$/, data: () => makeAdmissionCandidates() },
-  { pattern: /^\/api\/census\/categories/, data: () => makeCensusCategories() },
-  { pattern: /^\/api\/census\/wards/, data: () => makeCensusCategories() },
-  // Write operations — always succeed
-  { pattern: /^\/api\/beds\//, data: () => ({ ok: true }), status: 200, method: 'PUT' },
-  { pattern: /^\/api\/wards\/.*\/beds$/, data: () => ({ ok: true }), method: 'PUT' },
-  { pattern: /^\/api\/discharges$/, data: () => ({ ok: true }), method: 'POST' },
-  { pattern: /^\/api\/transfers$/, data: () => ({ ok: true }), method: 'POST' },
-  { pattern: /^\/api\/admissions$/, data: () => ({ ok: true }), method: 'POST' },
-  { pattern: /^\/api\/assignments$/, data: () => ({ ok: true }), method: 'POST' },
-];
+// --- Mutable in-memory bed board state ---
+
+let _bedBoard = null;
+
+function getBedBoard() {
+  if (!_bedBoard) {
+    const wards = createInitialWardState();
+    const summary = summarizeBedBoard(wards);
+    _bedBoard = {
+      wards: wards.map((w) => ({
+        id: w.id,
+        ward_code: w.code,
+        ward_name: w.name,
+        total_beds: w.totalBeds,
+        service_id: wardDefinitions.find((d) => d.id === w.id)?.serviceId ?? null,
+        beds: w.beds.map((b) => ({
+          id: b.id, code: b.code, label: b.label, room: b.room,
+          status: b.status, patient: b.patient,
+          updatedAt: b.updatedAt, updatedBy: b.updatedBy
+        }))
+      })),
+      summary: {
+        lastUpdatedAt: summary.lastUpdatedAt.toISOString(),
+        updatedBy: summary.updatedBy
+      }
+    };
+  }
+  return _bedBoard;
+}
+
+function findBed(bedId) {
+  for (const ward of getBedBoard().wards) {
+    const bed = ward.beds.find((b) => b.id === bedId);
+    if (bed) return { ward, bed };
+  }
+  return null;
+}
+
+function handlePutBed(urlStr, body) {
+  const bedId = urlStr.replace('/api/beds/', '');
+  const found = findBed(bedId);
+  if (!found) return { error: 'Bed not found' };
+  const { bed } = found;
+  const now = new Date().toISOString();
+  const newStatus = body.status ?? bed.status;
+  bed.status = newStatus;
+  bed.updatedAt = now;
+  bed.updatedBy = body.updated_by ?? 'Demo user';
+  bed.patient = newStatus === 'occupied' ? { id: body.patient_code, diagnosis: body.notes ?? '' } : null;
+  const bb = getBedBoard();
+  bb.summary.lastUpdatedAt = now;
+  bb.summary.updatedBy = bed.updatedBy;
+  return { ok: true };
+}
+
+function handlePutWardBeds(urlStr, body) {
+  const match = urlStr.match(/^\/api\/wards\/([^/]+)\/beds$/);
+  if (!match) return { error: 'Invalid URL' };
+  const wardId = match[1];
+  const ward = getBedBoard().wards.find((w) => w.id === wardId);
+  if (!ward) return { error: 'Ward not found' };
+  const newTotal = Number(body.total_beds);
+  const current = ward.beds.length;
+  if (newTotal > current) {
+    for (let i = current; i < newTotal; i++) {
+      const code = `${ward.ward_code}-B${String(i + 1).padStart(2, '0')}`;
+      ward.beds.push({
+        id: `${ward.id}-bed-${i}`, code, label: code,
+        room: `Room ${Math.floor(i / 2) + 1}`,
+        status: 'available', patient: null,
+        updatedAt: new Date().toISOString(), updatedBy: 'Bed board sync'
+      });
+    }
+  } else if (newTotal < current) {
+    ward.beds = ward.beds.slice(0, newTotal);
+  }
+  ward.total_beds = newTotal;
+  return { ok: true };
+}
+
+function handlePostDischarge(body) {
+  const found = findBed(body.bed_id);
+  if (!found) return { error: 'Bed not found' };
+  const { bed } = found;
+  bed.status = 'available';
+  bed.patient = null;
+  bed.updatedAt = new Date().toISOString();
+  bed.updatedBy = body.discharged_by ?? 'Demo user';
+  return { ok: true };
+}
+
+function handlePostTransfer(body) {
+  if (body.from_bed_id) {
+    const src = findBed(body.from_bed_id);
+    if (src) {
+      src.bed.status = 'available';
+      src.bed.patient = null;
+      src.bed.updatedAt = new Date().toISOString();
+      src.bed.updatedBy = 'Transfer coordinator';
+    }
+  }
+  if (body.to_bed_id) {
+    const dest = findBed(body.to_bed_id);
+    if (dest) {
+      dest.bed.status = 'occupied';
+      dest.bed.patient = { id: body.patient_id ?? 'Unknown', diagnosis: body.notes ?? '' };
+      dest.bed.updatedAt = new Date().toISOString();
+      dest.bed.updatedBy = 'Transfer coordinator';
+    }
+  }
+  return { ok: true };
+}
+
+function mockResponse(payload) {
+  const body = JSON.stringify(payload);
+  return { ok: true, status: 200, json: async () => payload, text: async () => body };
+}
 
 export function installMockFetch() {
   const realFetch = window.fetch;
 
   window.fetch = async (url, options = {}) => {
     const urlStr = typeof url === 'string' ? url : url.toString();
-    const route = MOCK_ROUTES.find((r) => r.pattern.test(urlStr));
+    const method = (options.method ?? 'GET').toUpperCase();
 
-    if (route) {
-      const payload = route.data();
-      const body = JSON.stringify(payload);
-      return {
-        ok: true,
-        status: route.status ?? 200,
-        json: async () => payload,
-        text: async () => body,
-      };
+    let body = {};
+    if (options.body) {
+      try { body = JSON.parse(options.body); } catch { /* non-JSON body */ }
+    }
+
+    if (method === 'GET') {
+      if (/^\/api\/services$/.test(urlStr)) return mockResponse(makeServices());
+      if (/^\/api\/bed-board$/.test(urlStr)) return mockResponse(getBedBoard());
+      if (/^\/api\/patients\/admitted$/.test(urlStr)) return mockResponse(makeDemoPatients());
+      if (/^\/api\/patients$/.test(urlStr)) return mockResponse(makePatients());
+      if (/^\/api\/admission-candidates$/.test(urlStr)) return mockResponse(makeAdmissionCandidates());
+      if (/^\/api\/census\/categories/.test(urlStr)) return mockResponse(makeCensusCategories());
+      if (/^\/api\/census\/wards/.test(urlStr)) return mockResponse(makeCensusCategories());
+    }
+
+    if (method === 'PUT') {
+      if (/^\/api\/beds\//.test(urlStr)) return mockResponse(handlePutBed(urlStr, body));
+      if (/^\/api\/wards\/.*\/beds$/.test(urlStr)) return mockResponse(handlePutWardBeds(urlStr, body));
+    }
+
+    if (method === 'POST') {
+      if (/^\/api\/discharges$/.test(urlStr)) return mockResponse(handlePostDischarge(body));
+      if (/^\/api\/transfers$/.test(urlStr)) return mockResponse(handlePostTransfer(body));
+      if (/^\/api\/admissions$/.test(urlStr)) return mockResponse({ ok: true });
+      if (/^\/api\/assignments$/.test(urlStr)) return mockResponse({ ok: true });
     }
 
     return realFetch(url, options);

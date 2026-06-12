@@ -1,42 +1,43 @@
 import { useEffect } from 'react';
-import DemoApp from './demo/DemoApp';
+import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import Impact from './components/Impact';
-import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing';
+import AboutUs from './components/AboutUs';
+import FlowTeaser from './components/FlowTeaser';
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import PullToRefresh from './components/PullToRefresh';
 import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
-  const isDemo = window.location.pathname.startsWith('/command-centre');
-
   useEffect(() => {
-    if (isDemo) return;
+    let cleanupReveal, cleanupNav;
     const t = setTimeout(() => {
-      setupScrollReveal();
-      setupNavBehaviour();
+      cleanupReveal = setupScrollReveal();
+      cleanupNav = setupNavBehaviour();
       setupMagneticButtons();
     }, 60);
-    return () => clearTimeout(t);
-  }, [isDemo]);
-
-  if (isDemo) return <DemoApp />;
+    return () => {
+      clearTimeout(t);
+      cleanupReveal?.();
+      cleanupNav?.();
+    };
+  }, []);
 
   return (
     <>
+      <Helmet>
+        <title>ChronoVue: SaaS Product Studio | Brunei</title>
+        <meta name="description" content="ChronoVue builds purpose-built SaaS platforms for sectors still running on manual workflows. Our first product, FLOW, replaces paper census sheets, Excel, and WhatsApp with a single real-time hospital bed management dashboard." />
+        <link rel="canonical" href="https://chronovue.co" />
+      </Helmet>
+      <PullToRefresh />
       <Navbar />
       <main>
         <Hero />
-        <Features />
-        <HowItWorks />
-        <Impact />
-        <Testimonials />
-        <Pricing />
+        <AboutUs />
+        <FlowTeaser />
         <Team />
         <Contact />
       </main>
