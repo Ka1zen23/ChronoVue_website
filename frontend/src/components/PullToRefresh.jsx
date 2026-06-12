@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { animate } from 'animejs';
+import { gsap } from 'gsap';
 
 const THRESHOLD = 80;
 
@@ -86,24 +86,19 @@ export default function PullToRefresh() {
       p.active = false;
 
       if (p.triggered) {
-        animate(hand, {
-          rotate: { from: p.rotation, to: p.rotation - 720 },
-          duration: 600,
-          ease: 'inOutCubic',
-          onComplete: () => window.location.reload(),
-        });
+        gsap.fromTo(hand,
+          { rotate: p.rotation },
+          { rotate: p.rotation - 720, duration: 0.6, ease: 'power2.inOut', onComplete: () => window.location.reload() }
+        );
       } else {
-        animate(el, {
-          translateY: { from: -68 + 68 * p.progress, to: -68 },
-          opacity: { from: p.progress, to: 0 },
-          duration: 350,
-          ease: 'outCubic',
-        });
-        animate(hand, {
-          rotate: { from: p.rotation, to: 0 },
-          duration: 350,
-          ease: 'outCubic',
-        });
+        gsap.fromTo(el,
+          { y: -68 + 68 * p.progress, opacity: p.progress },
+          { y: -68, opacity: 0, duration: 0.35, ease: 'power2.out' }
+        );
+        gsap.fromTo(hand,
+          { rotate: p.rotation },
+          { rotate: 0, duration: 0.35, ease: 'power2.out' }
+        );
       }
     }
 
