@@ -8,20 +8,22 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import PullToRefresh from './components/PullToRefresh';
-import { setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
+import { setupHeroEntrance, setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
   useEffect(() => {
-    let cleanupReveal, cleanupNav;
+    let cleanups = [];
     const t = setTimeout(() => {
-      cleanupReveal = setupScrollReveal();
-      cleanupNav = setupNavBehaviour();
-      setupMagneticButtons();
+      cleanups = [
+        setupHeroEntrance(),
+        setupScrollReveal(),
+        setupNavBehaviour(),
+        setupMagneticButtons(),
+      ].filter(Boolean);
     }, 60);
     return () => {
       clearTimeout(t);
-      cleanupReveal?.();
-      cleanupNav?.();
+      cleanups.forEach((fn) => fn?.());
     };
   }, []);
 

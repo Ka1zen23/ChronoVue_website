@@ -52,9 +52,9 @@ export default function HowItWorks() {
               className="relative bg-white rounded-2xl border border-black/[0.07] p-6
                 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
-              {/* Step line connector */}
+              {/* Step line connector — drawn by GSAP on scroll */}
               {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-[38px] left-[calc(100%+2px)]
+                <div data-connector className="hidden lg:block absolute top-[38px] left-[calc(100%+2px)]
                   w-5 h-px bg-gradient-to-r from-brand-blue/40 to-brand-blue/10 z-10" />
               )}
               <div className="flex items-center gap-3 mb-4">

@@ -1,21 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
-import { animate } from 'animejs';
+import { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 
+// duration is in ms to preserve the existing call-site API
 export default function useCountUp(target, active, duration = 1800) {
   const [value, setValue] = useState(0);
-  const animRef = useRef(null);
 
   useEffect(() => {
     if (!active) return;
-    const proxy = { count: 0 };
-    animRef.current = animate(proxy, {
-      count: target,
-      duration,
-      ease: 'outCubic',
-      onUpdate: () => setValue(Math.floor(proxy.count)),
+    const obj = { val: 0 };
+    const tween = gsap.to(obj, {
+      val: target,
+      duration: duration / 1000,
+      ease: 'power2.out',
+      onUpdate: () => setValue(Math.round(obj.val)),
       onComplete: () => setValue(target),
     });
-    return () => animRef.current?.pause();
+    return () => tween.kill();
   }, [active, target, duration]);
 
   return value;
