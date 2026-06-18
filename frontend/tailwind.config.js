@@ -65,7 +65,7 @@ export default {
       },
       fontFamily: {
         sans:    ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Sora', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         mono:    ['JetBrains Mono', 'Fira Mono', 'monospace'],
       },
       fontSize: {

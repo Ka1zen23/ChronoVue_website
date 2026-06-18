@@ -56,7 +56,7 @@ const phases = [
 ];
 
 const STATUS_STYLE = {
-  active: 'bg-brand-green/10 text-brand-green border-brand-green/25',
+  active: 'bg-brand-sage/10 text-brand-sage border-brand-sage/25',
   next:   'bg-amber-500/10 text-amber-600 border-amber-400/25',
   future: 'bg-gray-100 dark:bg-white/[0.07] text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/[0.1]',
 };
@@ -78,7 +78,7 @@ export default function Pricing() {
               data-reveal
               className={`feature-card rounded-2xl p-8 relative
                 ${plan.featured
-                  ? 'bg-white dark:bg-brand-navy-mid border-2 border-brand-navy dark:border-brand-blue/50 shadow-xl shadow-brand-navy/[0.08] scale-[1.02]'
+                  ? 'bg-white dark:bg-brand-navy-mid border-2 border-brand-navy dark:border-brand-teal/50 shadow-xl shadow-brand-navy/[0.08] scale-[1.02]'
                   : 'bg-white dark:bg-brand-navy-mid border border-black/[0.07] dark:border-white/[0.09]'}`}
             >
               <div className="flex items-center justify-between mb-5">
@@ -99,7 +99,7 @@ export default function Pricing() {
               <ul className="flex flex-col gap-2.5 mb-8">
                 {plan.includes.map(f => (
                   <li key={f} className="flex items-start gap-2.5 text-[13.5px] text-gray-600 dark:text-white/60">
-                    <svg className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                    <svg className="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
                       <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" opacity=".4"/>
                       <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -118,7 +118,7 @@ export default function Pricing() {
 
         <p data-reveal className="text-center text-[13px] text-gray-400 dark:text-white/40 mt-10">
           ChronoVue is also seeking EHR integration partners and healthcare IT procurement mentors.{' '}
-          <a href="#contact" className="text-brand-blue hover:underline font-medium">Get in touch</a>
+          <a href="#contact" className="text-brand-teal hover:underline font-medium">Get in touch</a>
         </p>
       </div>
     </section>

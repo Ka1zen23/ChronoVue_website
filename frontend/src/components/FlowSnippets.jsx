@@ -178,7 +178,7 @@ export default function FlowSnippets() {
       <div className="max-w-6xl mx-auto px-6">
         <div data-reveal className="text-center max-w-xl mx-auto mb-12">
           <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
-            rounded-full mb-4 bg-brand-blue/10 text-brand-blue border border-brand-blue/15">
+            rounded-full mb-4 bg-brand-teal/10 text-brand-teal border border-brand-teal/15">
             Platform Preview
           </span>
           <h2 className="text-[clamp(1.5rem,3vw,2.2rem)] font-display font-extrabold

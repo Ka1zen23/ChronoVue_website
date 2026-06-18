@@ -55,7 +55,7 @@ export default function HowItWorks() {
               {/* Step line connector — drawn by GSAP on scroll */}
               {i < steps.length - 1 && (
                 <div data-connector className="hidden lg:block absolute top-[38px] left-[calc(100%+2px)]
-                  w-5 h-px bg-gradient-to-r from-brand-blue/40 to-brand-blue/10 z-10" />
+                  w-5 h-px bg-gradient-to-r from-brand-teal/40 to-brand-teal/10 z-10" />
               )}
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center
@@ -82,7 +82,7 @@ export default function HowItWorks() {
               <div
                 key={item.label}
                 data-reveal
-                className="rounded-xl bg-brand-blue/[0.04] dark:bg-brand-blue/[0.08] border border-brand-blue/[0.1] dark:border-brand-blue/[0.2] p-4"
+                className="rounded-xl bg-brand-teal/[0.04] dark:bg-brand-teal/[0.08] border border-brand-teal/[0.1] dark:border-brand-teal/[0.2] p-4"
               >
                 <div className="text-[13px] font-bold text-brand-navy dark:text-white mb-1.5">{item.label}</div>
                 <div className="text-[12px] text-gray-400 dark:text-white/45 leading-snug">{item.desc}</div>

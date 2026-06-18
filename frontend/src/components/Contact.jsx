@@ -56,7 +56,7 @@ export default function Contact() {
         {/* Left */}
         <div>
           <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
-            rounded-full mb-5 bg-brand-blue/10 text-brand-blue border border-brand-blue/15">
+            rounded-full mb-5 bg-brand-teal/10 text-brand-teal border border-brand-teal/15">
             Contact
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
@@ -96,9 +96,9 @@ export default function Contact() {
           {status === 'success' ? (
             <div className="flex flex-col items-center text-center gap-5 py-16 px-8
               bg-gray-50 dark:bg-brand-navy-mid rounded-2xl border border-black/[0.07] dark:border-white/[0.09]">
-              <div className="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20
+              <div className="w-14 h-14 rounded-2xl bg-brand-sage/10 border border-brand-sage/20
                 flex items-center justify-center">
-                <svg className="w-7 h-7 text-brand-green" viewBox="0 0 24 24" fill="none"
+                <svg className="w-7 h-7 text-brand-sage" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
@@ -107,7 +107,7 @@ export default function Contact() {
               <p className="text-gray-500 dark:text-white/55 text-[14px] leading-relaxed max-w-xs">
                 Your email client should have opened with everything pre-filled. Just hit send.
                 If it didn't open, email us directly at{' '}
-                <a href="mailto:support@chronovue.co" className="text-brand-blue hover:underline">
+                <a href="mailto:support@chronovue.co" className="text-brand-teal hover:underline">
                   support@chronovue.co
                 </a>
               </p>
@@ -127,7 +127,7 @@ export default function Contact() {
                 <select
                   value={form.interest} onChange={update('interest')}
                   className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
-                    focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
+                    focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/10 outline-none
                     text-[14px] text-gray-600 dark:text-white/70
                     bg-white dark:bg-brand-navy-mid transition-all"
                 >
@@ -143,7 +143,7 @@ export default function Contact() {
                   placeholder="Operation size, current systems, specific challenges, or just say hello…"
                   value={form.message} onChange={update('message')}
                   className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
-                    focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
+                    focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/10 outline-none
                     text-[14px] text-gray-700 dark:text-white/70
                     bg-white dark:bg-brand-navy-mid resize-none transition-all"
                 />
@@ -177,7 +177,7 @@ function Field({ label, ...props }) {
       <input
         {...props}
         className="px-3.5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12]
-          focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 outline-none
+          focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/10 outline-none
           text-[14px] text-gray-700 dark:text-white/80
           bg-white dark:bg-brand-navy-mid
           transition-all placeholder:text-gray-300 dark:placeholder:text-white/25"
@@ -188,7 +188,7 @@ function Field({ label, ...props }) {
 
 function MailIcon() {
   return (
-    <svg className="w-4 h-4 text-brand-blue shrink-0" viewBox="0 0 16 16" fill="none"
+    <svg className="w-4 h-4 text-brand-teal shrink-0" viewBox="0 0 16 16" fill="none"
       stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
       <rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/>
       <path d="M1.5 5.5l6.5 4 6.5-4"/>
@@ -197,7 +197,7 @@ function MailIcon() {
 }
 function PinIcon() {
   return (
-    <svg className="w-4 h-4 text-brand-blue shrink-0" viewBox="0 0 16 16" fill="none"
+    <svg className="w-4 h-4 text-brand-teal shrink-0" viewBox="0 0 16 16" fill="none"
       stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
       <path d="M8 1.5a4.5 4.5 0 00-4.5 4.5c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5A4.5 4.5 0 008 1.5z"/>
       <circle cx="8" cy="6" r="1.5"/>

@@ -34,7 +34,7 @@ export default function FlowHero() {
               className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/60
                 bg-white/[0.07] border border-white/[0.12] px-4 py-1.5 rounded-full mb-7"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-badge-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-sage animate-badge-pulse" />
               Case Study, Brunei Darussalam
             </div>
 
@@ -88,8 +88,8 @@ export default function FlowHero() {
             </div>
             <div className="flex items-center gap-3">
               <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/[0.12]" />
-              <span className="text-[12px] font-semibold text-brand-green border border-brand-green/25
-                bg-brand-green/10 px-4 py-1.5 rounded-full whitespace-nowrap">
+              <span className="text-[12px] font-semibold text-brand-sage border border-brand-sage/25
+                bg-brand-sage/10 px-4 py-1.5 rounded-full whitespace-nowrap">
                 FLOW replaces all four
               </span>
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/[0.12]" />

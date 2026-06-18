@@ -1,6 +1,6 @@
 const principles = [
   {
-    accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
+    accent: 'text-brand-teal bg-brand-teal/8 border-brand-teal/15',
     icon: <EmbedIcon />,
     title: 'We embed before we build',
     body: 'Site walkthroughs, empathy mapping, direct observation. We study the real workflow before touching a line of code. This is what keeps our products from becoming shelfware.',
@@ -34,7 +34,7 @@ export default function AboutUs() {
         {/* Header */}
         <div data-reveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
-            rounded-full mb-5 bg-brand-blue/10 text-brand-blue border border-brand-blue/15">
+            rounded-full mb-5 bg-brand-teal/10 text-brand-teal border border-brand-teal/15">
             What We Are
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
@@ -78,7 +78,7 @@ export default function AboutUs() {
             <div className="flex flex-col gap-4">
               {disciplines.map(d => (
                 <div key={d.label} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-sage flex-shrink-0 mt-[7px]" />
                   <div>
                     <div className="text-[14px] font-semibold text-brand-navy dark:text-white">{d.label}</div>
                     <div className="text-[13px] text-gray-400 dark:text-white/40 leading-snug">{d.sub}</div>
@@ -90,7 +90,7 @@ export default function AboutUs() {
 
           {/* Mission quote */}
           <div data-reveal className="rounded-2xl bg-brand-navy text-white p-8 flex flex-col justify-between">
-            <div className="text-brand-green/30 font-display font-bold text-6xl leading-none mb-2 -mt-2">
+            <div className="text-brand-sage/30 font-display font-bold text-6xl leading-none mb-2 -mt-2">
               &ldquo;
             </div>
             <p className="text-[17px] font-semibold leading-relaxed text-white/90 -mt-4 mb-6">

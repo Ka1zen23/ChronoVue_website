@@ -19,7 +19,7 @@ export default function FlowTeaser() {
 
         <div data-reveal className="mb-5 flex items-center gap-3">
           <span className="inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
-            rounded-full bg-brand-blue/10 text-brand-blue border border-brand-blue/15">
+            rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/15">
             Flagship Product
           </span>
           <div className="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">
@@ -45,7 +45,7 @@ export default function FlowTeaser() {
             <ul className="flex flex-col gap-2.5 mb-8">
               {highlights.map(h => (
                 <li key={h} className="flex items-start gap-2.5 text-[14px] text-gray-600 dark:text-white/60">
-                  <svg className="w-4 h-4 text-brand-green flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                  <svg className="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.25" opacity=".4"/>
                     <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>

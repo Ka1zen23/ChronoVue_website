@@ -43,14 +43,14 @@ export default function Testimonials() {
                 ${t.large ? 'md:col-span-2' : ''}`}
             >
               {/* Quote mark */}
-              <div className="text-brand-blue/20 font-display font-bold text-6xl leading-none mb-4 -mt-2">
+              <div className="text-brand-teal/20 font-display font-bold text-6xl leading-none mb-4 -mt-2">
                 &ldquo;
               </div>
               <blockquote className="text-brand-navy/80 dark:text-white/75 text-[15px] leading-relaxed mb-6 -mt-6 pl-2">
                 {t.quote}
               </blockquote>
               <div className="flex items-center gap-3 pl-2">
-                <div className="w-[3px] h-8 rounded-full bg-brand-blue/30 shrink-0" />
+                <div className="w-[3px] h-8 rounded-full bg-brand-teal/30 shrink-0" />
                 <div>
                   <div className="text-[13px] font-bold text-brand-navy dark:text-white">{t.attribution}</div>
                   <div className="text-[12px] text-gray-400 dark:text-white/40 mt-0.5">{t.role}</div>

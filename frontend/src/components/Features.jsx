@@ -1,7 +1,7 @@
 const features = [
   {
     icon: <HeatmapIcon />,
-    accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
+    accent: 'text-brand-teal bg-brand-teal/8 border-brand-teal/15',
     title: 'Hospital-Wide Heatmap',
     body: 'Every ward visualised as a live capacity heatmap. CSCs see the whole hospital at a glance, like a car park display for beds, without calling a single ward.',
     bullets: ['Updates the moment a nurse changes a bed status', 'Colour-coded by occupancy: available, occupied, cleaning, reserved', 'No refresh button. No phone calls.'],
@@ -45,7 +45,7 @@ const features = [
   },
   {
     icon: <ServerIcon />,
-    accent: 'text-brand-blue bg-brand-blue/8 border-brand-blue/15',
+    accent: 'text-brand-teal bg-brand-teal/8 border-brand-teal/15',
     title: 'Flexible Deployment',
     body: 'Deploy on your hospital LAN for full data sovereignty, or opt for secure cloud hosting. FLOW adapts to your infrastructure and compliance requirements.',
     bullets: ['On-premise or cloud: your infrastructure, your choice', 'Hot-standby failover server for clinical-grade resilience', 'Automated scheduled backups with tested restore'],
@@ -80,7 +80,7 @@ export default function Features() {
                 <ul className="mt-4 flex flex-col gap-2">
                   {f.bullets.map(b => (
                     <li key={b} className="flex items-start gap-2 text-[13px] text-gray-500 dark:text-white/50">
-                      <span className="w-1 h-1 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" />
+                      <span className="w-1 h-1 rounded-full bg-brand-sage flex-shrink-0 mt-[7px]" />
                       {b}
                     </li>
                   ))}
@@ -99,8 +99,8 @@ export function SectionHeader({ tag, title, sub, light }) {
     <div data-reveal className={`text-center max-w-2xl mx-auto mb-16`}>
       <span className={`inline-block text-[11px] font-bold uppercase tracking-[0.12em] px-3 py-1
         rounded-full mb-5 ${light
-          ? 'bg-brand-green/20 text-brand-green'
-          : 'bg-brand-blue/10 text-brand-blue border border-brand-blue/15'}`}>
+          ? 'bg-brand-sage/20 text-brand-sage'
+          : 'bg-brand-teal/10 text-brand-teal border border-brand-teal/15'}`}>
         {tag}
       </span>
       <h2 className={`text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold

@@ -76,7 +76,7 @@ export default function Navbar({ flow = false }) {
               data-magnetic="0.25"
               className="btn-shimmer px-5 py-2 text-[13.5px] font-semibold text-white
                 bg-brand-navy hover:bg-brand-navy-mid
-                dark:bg-brand-blue dark:hover:bg-brand-blue-dk
+                dark:bg-brand-teal dark:hover:bg-brand-teal-dk
                 rounded-lg transition-colors shadow-sm"
             >
               Get in Touch
@@ -125,7 +125,7 @@ export default function Navbar({ flow = false }) {
           )}
           <a href="#contact" onClick={close}
             className="mt-3 text-center py-2.5 rounded-lg
-              bg-brand-navy dark:bg-brand-blue
+              bg-brand-navy dark:bg-brand-teal
               text-white font-semibold text-sm">
             Get in Touch
           </a>
