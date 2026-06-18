@@ -136,6 +136,39 @@ export function setupNavBehaviour() {
   };
 }
 
+// ─── Typography rail parallax ────────────────────────────────────────────────
+// Animates [data-typo-speed] spans in .typo-rails with scroll-linked Y drift.
+// Speed value = fraction of viewport height to travel over the full page scroll.
+// Negative y → words move up as user scrolls down (depth parallax).
+export function setupTypographyParallax() {
+  if (typeof window === 'undefined') return () => {};
+
+  const words = document.querySelectorAll('[data-typo-speed]');
+  if (!words.length) return () => {};
+
+  const triggers = [];
+
+  words.forEach((word) => {
+    const speed = parseFloat(word.dataset.typoSpeed) || 0.15;
+
+    const st = gsap.to(word, {
+      y: () => -window.innerHeight * speed,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 2,
+        invalidateOnRefresh: true,
+      },
+    }).scrollTrigger;
+
+    if (st) triggers.push(st);
+  });
+
+  return () => triggers.forEach((st) => st?.kill());
+}
+
 // ─── Magnetic buttons ────────────────────────────────────────────────────────
 export function setupMagneticButtons() {
   if (typeof window === 'undefined') return () => {};

@@ -46,11 +46,31 @@ const { title, description, canonical } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Sora:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!-- Decorative typography rails — parallax via setupTypographyParallax() -->
+    <div class="typo-rails" aria-hidden="true">
+      <div class="typo-rail typo-rail-l">
+        <span data-typo-speed="0.12">VISIBILITY</span>
+        <span data-typo-speed="0.22">COORDINATION</span>
+        <span data-typo-speed="0.17">OPERATIONS</span>
+        <span data-typo-speed="0.29">WORKFLOW</span>
+        <span data-typo-speed="0.14">CAPACITY</span>
+        <span data-typo-speed="0.21">INTELLIGENCE</span>
+      </div>
+      <div class="typo-rail typo-rail-r">
+        <span data-typo-speed="0.25">FLOW</span>
+        <span data-typo-speed="0.15">REAL-TIME</span>
+        <span data-typo-speed="0.31">CLARITY</span>
+        <span data-typo-speed="0.19">BOTTLENECK</span>
+        <span data-typo-speed="0.11">CONTROL</span>
+        <span data-typo-speed="0.24">DATA</span>
+      </div>
+    </div>
+
     <slot />
     <script>
       import { gsap } from 'gsap';
@@ -59,6 +79,7 @@ const { title, description, canonical } = Astro.props;
         setupScrollReveal,
         setupNavBehaviour,
         setupMagneticButtons,
+        setupTypographyParallax,
       } from '../utils/animations';
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -70,6 +91,7 @@ const { title, description, canonical } = Astro.props;
         setupScrollReveal();
         setupNavBehaviour();
         setupMagneticButtons();
+        setupTypographyParallax();
       }, 60);
     </script>
   </body>
