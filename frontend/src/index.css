@@ -20,6 +20,7 @@
   body {
     @apply font-sans text-brand-navy antialiased;
     -webkit-font-smoothing: antialiased;
+    background-color: #F5F4EF;
   }
 
   /* Disable native pull-to-refresh on touch screens so custom PTR can take over */

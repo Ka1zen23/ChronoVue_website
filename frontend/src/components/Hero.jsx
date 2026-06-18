@@ -1,5 +1,3 @@
-import TopographicLines from './TopographicLines';
-
 const pillars = [
   {
     icon: (
@@ -43,9 +41,6 @@ export default function Hero() {
 
       {/* Animated glow */}
       <div className="absolute inset-0 hero-glow pointer-events-none" />
-
-      {/* Animated topographic lines — dark variant, subtle on navy */}
-      <TopographicLines dark />
 
       {/* Diamond accent decorations — from company profile cover visual language */}
       <div

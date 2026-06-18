@@ -6,9 +6,9 @@ import AboutUs from './components/AboutUs';
 import FlowTeaser from './components/FlowTeaser';
 import Team from './components/Team';
 import Contact from './components/Contact';
-import CompanyProfile from './components/CompanyProfile';
 import Footer from './components/Footer';
 import PullToRefresh from './components/PullToRefresh';
+import TopographicLines from './components/TopographicLines';
 import { setupHeroEntrance, setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
@@ -35,6 +35,12 @@ export default function App() {
         <meta name="description" content="ChronoVue builds purpose-built SaaS platforms for sectors still running on manual workflows. Our first product, FLOW, replaces paper census sheets, Excel, and WhatsApp with a single real-time hospital bed management dashboard." />
         <link rel="canonical" href="https://chronovue.co" />
       </Helmet>
+
+      {/* Global topographic background — fixed, behind all content */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1, background: '#F5F4EF' }}>
+        <TopographicLines />
+      </div>
+
       <PullToRefresh />
       <Navbar />
       <main>
@@ -43,7 +49,6 @@ export default function App() {
         <FlowTeaser />
         <Team />
         <Contact />
-        <CompanyProfile />
       </main>
       <Footer />
     </>

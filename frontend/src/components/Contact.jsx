@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-28 bg-white border-t border-black/[0.06]">
+    <section id="contact" className="py-28 bg-[#F5F4EF]/80 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
         {/* Left */}

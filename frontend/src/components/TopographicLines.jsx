@@ -1,13 +1,16 @@
 // Web port of the React Native animated topographic background.
 // Renders two bundles of smooth bezier lines driven by a 28-second GSAP loop.
+// Scroll-based time offset makes lines subtly morph as the page is scrolled.
 // Uses direct SVG attribute mutation — zero React re-renders per frame.
 //
-// LEFT  bundle (N_LEFT=12)  — hourglass river, left ~35% of the viewport
+// LEFT  bundle (N_LEFT=12)  — hourglass river, left ~35% of viewport
 // RIGHT bundle (N_RIGHT=10) — sweeping fan from upper-right corner
 //
-// Usage (overlay inside a `position:relative` parent):
-//   <TopographicLines />           ← light stroke on cream/white bg
-//   <TopographicLines dark />      ← same stroke, tuned for dark bg
+// Intended use: one instance with `position:fixed; inset:0; z-index:-1` in App.jsx
+// behind all page content.  Pass dark=true for navy-bg sections.
+//
+//   <TopographicLines />        ← light (cream bg context)
+//   <TopographicLines dark />   ← dark (navy bg context)
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -17,12 +20,12 @@ const N_LEFT   = 12;
 const N_RIGHT  = 10;
 const CYCLE_MS = 28000;
 const TWO_PI   = Math.PI * 2;
-const W = 1440;   // reference width  (SVG viewBox)
-const H = 900;    // reference height (SVG viewBox)
+// Reference viewport — SVG viewBox; slice-fills whatever container it's in
+const W = 1440;
+const H = 900;
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 
-// Quadratic-bezier spline through sampled points — identical to RN original
 function makePath(xs, ys, n) {
   let d = `M ${xs[0].toFixed(1)} ${ys[0].toFixed(1)}`;
   for (let i = 0; i <= n - 2; i++) {
@@ -34,18 +37,18 @@ function makePath(xs, ys, n) {
   return d;
 }
 
-// Hourglass river — pinches at vertical centre, fans at top/bottom
+// Hourglass river — pinches at vertical centre, fans at top/bottom edges
 function buildLeft(idx, t) {
-  const frac = idx / 11 - 0.5;   // −0.5 … +0.5 within bundle
+  const frac = idx / 11 - 0.5;
   const xs = [], ys = [];
   for (let j = 0; j <= 10; j++) {
     const ny   = j / 10;
-    const dist = Math.abs(ny - 0.5) * 2;           // 0 at centre → 1 at edges
-    const wf   = 0.28 + 0.72 * (dist * dist);       // hourglass width factor
+    const dist = Math.abs(ny - 0.5) * 2;
+    const wf   = 0.28 + 0.72 * (dist * dist);
     const cx   = W * (
       0.14
-      + 0.065 * Math.sin(ny * Math.PI * 1.7 + t)   // 1× speed
-      + 0.020 * Math.sin(ny * Math.PI * 3.1 + 2 * t) // 2× speed
+      + 0.065 * Math.sin(ny * Math.PI * 1.7 + t)
+      + 0.020 * Math.sin(ny * Math.PI * 3.1 + 2 * t)
     );
     xs.push(cx + frac * 2 * W * 0.195 * wf);
     ys.push(ny * H);
@@ -55,7 +58,7 @@ function buildLeft(idx, t) {
 
 // Sweeping fan — enters from off-screen upper-right, arcs downward
 function buildRight(idx, t) {
-  const frac = idx / 9;   // 0 (inner) … 1 (outer / off-screen)
+  const frac = idx / 9;
   const xs = [], ys = [];
   for (let j = 0; j <= 10; j++) {
     const ns     = j / 10;
@@ -82,12 +85,17 @@ export default function TopographicLines({ dark = false, className = '' }) {
     const rightPaths = Array.from(svg.querySelectorAll('[data-topo="right"]'));
     const t0 = performance.now();
 
-    // Compute initial state immediately so there's no blank-frame flash
+    // Render initial frame immediately (avoids blank-frame flash)
     for (let i = 0; i < leftPaths.length;  i++) leftPaths[i].setAttribute('d',  buildLeft(i,  0));
     for (let i = 0; i < rightPaths.length; i++) rightPaths[i].setAttribute('d', buildRight(i, 0));
 
     const tick = () => {
-      const t = ((performance.now() - t0) / CYCLE_MS * TWO_PI) % TWO_PI;
+      // Base 28-second animation loop
+      const loopT  = ((performance.now() - t0) / CYCLE_MS) * TWO_PI;
+      // Scroll adds a slow time offset — scrolling 8000px = one full morphing cycle
+      const scrollT = (window.scrollY / 8000) * TWO_PI;
+      const t = (loopT + scrollT) % TWO_PI;
+
       for (let i = 0; i < leftPaths.length;  i++) leftPaths[i].setAttribute('d',  buildLeft(i,  t));
       for (let i = 0; i < rightPaths.length; i++) rightPaths[i].setAttribute('d', buildRight(i, t));
     };
@@ -96,9 +104,8 @@ export default function TopographicLines({ dark = false, className = '' }) {
     return () => gsap.ticker.remove(tick);
   }, []);
 
-  // Stroke is the same sage-green as the covers; opacity differs per mode
   const stroke  = '#8AA68D';
-  const opacity = dark ? 0.3 : 0.45;
+  const opacity = dark ? 0.28 : 0.42;
 
   return (
     <svg
@@ -109,24 +116,10 @@ export default function TopographicLines({ dark = false, className = '' }) {
       aria-hidden="true"
     >
       {Array.from({ length: N_LEFT }, (_, i) => (
-        <path
-          key={`l${i}`}
-          data-topo="left"
-          fill="none"
-          stroke={stroke}
-          strokeWidth="1"
-          strokeOpacity={opacity}
-        />
+        <path key={`l${i}`} data-topo="left"  fill="none" stroke={stroke} strokeWidth="1" strokeOpacity={opacity} />
       ))}
       {Array.from({ length: N_RIGHT }, (_, i) => (
-        <path
-          key={`r${i}`}
-          data-topo="right"
-          fill="none"
-          stroke={stroke}
-          strokeWidth="1"
-          strokeOpacity={opacity}
-        />
+        <path key={`r${i}`} data-topo="right" fill="none" stroke={stroke} strokeWidth="1" strokeOpacity={opacity} />
       ))}
     </svg>
   );

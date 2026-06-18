@@ -28,7 +28,7 @@ const disciplines = [
 
 export default function AboutUs() {
   return (
-    <section id="about" className="py-28 bg-white border-t border-black/[0.06]">
+    <section id="about" className="py-28 bg-[#F5F4EF]/80 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
