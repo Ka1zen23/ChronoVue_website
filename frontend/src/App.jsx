@@ -6,6 +6,7 @@ import AboutUs from './components/AboutUs';
 import FlowTeaser from './components/FlowTeaser';
 import Team from './components/Team';
 import Contact from './components/Contact';
+import CompanyProfile from './components/CompanyProfile';
 import Footer from './components/Footer';
 import PullToRefresh from './components/PullToRefresh';
 import { setupHeroEntrance, setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
@@ -42,6 +43,7 @@ export default function App() {
         <FlowTeaser />
         <Team />
         <Contact />
+        <CompanyProfile />
       </main>
       <Footer />
     </>

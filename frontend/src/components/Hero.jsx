@@ -42,6 +42,22 @@ export default function Hero() {
       {/* Animated glow */}
       <div className="absolute inset-0 hero-glow pointer-events-none" />
 
+      {/* Diamond accent decorations — from company profile cover visual language */}
+      <div
+        className="absolute pointer-events-none"
+        style={{ top: '-80px', right: '-80px', width: '320px', height: '320px',
+          border: '1px solid rgba(0,180,216,0.12)', transform: 'rotate(45deg)' }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{ top: '-30px', right: '-30px', width: '180px', height: '180px',
+          border: '1px solid rgba(6,214,160,0.09)', transform: 'rotate(45deg)' }}
+      />
+      <div
+        className="absolute pointer-events-none bg-brand-teal/[0.06]"
+        style={{ bottom: '60px', left: '4%', width: '48px', height: '48px', transform: 'rotate(45deg)' }}
+      />
+
       <div className="relative max-w-6xl mx-auto px-6 text-center pt-20 pb-16">
         {/* Status pill */}
         <div
