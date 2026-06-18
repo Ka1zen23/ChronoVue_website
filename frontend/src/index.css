@@ -14,48 +14,48 @@
   --border:    rgba(0,0,0,0.08);
 
   /* shadcn — light */
-  --background:          0 0% 100%;
-  --foreground:          215 59% 10%;
+  --background:          50 24% 95%;
+  --foreground:          218 46% 23%;
   --card:                0 0% 100%;
-  --card-foreground:     215 59% 10%;
+  --card-foreground:     218 46% 23%;
   --popover:             0 0% 100%;
-  --popover-foreground:  215 59% 10%;
-  --primary:             211 100% 40%;
+  --popover-foreground:  218 46% 23%;
+  --primary:             218 46% 23%;
   --primary-foreground:  0 0% 100%;
-  --secondary:           210 17% 95%;
-  --secondary-foreground:215 59% 10%;
-  --muted:               210 17% 95%;
-  --muted-foreground:    215 16% 47%;
-  --accent:              210 17% 95%;
-  --accent-foreground:   215 59% 10%;
+  --secondary:           50 16% 90%;
+  --secondary-foreground:218 46% 23%;
+  --muted:               50 12% 92%;
+  --muted-foreground:    215 8% 56%;
+  --accent:              193 28% 51%;
+  --accent-foreground:   0 0% 100%;
   --destructive:         0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border:              214 32% 91%;
-  --input:               214 32% 91%;
-  --ring:                211 100% 40%;
-  --radius:              0.625rem;
+  --border:              50 12% 84%;
+  --input:               50 12% 84%;
+  --ring:                218 46% 23%;
+  --radius:              1rem;
 }
 
 .dark {
-  --background:          215 57% 10%;
-  --foreground:          210 40% 96%;
-  --card:                218 47% 15%;
-  --card-foreground:     210 40% 96%;
-  --popover:             218 47% 15%;
-  --popover-foreground:  210 40% 96%;
-  --primary:             211 100% 40%;
+  --background:          218 46% 10%;
+  --foreground:          50 24% 95%;
+  --card:                218 40% 14%;
+  --card-foreground:     50 24% 95%;
+  --popover:             218 40% 14%;
+  --popover-foreground:  50 24% 95%;
+  --primary:             193 28% 51%;
   --primary-foreground:  0 0% 100%;
-  --secondary:           217 33% 18%;
-  --secondary-foreground:210 40% 96%;
-  --muted:               217 33% 18%;
-  --muted-foreground:    215 20% 60%;
-  --accent:              217 33% 18%;
-  --accent-foreground:   210 40% 96%;
+  --secondary:           218 33% 18%;
+  --secondary-foreground:50 24% 95%;
+  --muted:               218 33% 18%;
+  --muted-foreground:    215 12% 58%;
+  --accent:              126 14% 60%;
+  --accent-foreground:   218 46% 23%;
   --destructive:         0 63% 31%;
   --destructive-foreground: 210 40% 98%;
-  --border:              217 33% 20%;
-  --input:               217 33% 20%;
-  --ring:                211 100% 40%;
+  --border:              218 33% 20%;
+  --input:               218 33% 20%;
+  --ring:                193 28% 51%;
 }
 
 /* ---------- Base ---------- */
@@ -63,7 +63,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply font-sans text-brand-navy antialiased;
+    @apply bg-brand-bg font-sans text-brand-navy antialiased;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -75,14 +75,14 @@
   h1, h2, h3, h4, h5 { @apply font-display; }
 
   ::selection {
-    background: rgba(0, 102, 204, 0.15);
+    background: rgba(94, 151, 166, 0.2);
   }
 }
 
 /* ---------- Utilities ---------- */
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-blue via-sky-400 to-brand-green bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-teal via-brand-sage to-brand-green bg-clip-text text-transparent;
   }
   .gradient-text-subtle {
     @apply bg-gradient-to-r from-brand-navy to-brand-navy-mid bg-clip-text text-transparent;
@@ -99,16 +99,16 @@
 /* ---------- Hero Background ---------- */
 .hero-grid-bg {
   background-image:
-    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(0,102,204,0.38) 0%, transparent 65%),
-    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(31,49,84,0.5) 0%, transparent 65%),
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 100% 100%, 52px 52px, 52px 52px;
 }
 
 .hero-glow {
   background: radial-gradient(ellipse 60% 50% at 50% 50%,
-    rgba(0, 102, 204, 0.25) 0%,
-    rgba(0, 180, 216, 0.08) 50%,
+    rgba(94, 151, 166, 0.22) 0%,
+    rgba(138, 166, 141, 0.07) 50%,
     transparent 80%
   );
   animation: glow-pulse 6s ease-in-out infinite;
@@ -157,8 +157,8 @@
 }
 .feature-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09);
-  border-color: rgba(0, 102, 204, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  border-color: rgba(94, 151, 166, 0.35);
 }
 
 /* ---------- Number counter flicker ---------- */
