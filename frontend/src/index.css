@@ -63,7 +63,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-brand-bg font-sans text-brand-navy antialiased;
+    @apply bg-brand-bg font-sans text-body text-brand-navy antialiased;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -72,7 +72,15 @@
     body { overscroll-behavior-y: none; }
   }
 
-  h1, h2, h3, h4, h5 { @apply font-display; }
+  /* T scale — applies design-system typography to semantic elements.
+     Component-level classes override these where needed. */
+  h1    { @apply text-h1 font-display; }
+  h2    { @apply text-h2 font-display; }
+  h3    { @apply text-h3 font-display; }
+  h4, h5 { @apply text-section font-display; }
+  p     { @apply text-body; }
+  small { @apply text-small; }
+  label { @apply text-label; }
 
   ::selection {
     background: rgba(94, 151, 166, 0.2);
