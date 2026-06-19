@@ -1,5 +1,6 @@
 ---
 import '../index.css';
+import TopographicLines from '../components/TopographicLines';
 
 const { title, description, canonical } = Astro.props;
 ---
@@ -51,6 +52,11 @@ const { title, description, canonical } = Astro.props;
     />
   </head>
   <body>
+    <!-- Global topographic background — fixed, cream base, scrolling reveals more -->
+    <div class="fixed inset-0 pointer-events-none" style="z-index:-1;background:#F5F4EF;">
+      <TopographicLines client:only="react" />
+    </div>
+
     <!-- Decorative typography rails — parallax via setupTypographyParallax() -->
     <div class="typo-rails" aria-hidden="true">
       <div class="typo-rail typo-rail-l">
