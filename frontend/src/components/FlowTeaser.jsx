@@ -14,7 +14,7 @@ const highlights = [
 
 export default function FlowTeaser() {
   return (
-    <section id="case-study" className="py-24 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
+    <section id="case-study" className="py-24 bg-[#F5F4EF]/80 border-t border-black/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
 
         <div data-reveal className="mb-5 flex items-center gap-3">
