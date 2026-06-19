@@ -43,7 +43,7 @@ function StatCard({ value, suffix, label, sub }) {
           {count}
         </span>
         {suffix && (
-          <span className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold text-brand-green mb-1">
+          <span className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold text-brand-sage mb-1">
             {suffix}
           </span>
         )}
@@ -59,7 +59,7 @@ export default function Impact() {
     <section id="pilot" className="py-28 bg-brand-navy relative overflow-hidden">
       {/* Decorative blobs — slow parallax via GSAP ScrollTrigger */}
       <div data-parallax-blob className="absolute -top-32 -right-32 w-96 h-96 rounded-full
-        bg-brand-blue/[0.12] blur-3xl pointer-events-none" />
+        bg-brand-teal/[0.12] blur-3xl pointer-events-none" />
       <div data-parallax-blob="reverse" className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full
         bg-brand-teal/[0.08] blur-3xl pointer-events-none" />
 

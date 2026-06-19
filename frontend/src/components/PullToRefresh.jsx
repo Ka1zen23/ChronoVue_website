@@ -44,6 +44,7 @@ export default function PullToRefresh() {
   useEffect(() => {
     const el = containerRef.current;
     const hand = handRef.current;
+    let spinTween = null;
 
     function onTouchStart(e) {
       if (window.scrollY > 0) return;
@@ -66,17 +67,27 @@ export default function PullToRefresh() {
       if (e.cancelable) e.preventDefault();
 
       p.progress = Math.min(dy / THRESHOLD, 1);
-      p.rotation = -360 * p.progress; // anti-clockwise
 
       const translateY = -68 + 68 * p.progress;
       el.style.opacity = String(p.progress);
       el.style.transform = `translateY(${translateY}px)`;
 
-      // Rotate only the clock hand
-      hand.style.transform = `rotate(${p.rotation}deg)`;
+      if (!p.triggered) {
+        // 2.5 rotations at threshold so hand never lands back at its start position
+        p.rotation = -900 * p.progress;
+        gsap.set(hand, { rotate: p.rotation, svgOrigin: '512 512' });
+      }
 
       if (p.progress >= 1 && !p.triggered) {
         p.triggered = true;
+        // Continuous fast spin once threshold is reached
+        spinTween = gsap.to(hand, {
+          rotate: '+=360',
+          duration: 0.35,
+          ease: 'none',
+          repeat: -1,
+          svgOrigin: '512 512',
+        });
       }
     }
 
@@ -85,20 +96,23 @@ export default function PullToRefresh() {
       if (!p.active) return;
       p.active = false;
 
+      if (spinTween) { spinTween.kill(); spinTween = null; }
+
       if (p.triggered) {
-        gsap.fromTo(hand,
-          { rotate: p.rotation },
-          { rotate: p.rotation - 720, duration: 0.6, ease: 'power2.inOut', onComplete: () => window.location.reload() }
-        );
+        const currentRot = gsap.getProperty(hand, 'rotation');
+        gsap.to(hand, {
+          rotate: currentRot - 1080,
+          duration: 0.6,
+          ease: 'power3.in',
+          svgOrigin: '512 512',
+          onComplete: () => window.location.reload(),
+        });
       } else {
         gsap.fromTo(el,
           { y: -68 + 68 * p.progress, opacity: p.progress },
           { y: -68, opacity: 0, duration: 0.35, ease: 'power2.out' }
         );
-        gsap.fromTo(hand,
-          { rotate: p.rotation },
-          { rotate: 0, duration: 0.35, ease: 'power2.out' }
-        );
+        gsap.to(hand, { rotate: 0, duration: 0.35, ease: 'power2.out', svgOrigin: '512 512' });
       }
     }
 
@@ -112,6 +126,8 @@ export default function PullToRefresh() {
       document.removeEventListener('touchmove', onTouchMove);
       document.removeEventListener('touchend', onRelease);
       document.removeEventListener('touchcancel', onRelease);
+      if (spinTween) spinTween.kill();
+      gsap.killTweensOf(hand);
     };
   }, []);
 

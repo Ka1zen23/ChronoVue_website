@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
@@ -12,22 +10,6 @@ import TopographicLines from './components/TopographicLines';
 import { setupHeroEntrance, setupScrollReveal, setupNavBehaviour, setupMagneticButtons } from './utils/animations';
 
 export default function App() {
-  useEffect(() => {
-    let cleanups = [];
-    const t = setTimeout(() => {
-      cleanups = [
-        setupHeroEntrance(),
-        setupScrollReveal(),
-        setupNavBehaviour(),
-        setupMagneticButtons(),
-      ].filter(Boolean);
-    }, 60);
-    return () => {
-      clearTimeout(t);
-      cleanups.forEach((fn) => fn?.());
-    };
-  }, []);
-
   return (
     <>
       <Helmet>

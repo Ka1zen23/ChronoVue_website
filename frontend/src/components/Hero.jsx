@@ -65,8 +65,8 @@ export default function Hero() {
           className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/60
             bg-white/[0.07] border border-white/[0.12] px-4 py-1.5 rounded-full mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-badge-pulse" />
-          Product Studio · Brunei Darussalam
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-badge-pulse" />
+          Product Studio from Brunei Darussalam
         </div>
 
         {/* Headline */}
@@ -92,9 +92,9 @@ export default function Hero() {
           <a
             href="#case-study"
             data-magnetic="0.2"
-            className="btn-shimmer px-7 py-3.5 rounded-xl bg-brand-blue text-white
-              font-semibold text-[15px] hover:bg-brand-blue-dk transition-colors
-              shadow-lg shadow-brand-blue/25"
+            className="btn-shimmer px-7 py-3.5 rounded-xl bg-brand-navy text-white
+              font-semibold text-[15px] hover:bg-brand-navy-mid transition-colors
+              shadow-lg shadow-brand-navy/20"
           >
             See Our Work
           </a>
@@ -132,9 +132,9 @@ export default function Hero() {
 
           <div data-reveal className="flex items-center gap-4 justify-center mb-0">
             <div className="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-white/[0.12]" />
-            <span className="text-[12px] font-semibold text-brand-green border border-brand-green/25
-              bg-brand-green/10 px-4 py-1.5 rounded-full">
-              Healthcare SaaS · Operational Intelligence
+            <span className="text-[12px] font-semibold text-brand-teal border border-brand-teal/25
+              bg-brand-teal/10 px-4 py-1.5 rounded-full">
+              SaaS & Operational Intelligence
             </span>
             <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-white/[0.12]" />
           </div>
