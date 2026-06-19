@@ -36,7 +36,7 @@ const infraLayers = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-28 bg-gray-50 dark:bg-brand-navy border-t border-black/[0.06] dark:border-white/[0.06]">
+    <section id="how-it-works" className="py-28 section-light border-t border-black/[0.06] dark:border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="Our Approach"
