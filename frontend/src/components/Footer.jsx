@@ -12,7 +12,7 @@ export default function Footer() {
               
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
                 <img 
-                  src="assets/logo.svg" 
+                  src="/assets/logo.svg"
                   alt="Flow Logo" 
                   className="w-[30px] h-[30px] shrink-0" 
                 />
