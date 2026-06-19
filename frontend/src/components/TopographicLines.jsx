@@ -54,8 +54,8 @@ function buildRight(idx, t) {
   const xs = [], ys = [];
   for (let j = 0; j <= 10; j++) {
     const ns     = j / 10;
-    const startX = W * (0.57 + frac * 0.47);
-    const startY = H * (-0.07 + frac * 0.05);
+    const startX = W * (0.62 + frac * 0.26);
+    const startY = H * (-0.04 + frac * 0.03);
     const dx     = -ns * W * (0.07 + frac * 0.04 + 0.012 * Math.sin(t));
     const dy     =  ns * H * 0.56;
     const curve  = W * 0.025 * Math.sin(ns * Math.PI * 1.6 + t * 0.5 + idx * 0.38);
@@ -85,13 +85,8 @@ export default function TopographicLines({ className = '' }) {
       // 28-second continuous animation loop
       const t = ((performance.now() - t0) / CYCLE_MS) * TWO_PI % TWO_PI;
 
-      // Scroll → pan the viewBox through the tall canvas
-      // Maps full page scroll range to full MAX_PAN range
-      const scrollable = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        1
-      );
-      const viewBoxY = (window.scrollY / scrollable) * MAX_PAN;
+      // Scroll → pan viewBox directly (0.4× scroll speed feels responsive)
+      const viewBoxY = Math.min(window.scrollY * 0.4, MAX_PAN);
       svg.setAttribute('viewBox', `0 ${viewBoxY.toFixed(1)} ${W} ${VIEW_H}`);
 
       for (let i = 0; i < leftPaths.length;  i++) leftPaths[i].setAttribute('d',  buildLeft(i,  t));
