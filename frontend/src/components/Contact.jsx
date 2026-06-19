@@ -152,8 +152,8 @@ export default function Contact() {
               <button
                 type="submit"
                 data-magnetic="0.15"
-                className="btn-shimmer w-full py-3.5 rounded-xl bg-brand-navy text-white
-                  font-semibold text-[15px] hover:bg-brand-navy-mid transition-colors shadow-sm"
+                className="btn-shimmer w-full py-3.5 rounded-xl bg-brand-sage text-white
+                  font-semibold text-[15px] hover:bg-brand-sage/80 transition-colors shadow-sm"
               >
                 Send Message
               </button>
