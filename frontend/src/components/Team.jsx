@@ -43,7 +43,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative overflow-hidden bg-[#F5F4EF]/80 py-28"
+      className="relative overflow-hidden section-light py-28"
     >
       {/* Background accents */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(83,140,151,0.10),transparent_35%)]" />
