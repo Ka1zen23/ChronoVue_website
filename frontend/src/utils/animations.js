@@ -114,18 +114,20 @@ export function setupNavBehaviour() {
   let lastY = window.scrollY;
 
   const onScroll = () => {
-    const y = window.scrollY;
+    const y     = window.scrollY;
+    const delta = y - lastY;
+    lastY = y;
 
     if (y > 12) nav.setAttribute('data-scrolled', '');
     else nav.removeAttribute('data-scrolled');
 
-    if (y > 120 && y > lastY) {
-      gsap.to(nav, { yPercent: -100, duration: 0.35, ease: 'power2.inOut', overwrite: true });
-    } else {
-      gsap.to(nav, { yPercent: 0, duration: 0.35, ease: 'power2.inOut', overwrite: true });
+    if (y > 80 && delta > 5) {
+      // Meaningful downward scroll — hide
+      gsap.to(nav, { yPercent: -100, duration: 0.28, ease: 'power2.inOut', overwrite: true });
+    } else if (delta < -3 || y <= 80) {
+      // Any upward movement (even 3 px) or near top — show immediately
+      gsap.to(nav, { yPercent: 0, duration: 0.22, ease: 'power2.out', overwrite: true });
     }
-
-    lastY = y;
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
