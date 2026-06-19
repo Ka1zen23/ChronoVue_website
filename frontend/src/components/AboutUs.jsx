@@ -89,8 +89,8 @@ export default function AboutUs() {
           </div>
 
           {/* Mission quote */}
-          <div data-reveal className="rounded-2xl bg-brand-navy text-white p-8 flex flex-col justify-between">
-            <div className="text-brand-sage/30 font-display font-bold text-6xl leading-none mb-2 -mt-2">
+          <div data-reveal className="rounded-2xl bg-brand-sage text-white p-8 flex flex-col justify-between">
+            <div className="text-white/20 font-display font-bold text-6xl leading-none mb-2 -mt-2">
               &ldquo;
             </div>
             <p className="text-[17px] font-semibold leading-relaxed text-white/90 -mt-4 mb-6">

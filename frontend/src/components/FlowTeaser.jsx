@@ -56,8 +56,8 @@ export default function FlowTeaser() {
 
             <a
               href="/flow"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-navy text-white
-                font-semibold text-[14px] hover:bg-brand-navy-mid transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-sage text-white
+                font-semibold text-[14px] hover:bg-brand-sage/80 transition-colors shadow-sm"
             >
               See Full Case Study
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor"

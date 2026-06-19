@@ -48,19 +48,26 @@ function buildLeft(idx, t) {
   return makePath(xs, ys, 10);
 }
 
-// Sweeping fan — enters from off-screen upper-right
+// Arcing fan — enters upper-right, bulges left past centre, exits off-screen right at base
 function buildRight(idx, t) {
-  const frac = idx / 9;
+  const frac   = idx / 9;
   const xs = [], ys = [];
+
+  const startX = W * (0.65 + frac * 0.45);          // 65 %→110 % at top
+  const startY = H * (-0.08 + frac * 0.06);
+  const endX   = W * (1.05 + frac * 0.35);           // 105 %→140 % at base (off-screen right)
+  const endY   = H * (0.58 + frac * 0.08);           // 58 %→66 % (well past halfway)
+
   for (let j = 0; j <= 10; j++) {
-    const ns     = j / 10;
-    const startX = W * (0.62 + frac * 0.26);
-    const startY = H * (-0.04 + frac * 0.03);
-    const dx     = -ns * W * (0.07 + frac * 0.04 + 0.012 * Math.sin(t));
-    const dy     =  ns * H * 0.56;
-    const curve  = W * 0.025 * Math.sin(ns * Math.PI * 1.6 + t * 0.5 + idx * 0.38);
-    xs.push(startX + dx + curve);
-    ys.push(startY + dy);
+    const ns        = j / 10;
+    const baseX     = startX + ns * (endX - startX);
+    const baseY     = startY + ns * (endY - startY);
+    // sin(ns·π) peaks at midpoint — leftward bulge carries innermost line past W/2
+    const leftBulge = W * (0.38 + frac * 0.04 + 0.015 * Math.sin(t + idx * 0.5))
+                      * Math.sin(ns * Math.PI);
+    const wave      = W * 0.018 * Math.sin(ns * Math.PI * 1.6 + t * 0.8 + idx * 0.35);
+    xs.push(baseX - leftBulge + wave);
+    ys.push(baseY);
   }
   return makePath(xs, ys, 10);
 }
