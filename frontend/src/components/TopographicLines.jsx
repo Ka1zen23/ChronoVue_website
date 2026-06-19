@@ -1,30 +1,22 @@
-// Web port of the React Native animated topographic background.
-// Renders two bundles of smooth bezier lines driven by a 28-second GSAP loop.
-// Scroll-based time offset makes lines subtly morph as the page is scrolled.
-// Uses direct SVG attribute mutation — zero React re-renders per frame.
-//
-// LEFT  bundle (N_LEFT=12)  — hourglass river, left ~35% of viewport
-// RIGHT bundle (N_RIGHT=10) — sweeping fan from upper-right corner
-//
-// Intended use: one instance with `position:fixed; inset:0; z-index:-1` in App.jsx
-// behind all page content.  Pass dark=true for navy-bg sections.
-//
-//   <TopographicLines />        ← light (cream bg context)
-//   <TopographicLines dark />   ← dark (navy bg context)
+// Animated topographic lines — web port of the React Native original.
+// Two line bundles (hourglass river left + sweeping fan right) running on a
+// 28-second GSAP loop. Scrolling pans a viewBox window through a 1800px-tall
+// virtual canvas, giving a genuine "flowing landscape" parallax effect.
+// Direct SVG attribute mutation — zero React re-renders per frame.
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-// ── config ────────────────────────────────────────────────────────────────────
 const N_LEFT   = 12;
 const N_RIGHT  = 10;
 const CYCLE_MS = 28000;
 const TWO_PI   = Math.PI * 2;
-// Reference viewport — SVG viewBox; slice-fills whatever container it's in
-const W = 1440;
-const H = 900;
+const W        = 1440;
+const H        = 1800;   // tall virtual canvas — viewBox pans through this
+const VIEW_H   = 900;    // visible window height (one viewport)
+const MAX_PAN  = H - VIEW_H; // 900 — total vertical pan range
 
-// ── helpers ───────────────────────────────────────────────────────────────────
+// ── path builders ─────────────────────────────────────────────────────────────
 
 function makePath(xs, ys, n) {
   let d = `M ${xs[0].toFixed(1)} ${ys[0].toFixed(1)}`;
@@ -37,7 +29,7 @@ function makePath(xs, ys, n) {
   return d;
 }
 
-// Hourglass river — pinches at vertical centre, fans at top/bottom edges
+// Hourglass river — pinches at centre, fans at top/bottom
 function buildLeft(idx, t) {
   const frac = idx / 11 - 0.5;
   const xs = [], ys = [];
@@ -56,7 +48,7 @@ function buildLeft(idx, t) {
   return makePath(xs, ys, 10);
 }
 
-// Sweeping fan — enters from off-screen upper-right, arcs downward
+// Sweeping fan — enters from off-screen upper-right
 function buildRight(idx, t) {
   const frac = idx / 9;
   const xs = [], ys = [];
@@ -74,7 +66,7 @@ function buildRight(idx, t) {
 }
 
 // ── component ─────────────────────────────────────────────────────────────────
-export default function TopographicLines({ dark = false, className = '' }) {
+export default function TopographicLines({ className = '' }) {
   const svgRef = useRef(null);
 
   useEffect(() => {
@@ -85,16 +77,22 @@ export default function TopographicLines({ dark = false, className = '' }) {
     const rightPaths = Array.from(svg.querySelectorAll('[data-topo="right"]'));
     const t0 = performance.now();
 
-    // Render initial frame immediately (avoids blank-frame flash)
+    // Render frame 0 immediately — no blank flash
     for (let i = 0; i < leftPaths.length;  i++) leftPaths[i].setAttribute('d',  buildLeft(i,  0));
     for (let i = 0; i < rightPaths.length; i++) rightPaths[i].setAttribute('d', buildRight(i, 0));
 
     const tick = () => {
-      // Base 28-second animation loop
-      const loopT  = ((performance.now() - t0) / CYCLE_MS) * TWO_PI;
-      // Scroll adds a slow time offset — scrolling 8000px = one full morphing cycle
-      const scrollT = (window.scrollY / 8000) * TWO_PI;
-      const t = (loopT + scrollT) % TWO_PI;
+      // 28-second continuous animation loop
+      const t = ((performance.now() - t0) / CYCLE_MS) * TWO_PI % TWO_PI;
+
+      // Scroll → pan the viewBox through the tall canvas
+      // Maps full page scroll range to full MAX_PAN range
+      const scrollable = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight,
+        1
+      );
+      const viewBoxY = (window.scrollY / scrollable) * MAX_PAN;
+      svg.setAttribute('viewBox', `0 ${viewBoxY.toFixed(1)} ${W} ${VIEW_H}`);
 
       for (let i = 0; i < leftPaths.length;  i++) leftPaths[i].setAttribute('d',  buildLeft(i,  t));
       for (let i = 0; i < rightPaths.length; i++) rightPaths[i].setAttribute('d', buildRight(i, t));
@@ -104,22 +102,33 @@ export default function TopographicLines({ dark = false, className = '' }) {
     return () => gsap.ticker.remove(tick);
   }, []);
 
-  const stroke  = '#8AA68D';
-  const opacity = dark ? 0.28 : 0.42;
-
   return (
     <svg
       ref={svgRef}
-      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
-      viewBox={`0 0 ${W} ${H}`}
+      className={`topo-svg absolute inset-0 w-full h-full pointer-events-none ${className}`}
+      viewBox={`0 0 ${W} ${VIEW_H}`}
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       {Array.from({ length: N_LEFT }, (_, i) => (
-        <path key={`l${i}`} data-topo="left"  fill="none" stroke={stroke} strokeWidth="1" strokeOpacity={opacity} />
+        <path
+          key={`l${i}`}
+          data-topo="left"
+          fill="none"
+          stroke="#8AA68D"
+          strokeWidth="1.25"
+          strokeOpacity="0.7"
+        />
       ))}
       {Array.from({ length: N_RIGHT }, (_, i) => (
-        <path key={`r${i}`} data-topo="right" fill="none" stroke={stroke} strokeWidth="1" strokeOpacity={opacity} />
+        <path
+          key={`r${i}`}
+          data-topo="right"
+          fill="none"
+          stroke="#8AA68D"
+          strokeWidth="1.25"
+          strokeOpacity="0.7"
+        />
       ))}
     </svg>
   );
