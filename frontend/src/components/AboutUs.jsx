@@ -20,10 +20,12 @@ const principles = [
 ];
 
 const disciplines = [
-  { label: 'Cybersecurity', sub: "Master's-level study" },
-  { label: 'Digital Public Health', sub: "Master's degree" },
-  { label: 'Public Health', sub: "Master's degree" },
-  { label: "Bachelor's degrees", sub: 'Software Development, Data Analytics, and Information Security' },
+  { label: 'Cybersecurity', sub: 'Information security and secure systems' },
+  { label: 'Digital Public Health', sub: 'Digital health systems and public health research' },
+  { label: 'Public Health', sub: 'Population health and health systems' },
+  { label: 'Nursing & Midwifery', sub: 'Clinical practice and care workflows' },
+  { label: 'Software Development', sub: 'Designing and building software products' },
+  { label: 'Data Analytics', sub: 'Turning operational data into useful insight' },
 ];
 
 export default function AboutUs() {
@@ -42,10 +44,9 @@ export default function AboutUs() {
             A software company with clinical depth
           </h2>
           <p className="text-[15px] leading-relaxed text-gray-500 dark:text-white/55">
-            Our team brings together expertise in cybersecurity, Digital Public Health, Public
-            Health, Software Development, Data Analytics, and Information Security. This blend
-            of postgraduate and technical backgrounds shapes products around the way people
-            actually work.
+            Our team brings together expertise in cybersecurity, digital public health, public
+            health, nursing and midwifery, software development, and data analytics. This
+            combination shapes products around the way people actually work.
           </p>
         </div>
 
