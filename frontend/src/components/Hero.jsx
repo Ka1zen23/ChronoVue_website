@@ -2,41 +2,6 @@ import { useEffect, useState } from 'react';
 
 const heroTerms = ['SaaS', 'Mobile Apps', 'E-commerce', 'AI CRM', 'Sensor Systems'];
 
-const pillars = [
-  {
-    icon: (
-      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <circle cx="11" cy="8" r="4"/>
-        <path d="M3 20c0-4.42 3.58-8 8-8s8 3.58 8 8"/>
-        <path d="M8 8h2v-2M10 6v2h2" />
-      </svg>
-    ),
-    label: 'Embed-first methodology',
-    sub: 'We study real workflows before writing a line of code.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-        <rect x="12" y="3" width="7" height="7" rx="1.5"/>
-        <rect x="3" y="12" width="7" height="7" rx="1.5"/>
-        <rect x="12" y="12" width="7" height="7" rx="1.5"/>
-      </svg>
-    ),
-    label: 'Software built for real work',
-    sub: 'From web platforms and mobile apps to sensor-connected systems.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="w-5 h-5">
-        <path d="M2 11h4l2-7 5 15 3-8 2-5 2 5"/>
-      </svg>
-    ),
-    label: 'SaaS from day one',
-    sub: 'Every product is built to license, scale, and expand nationally.',
-  },
-];
-
 export default function Hero() {
   const [term, setTerm] = useState('SaaS');
 
@@ -116,7 +81,7 @@ export default function Hero() {
         >
           We build{' '}
           <span
-            className="inline-block whitespace-nowrap text-left gradient-text"
+            className="inline-block w-[10ch] sm:w-[14ch] whitespace-nowrap text-left gradient-text"
             aria-label="SaaS, mobile apps, e-commerce, AI CRM, and sensor systems"
           >
             <span aria-hidden="true">{term}</span>
@@ -135,7 +100,7 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div data-reveal className="flex flex-wrap justify-center gap-3 mb-20">
+        <div data-reveal className="flex flex-wrap justify-center gap-3">
           <a
             href="#case-study"
             data-magnetic="0.2"
@@ -154,38 +119,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Three pillars */}
-        <div id="problem">
-          <p
-            data-reveal
-            className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/30 mb-5"
-          >
-            How we work
-          </p>
-          <div data-stagger className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-3xl mx-auto mb-8">
-            {pillars.map(p => (
-              <div
-                key={p.label}
-                data-reveal
-                className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 text-left
-                  hover:bg-white/[0.07] hover:border-white/[0.15] transition-all"
-              >
-                <div className="text-white/40 mb-3">{p.icon}</div>
-                <div className="text-[13px] font-semibold text-white/80 mb-1 leading-snug">{p.label}</div>
-                <div className="text-[12px] text-white/35 leading-snug">{p.sub}</div>
-              </div>
-            ))}
-          </div>
-
-          <div data-reveal className="flex items-center gap-4 justify-center mb-0">
-            <div className="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-white/[0.12]" />
-            <span className="text-[12px] font-semibold text-brand-teal border border-brand-teal/25
-              bg-brand-teal/10 px-4 py-1.5 rounded-full">
-              Software, Apps & Connected Systems
-            </span>
-            <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-white/[0.12]" />
-          </div>
-        </div>
       </div>
 
     </section>
