@@ -103,8 +103,8 @@ export default function Team() {
               </h3>
 
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/75 md:text-[15px]">
-                A product studio where developers work alongside domain specialists and researchers,
-                so what we build is grounded in how complex operations actually work.
+                A software company where developers work alongside domain specialists and researchers,
+                grounding our products in how people and complex operations actually work.
               </p>
             </div>
           </div>

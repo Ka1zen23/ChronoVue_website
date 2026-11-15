@@ -15,7 +15,7 @@ const principles = [
     accent: 'text-violet-600 bg-violet-500/8 border-violet-500/15',
     icon: <ScaleIcon />,
     title: 'We design for national scale',
-    body: 'From day one, every product is architected as a SaaS business: licensable per organisation, expandable across regions, and built to grow beyond its first deployment.',
+    body: 'We choose the right delivery model for each product, with room to scale across organisations, regions, and devices.',
   },
 ];
 
@@ -39,12 +39,12 @@ export default function AboutUs() {
           </span>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.6rem)] font-display font-extrabold
             tracking-tight mb-4 leading-tight text-brand-navy dark:text-white">
-            A product studio with clinical depth
+            A software company with clinical depth
           </h2>
           <p className="text-[15px] leading-relaxed text-gray-500 dark:text-white/55">
             ChronoVue combines software engineers, data analysts, nurses, and public health
-            researchers. We don't just build software; we embed with the teams doing the real
-            work, map their actual workflows, and build the platform that eliminates the friction.
+            researchers to build SaaS, mobile apps, e-commerce, AI-powered CRM, and connected
+            systems. We work alongside teams to make software fit the way they actually work.
           </p>
         </div>
 

@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+
+const heroTerms = ['SaaS', 'Mobile Apps', 'E-commerce', 'AI CRM', 'Sensor Systems'];
+
 const pillars = [
   {
     icon: (
@@ -19,8 +23,8 @@ const pillars = [
         <rect x="12" y="12" width="7" height="7" rx="1.5"/>
       </svg>
     ),
-    label: 'Purpose-built platforms',
-    sub: 'Not consulting, not generic tools. Products we own and evolve.',
+    label: 'Software built for real work',
+    sub: 'From web platforms and mobile apps to sensor-connected systems.',
   },
   {
     icon: (
@@ -34,6 +38,41 @@ const pillars = [
 ];
 
 export default function Hero() {
+  const [term, setTerm] = useState('SaaS');
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let wordIndex = 0;
+    let deleting = false;
+    let currentTerm = 'SaaS';
+    let timer;
+
+    const animate = () => {
+      const word = heroTerms[wordIndex];
+      if (!deleting) {
+        currentTerm = word.slice(0, currentTerm.length + 1);
+        setTerm(currentTerm);
+        if (currentTerm.length === word.length) {
+          deleting = true;
+          timer = window.setTimeout(animate, 1150);
+          return;
+        }
+      } else {
+        currentTerm = word.slice(0, Math.max(0, currentTerm.length - 1));
+        setTerm(currentTerm);
+        if (currentTerm.length === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % heroTerms.length;
+        }
+      }
+      timer = window.setTimeout(animate, deleting ? 48 : 92);
+    };
+
+    timer = window.setTimeout(animate, 1300);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <section data-hero className="relative overflow-hidden bg-brand-navy pt-[62px]">
       {/* Animated grid background */}
@@ -66,7 +105,7 @@ export default function Hero() {
             bg-white/[0.07] border border-white/[0.12] px-4 py-1.5 rounded-full mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-badge-pulse" />
-          Product Studio from Brunei Darussalam
+          Software Company from Brunei Darussalam
         </div>
 
         {/* Headline */}
@@ -75,16 +114,24 @@ export default function Hero() {
           className="text-[clamp(2.6rem,6vw,5rem)] font-display font-extrabold text-white
             leading-[1.05] tracking-tightest mb-6 max-w-4xl mx-auto"
         >
-          We build SaaS that replaces<br />
-          <span className="gradient-text">fragmented operational workflows.</span>
+          We build{' '}
+          <span
+            className="inline-block min-w-[10ch] text-left gradient-text"
+            aria-label="SaaS, mobile apps, e-commerce, AI CRM, and sensor systems"
+          >
+            <span aria-hidden="true">{term}</span>
+            <span className="ml-0.5 inline-block h-[0.82em] w-[2px] translate-y-[0.08em] bg-brand-teal animate-pulse" aria-hidden="true" />
+          </span>
+          <br />
+          <span className="gradient-text">for real-world work.</span>
         </h1>
 
         <p
           data-reveal
           className="max-w-xl mx-auto text-[17px] text-white/55 leading-relaxed mb-10"
         >
-          ChronoVue is a product studio. We identify sectors where teams still rely on manual,
-          fragmented processes to do critical work, then build the platform that replaces them.
+          ChronoVue is a software company building SaaS, mobile apps, e-commerce, AI-powered
+          WhatsApp CRM, and sensor-connected systems for real-world needs.
         </p>
 
         {/* CTAs */}
@@ -134,7 +181,7 @@ export default function Hero() {
             <div className="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-white/[0.12]" />
             <span className="text-[12px] font-semibold text-brand-teal border border-brand-teal/25
               bg-brand-teal/10 px-4 py-1.5 rounded-full">
-              SaaS & Operational Intelligence
+              Software, Apps & Connected Systems
             </span>
             <div className="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-white/[0.12]" />
           </div>

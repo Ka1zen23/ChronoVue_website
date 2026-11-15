@@ -26,8 +26,8 @@ export default function Footer() {
             </a>
 
             <p className="mb-6 max-w-[260px] text-[13.5px] leading-relaxed text-white/50">
-              ChronoVue is a product studio that builds operational SaaS for sectors
-              where teams are still relying on manual, fragmented processes to do critical work.
+              ChronoVue builds SaaS, mobile apps, e-commerce, AI-powered CRM, and connected
+              systems for teams solving real-world problems.
             </p>
 
             <p className="mb-6 text-sm text-white/65">
