@@ -20,10 +20,10 @@ const principles = [
 ];
 
 const disciplines = [
-  { label: 'Cybersecurity', sub: "Three team members pursuing master's degrees" },
-  { label: 'Digital Public Health', sub: "Master's degree graduate" },
-  { label: 'Public Health', sub: "Master's degree graduate" },
-  { label: 'Software & Product Development', sub: 'Building practical tools for real-world workflows' },
+  { label: 'Cybersecurity', sub: "Master's-level study" },
+  { label: 'Digital Public Health', sub: "Master's degree" },
+  { label: 'Public Health', sub: "Master's degree" },
+  { label: "Bachelor's degrees", sub: 'Software Development, Data Analytics, and Information Security' },
 ];
 
 export default function AboutUs() {
@@ -42,10 +42,10 @@ export default function AboutUs() {
             A software company with clinical depth
           </h2>
           <p className="text-[15px] leading-relaxed text-gray-500 dark:text-white/55">
-            Our five-person team includes three master's students in cybersecurity and two
-            graduates with master's degrees in Digital Public Health and Public Health. We bring
-            security and public health perspectives to SaaS, mobile apps, e-commerce, AI-powered
-            CRM, and connected systems, building software around the way people actually work.
+            Our team brings together expertise in cybersecurity, Digital Public Health, Public
+            Health, Software Development, Data Analytics, and Information Security. This blend
+            of postgraduate and technical backgrounds shapes products around the way people
+            actually work.
           </p>
         </div>
 
