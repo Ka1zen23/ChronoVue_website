@@ -20,10 +20,10 @@ const principles = [
 ];
 
 const disciplines = [
-  { label: 'Software Engineering', sub: 'Platform architecture, backend, EHR integration' },
-  { label: 'Data Analytics', sub: 'Dashboard design, reporting, historical analysis' },
-  { label: 'Nursing & Midwifery', sub: 'Clinical workflow expertise, user testing, adoption' },
-  { label: 'Public Health', sub: 'System-level thinking, national expansion strategy' },
+  { label: 'Cybersecurity', sub: "Three team members pursuing master's degrees" },
+  { label: 'Digital Public Health', sub: "Master's degree graduate" },
+  { label: 'Public Health', sub: "Master's degree graduate" },
+  { label: 'Software & Product Development', sub: 'Building practical tools for real-world workflows' },
 ];
 
 export default function AboutUs() {
@@ -42,9 +42,10 @@ export default function AboutUs() {
             A software company with clinical depth
           </h2>
           <p className="text-[15px] leading-relaxed text-gray-500 dark:text-white/55">
-            ChronoVue combines software engineers, data analysts, nurses, and public health
-            researchers to build SaaS, mobile apps, e-commerce, AI-powered CRM, and connected
-            systems. We work alongside teams to make software fit the way they actually work.
+            Our five-person team includes three master's students in cybersecurity and two
+            graduates with master's degrees in Digital Public Health and Public Health. We bring
+            security and public health perspectives to SaaS, mobile apps, e-commerce, AI-powered
+            CRM, and connected systems, building software around the way people actually work.
           </p>
         </div>
 
