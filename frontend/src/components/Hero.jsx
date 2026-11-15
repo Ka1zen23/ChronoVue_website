@@ -116,7 +116,7 @@ export default function Hero() {
         >
           We build{' '}
           <span
-            className="inline-block min-w-[10ch] text-left gradient-text"
+            className="inline-block whitespace-nowrap text-left gradient-text"
             aria-label="SaaS, mobile apps, e-commerce, AI CRM, and sensor systems"
           >
             <span aria-hidden="true">{term}</span>
